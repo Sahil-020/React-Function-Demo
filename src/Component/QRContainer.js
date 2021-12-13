@@ -23,6 +23,8 @@ class QRContainer extends React.Component {
         //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
         //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
       }),
+      showIframe: false,
+      pdfURL: "",
     };
 
     this.handleScan = this.handleScan.bind(this);
@@ -80,10 +82,10 @@ class QRContainer extends React.Component {
     }
     //     let url = "https://kwqr.me/98138FL41618/J";
     // let url = "https://kwqr.me/85303D62177"
-    let url = "https://kwqr.me/85303D62177/D"
+    // let url = "https://kwqr.me/85303D62177/D"
     //         let url = "https://kwqr.me/98138FL41618";
-//     let url = "https://kwqr.me/8530362177/D"
-//     let url = "https://kwqr.me/98138F41618";
+    let url = "https://kwqr.me/8530362177/D";
+    //     let url = "https://kwqr.me/98138F41618";
     let query = url.substring(16);
     console.log("query: ", query);
     let res;
@@ -96,17 +98,31 @@ class QRContainer extends React.Component {
     }
     console.log("res :", res);
     if (res.status === 200 && res.data && res.data.status === 200) {
+      if (res.data.destinationURL) {
+        this.setState({
+          showIframe: true,
+          pdfURL: res.data.destinationURL,
+          scan: false,
+          resultStatus: false,
+          error: false,
+        });
+        window.open(res.data.destinationURL, "_self");
+        return;
+      }
+
       this.setState({
         resultData: res.data,
         scan: false,
         resultStatus: true,
         error: false,
+        showIframe: false,
       });
     } else {
       this.setState({
         error: true,
         resultStatus: false,
         scan: false,
+        showIframe: false,
       });
     }
   }
@@ -120,8 +136,17 @@ class QRContainer extends React.Component {
       margin: "auto",
     };
 
-    let { resultStatus, resultData, error, errorMsg, scan, formatter, delay } =
-      this.state;
+    let {
+      resultStatus,
+      resultData,
+      error,
+      errorMsg,
+      scan,
+      formatter,
+      delay,
+      showIframe,
+      pdfURL,
+    } = this.state;
 
     return (
       <div>
