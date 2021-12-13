@@ -220,7 +220,7 @@ class QRContainer extends React.Component {
       margin: "auto",
     };
 
-    let { resultStatus, resultData, error, errorMsg, scan, formatter } =
+    let { resultStatus, resultData, error, errorMsg, scan, formatter, delay } =
       this.state;
 
     return (
@@ -238,13 +238,10 @@ class QRContainer extends React.Component {
         )}
         {/* <p className={scan ? "result" : ""}>{result}</p> */}
         {resultStatus ? (
-          <div className="item_container" style="text-align: left; width:100%;">
-            <div
-              className="item"
-              style="text-align:center;max-width:100%;font-size:40px"
-            >
-              <div className="item_image" style="width:100%;">
-                <img style="width:80%;" src={handleImage(resultData)} />
+          <div className="item_container">
+            <div className="item">
+              <div className="item_image">
+                <img src={this.handleImage(resultData)} />
               </div>
               <div> Serial Number : {resultData.SerialNumber} </div>
               <div>Inventory ID : {resultData.InventoryID}</div>

@@ -6,3 +6,19 @@
 .scan {
     cursor: pointer;
 }
+
+.item_container {
+    text-align: left;
+    width: 100%;
+    .item {
+        text-align: center;
+        max-width: 100%;
+        font-size: 40px;
+        .item_image {
+            width: 100%;
+            img {
+                width: 80%;
+            }
+        }
+    }
+}
