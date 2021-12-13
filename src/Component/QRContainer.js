@@ -80,9 +80,9 @@ class QRContainer extends React.Component {
     }
     //     let url = "https://kwqr.me/98138FL41618/J";
     // let url = "https://kwqr.me/85303D62177"
-    // let url = "https://kwqr.me/85303D62177/D"
+    let url = "https://kwqr.me/85303D62177/D"
     //         let url = "https://kwqr.me/98138FL41618";
-    let url = "https://kwqr.me/8530362177/D"
+//     let url = "https://kwqr.me/8530362177/D"
 //     let url = "https://kwqr.me/98138F41618";
     let query = url.substring(16);
     console.log("query: ", query);
