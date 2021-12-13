@@ -133,7 +133,7 @@ export const onRequestGet = async (context) => {
     //                 "content-type": "application/json;charset=UTF-8"
     //             }
     //         })
-    return new Response(JSON.strigify(results), {
+    return new Response(results, {
         headers: {
             "content-type": "application/json;charset=UTF-8"
         }
