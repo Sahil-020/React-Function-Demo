@@ -204,7 +204,7 @@ class QRContainer extends React.Component {
             res = await axios.get(`api/${query}`);
         }
         console.log("res :", res);
-        if (res.status === 200 && res.data) {
+        if (res.status === 200 && res.data && res.data.status === 200) {
             this.setState({
                 resultData: res.data,
                 scan: false,
