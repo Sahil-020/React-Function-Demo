@@ -132,7 +132,7 @@ class QRContainer extends React.Component {
       this.setState({
         error: true,
         resultStatus: false,
-        scan: false,
+        scan: true,
         showIframe: false,
       });
     }
