@@ -89,7 +89,12 @@ export const onRequestGet = async (context) => {
             if (appNameData[i] === DiamondSerialApp && updatedResults.LabReportNbr) {
                 const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`
                 const statusCode = 301
-                return Response.redirect(destinationURL, 301)
+//                 return Response.redirect(destinationURL, 301)
+                 return new Response(JSON.stringify({destinationURL,status:200}), {
+                headers: {
+                    "content-type": "application/json;charset=UTF-8"
+                }
+            })
             }
             var formatter = new Intl.NumberFormat("en-US", {
                 style: "currency",
