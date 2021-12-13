@@ -73,51 +73,61 @@ class QRContainer extends React.Component {
 
   async handleScan(data) {
     // console.log("data :", data);
-    if (data) {
-      this.setState({
-        result: data,
-        scan: false,
-      });
-      // window.open(data, "_self");
-    }
-     //     let url = data;
-    //     let url = "https://kwqr.me/98138FL41618/J";
-    let url = "https://kwqr.me/85303D62177"
-//     let url = "https://kwqr.me/85303D62177/D"
-    //         let url = "https://kwqr.me/98138FL41618";
-//     let url = "https://kwqr.me/8530362177/D";
-    //     let url = "https://kwqr.me/98138F41618";
-    let query = url.substring(16);
-//     console.log("query: ", query);
-    let res;
-    if (query.includes("/")) {
-//       console.log("Query Includes /");
-      res = await axios.get(`api/${query}`);
-    } else {
-//       console.log("Query Doesn't Includes /");
-      res = await axios.get(`api/${query}`);
-    }
-//     console.log("res :", res);
-    if (res.status === 200 && res.data && res.data.status === 200) {
-      if (res.data.destinationURL) {
-        this.setState({
-          showIframe: true,
-          pdfURL: res.data.destinationURL,
-          scan: false,
-          resultStatus: false,
-          error: false,
-        });
-        window.open(res.data.destinationURL, "_self");
-        return;
-      }
 
-      this.setState({
-        resultData: res.data,
-        scan: false,
-        resultStatus: true,
-        error: false,
-        showIframe: false,
-      });
+    // if (data) {
+    //   this.setState({
+    //     result: data,
+    //     scan: false,
+    //   });
+    //   // window.open(data, "_self");
+    // }
+    if (data && typeof data === "string") {
+      let url = data;
+      //     let url = "https://kwqr.me/98138FL41618/J";
+      // let url = "https://kwqr.me/85303D62177"
+      // let url = "https://kwqr.me/85303D62177/D"
+      //         let url = "https://kwqr.me/98138FL41618";
+      // let url = "https://kwqr.me/8530362177/D";
+      //     let url = "https://kwqr.me/98138F41618";
+      let query = url.substring(16);
+      console.log("query: ", query);
+      let res;
+      if (query.includes("/")) {
+        console.log("Query Includes /");
+        res = await axios.get(`api/${query}`);
+      } else {
+        console.log("Query Doesn't Includes /");
+        res = await axios.get(`api/${query}`);
+      }
+      console.log("res :", res);
+      if (res.status === 200 && res.data && res.data.status === 200) {
+        if (res.data.destinationURL) {
+          this.setState({
+            showIframe: true,
+            pdfURL: res.data.destinationURL,
+            scan: false,
+            resultStatus: false,
+            error: false,
+          });
+          window.open(res.data.destinationURL, "_self");
+          return;
+        }
+
+        this.setState({
+          resultData: res.data,
+          scan: false,
+          resultStatus: true,
+          error: false,
+          showIframe: false,
+        });
+      } else {
+        this.setState({
+          error: true,
+          resultStatus: false,
+          scan: false,
+          showIframe: false,
+        });
+      }
     } else {
       this.setState({
         error: true,
