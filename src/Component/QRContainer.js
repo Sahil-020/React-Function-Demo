@@ -80,23 +80,24 @@ class QRContainer extends React.Component {
       });
       // window.open(data, "_self");
     }
+     //     let url = data;
     //     let url = "https://kwqr.me/98138FL41618/J";
-    // let url = "https://kwqr.me/85303D62177"
-    let url = "https://kwqr.me/85303D62177/D"
+    let url = "https://kwqr.me/85303D62177"
+//     let url = "https://kwqr.me/85303D62177/D"
     //         let url = "https://kwqr.me/98138FL41618";
 //     let url = "https://kwqr.me/8530362177/D";
     //     let url = "https://kwqr.me/98138F41618";
     let query = url.substring(16);
-    console.log("query: ", query);
+//     console.log("query: ", query);
     let res;
     if (query.includes("/")) {
-      console.log("Query Includes /");
+//       console.log("Query Includes /");
       res = await axios.get(`api/${query}`);
     } else {
-      console.log("Query Doesn't Includes /");
+//       console.log("Query Doesn't Includes /");
       res = await axios.get(`api/${query}`);
     }
-    console.log("res :", res);
+//     console.log("res :", res);
     if (res.status === 200 && res.data && res.data.status === 200) {
       if (res.data.destinationURL) {
         this.setState({
