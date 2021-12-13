@@ -72,7 +72,7 @@ class QRContainer extends React.Component {
   }
 
   async handleScan(data) {
-    // console.log("data :", data);
+    console.log("data :", data);
 
     // if (data) {
     //   this.setState({
