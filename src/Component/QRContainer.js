@@ -114,7 +114,7 @@ class QRContainer extends React.Component {
         }
 
         this.setState({
-          resultData: res.data.results,
+          resultData: JSON.parse(res.data.results),
           scan: false,
           resultStatus: true,
           error: false,
