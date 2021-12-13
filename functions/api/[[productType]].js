@@ -100,7 +100,12 @@ export const onRequestGet = async (context) => {
     if (productType[1] === "D" && updatedResults.LabReportNbr) {
         const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
         const statusCode = 301;
-        return Response.redirect(destinationURL, 301);
+        //         return Response.redirect(destinationURL, 301);
+        return new Response(destinationURL, {
+            headers: {
+                "content-type": "application/json;charset=UTF-8"
+            }
+        })
     }
     var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
