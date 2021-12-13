@@ -128,14 +128,19 @@ export const onRequestGet = async (context) => {
                     </div>
                   </div>
                 </body>`;
-    //     return new Response(`The id : ${ JSON.stringify(productType) }\n\nresult : ${results} \n\n ${typeof results}`, {
-    //         headers: {
-    //             "content-type": "application/json;charset=UTF-8"
-    //         }
-    //     })
-    return new Response(html, {
+    //         return new Response(`The id : ${ JSON.stringify(productType) }\n\nresult : ${results} \n\n ${typeof results}`, {
+    //             headers: {
+    //                 "content-type": "application/json;charset=UTF-8"
+    //             }
+    //         })
+    return new Response(JSON.strigify(results), {
         headers: {
-            "content-type": "text/html;charset=UTF-8",
-        },
-    });
+            "content-type": "application/json;charset=UTF-8"
+        }
+    })
+    //     return new Response(html, {
+    //         headers: {
+    //             "content-type": "text/html;charset=UTF-8",
+    //         },
+    //     });
 };
