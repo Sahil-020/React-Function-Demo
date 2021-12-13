@@ -118,11 +118,65 @@ class QRContainer extends React.Component {
     super(props);
     this.state = {
       delay: 100,
-      result: "No result",
+      resultData: {},
+      resultStatus: false,
+      // result: "No result",
+      error: false,
+      errorMsg: "Item Not Found",
+      formatter: new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+
+        // These options are needed to round to whole numbers if that's what you want.
+        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+      }),
     };
 
     this.handleScan = this.handleScan.bind(this);
+    this.handleImage = this.handleImage.bind(this);
   }
+
+  handleImage(item) {
+    // console.log(item);
+    // console.log(item);
+    if (
+      (item.transformType === "JewelrySerial" || !item.transformType) &&
+      item.WebImage1
+    ) {
+      let str = item.WebImage1.replace(".jpg", "-product@2x.jpg");
+      let imageurl = "https://cdn.kwiat.com/source-images/web/product/" + str;
+      return imageurl;
+    } else if (
+      item.transformType === "DiamondSerial" ||
+      item.transformType === "GemstoneSerial" ||
+      ((item.transformType === "JewelrySerial" || !item.transformType) &&
+        item.Shape &&
+        item.Shape !== null)
+    ) {
+      // console.log("In shape");
+      let imageurl =
+        "https://cdn.kwiat.com/apps/kwiat-elastic-search/dia-shapes/" +
+        item.Shape +
+        ".jpg";
+      // console.log("imageurl: ", imageurl);
+      return imageurl;
+    } else if (item.LargeImageName) {
+      // console.log("Inside Large Image Name");
+
+      let searchimage;
+      searchimage = item.LargeImageName;
+      let str = searchimage.split("\\");
+      searchimage = str[str.length - 1];
+      let imageurl = "https://cdn.kwiat.com/source-images/large/" + searchimage;
+      return imageurl;
+    } else {
+      let imageurl =
+        "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg";
+      return imageurl;
+    }
+  }
+
   async handleScan(data) {
     // console.log("data :", data);
     if (data) {
@@ -133,6 +187,7 @@ class QRContainer extends React.Component {
       // window.open(data, "_self");
     }
     let url = "https://kwqr.me/98138FL41618/J";
+    // let url = "https://kwqr.me/85303D62177"
     let query = url.substring(16);
     console.log("query: ", query);
     let res;
@@ -144,6 +199,16 @@ class QRContainer extends React.Component {
       res = await axios.get(`api/${query}`);
     }
     console.log("res :", res);
+    if (res.status === 200 && res.data) {
+      this.setState({
+        resultData: res.data,
+        scan: false,
+        resultStatus: true,
+        error: false,
+      });
+    } else {
+      this.setState({ error: true, resultStatus: false, scan: false });
+    }
   }
   handleError(err) {
     console.error(err);
@@ -155,11 +220,14 @@ class QRContainer extends React.Component {
       margin: "auto",
     };
 
+    let { resultStatus, resultData, error, errorMsg, scan, formatter } =
+      this.state;
+
     return (
       <div>
-        {this.state.scan ? (
+        {scan ? (
           <QrReader
-            delay={this.state.delay}
+            delay={delay}
             style={previewStyle}
             onError={this.handleError}
             onScan={this.handleScan}
@@ -168,8 +236,28 @@ class QRContainer extends React.Component {
         ) : (
           <></>
         )}
-        <p className={this.state.scan ? "result" : ""}>{this.state.result}</p>
-        {!this.state.scan ? (
+        {/* <p className={scan ? "result" : ""}>{result}</p> */}
+        {resultStatus ? (
+          <div className="item_container" style="text-align: left; width:100%;">
+            <div
+              className="item"
+              style="text-align:center;max-width:100%;font-size:40px"
+            >
+              <div className="item_image" style="width:100%;">
+                <img style="width:80%;" src={handleImage(resultData)} />
+              </div>
+              <div> Serial Number : {resultData.SerialNumber} </div>
+              <div>Inventory ID : {resultData.InventoryID}</div>
+              <div>
+                Retail Price : {formatter.format(resultData.RetailPrice)}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
+        {error ? <p className={scan ? "result" : ""}>{errorMsg}</p> : <></>}
+        {!scan ? (
           <button
             className="scan"
             onClick={() => this.setState({ scan: true })}
