@@ -138,7 +138,7 @@ export const onRequestGet = async (context) => {
     //                 "content-type": "application/json;charset=UTF-8"
     //             }
     //         })
-    return new Response(results, {
+    return new Response(JSON.stringify({results,status:200}), {
         headers: {
             "content-type": "application/json;charset=UTF-8"
         }
