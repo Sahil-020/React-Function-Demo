@@ -2,6 +2,9 @@ import React, { Component } from "react";
 // import QrReader from "react-qr-scanner";
 import QrReader from "modern-react-qr-reader";
 import axios from "axios";
+import { Item } from "../Data/SampleItem";
+import { FieldData } from "../Data/FieldData";
+import Accordion from "react-bootstrap/Accordion";
 // import QrReader from "react-qr-reader";
 // import QRScan from "qrscan";
 
@@ -10,6 +13,7 @@ class QRContainer extends React.Component {
     super(props);
     this.state = {
       delay: 100,
+      scan: true,
       resultData: {},
       resultStatus: false,
       // result: "No result",
@@ -25,6 +29,7 @@ class QRContainer extends React.Component {
       }),
       showIframe: false,
       pdfURL: "",
+      // resultData: Item,
     };
 
     this.handleScan = this.handleScan.bind(this);
@@ -72,7 +77,7 @@ class QRContainer extends React.Component {
   }
 
   async handleScan(data) {
-    console.log("data :", data);
+    // console.log("data :", data);
 
     // if (data) {
     //   this.setState({
@@ -114,7 +119,7 @@ class QRContainer extends React.Component {
         }
 
         this.setState({
-          resultData: JSON.parse(res.data.results),
+          resultData: res.data,
           scan: false,
           resultStatus: true,
           error: false,
@@ -157,6 +162,7 @@ class QRContainer extends React.Component {
       delay,
       showIframe,
       pdfURL,
+      sampleData,
     } = this.state;
 
     return (
@@ -176,13 +182,165 @@ class QRContainer extends React.Component {
         {resultStatus ? (
           <div className="item_container">
             <div className="item">
+              <div className="logo">
+                <img src="https://cdn4.kwiat.com/source-images/web/logos/kwiat.jpg"></img>
+              </div>
+              <div className="serial_no">
+                <label>SERIAL NUMBER: </label>
+                <label>{resultData.SerialNumber}</label>
+              </div>
+              <div className="style_no">
+                <label>STYLE NUMBER: </label>
+                <label>{resultData.StyleNumber}</label>
+              </div>
               <div className="item_image">
                 <img src={this.handleImage(resultData)} />
               </div>
-              <div> Serial Number: {resultData.SerialNumber} </div>
+              {/* <div> Serial Number: {resultData.SerialNumber} </div>
               <div> Inventory ID: {resultData.InventoryID} </div>
               <div>
                 Retail Price: {formatter.format(resultData.RetailPrice)}
+              </div> */}
+              <div className="fields">
+                <Accordion defaultActiveKey="0" flush>
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>GENERAL INFORMATION</Accordion.Header>
+                    <Accordion.Body>
+                      {Object.keys(FieldData.GeneralData).map((key, Index) => {
+                        if (resultData[key]) {
+                          return (
+                            <div className="field_data" key={Index}>
+                              <label>
+                                {FieldData.GeneralData[key].label} :
+                              </label>
+                              <label>{resultData[key]}</label>
+                            </div>
+                          );
+                        } else return <></>;
+                      })}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="1">
+                    <Accordion.Header>DESCRIPTION</Accordion.Header>
+                    <Accordion.Body>
+                      {Object.keys(FieldData.Description).map((key, Index) => {
+                        if (resultData[key]) {
+                          return (
+                            <div className="field_data" key={Index}>
+                              <label>
+                                {FieldData.Description[key].label} :
+                              </label>
+                              <label>{resultData[key]}</label>
+                            </div>
+                          );
+                        } else return <></>;
+                      })}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="2">
+                    <Accordion.Header>RING DETAILS</Accordion.Header>
+                    <Accordion.Body>
+                      {Object.keys(FieldData.RingDetail).map((key, Index) => {
+                        if (resultData[key]) {
+                          return (
+                            <div className="field_data" key={Index}>
+                              <label>{FieldData.RingDetail[key].label} :</label>
+                              <label>{resultData[key]}</label>
+                            </div>
+                          );
+                        } else return <></>;
+                      })}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="3">
+                    <Accordion.Header>DIAMOND DETAIL</Accordion.Header>
+                    <Accordion.Body>
+                      {Object.keys(FieldData.DiamondDetail).map(
+                        (key, Index) => {
+                          if (resultData[key]) {
+                            return (
+                              <div className="field_data" key={Index}>
+                                <label>
+                                  {FieldData.DiamondDetail[key].label} :
+                                </label>
+                                <label>{resultData[key]}</label>
+                              </div>
+                            );
+                          } else return <></>;
+                        }
+                      )}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="4">
+                    <Accordion.Header>COLOR DETAIL</Accordion.Header>
+                    <Accordion.Body>
+                      {Object.keys(FieldData.ColorDetail).map((key, Index) => {
+                        if (resultData[key]) {
+                          return (
+                            <div className="field_data" key={Index}>
+                              <label>
+                                {FieldData.ColorDetail[key].label} :
+                              </label>
+                              <label>{resultData[key]}</label>
+                            </div>
+                          );
+                        } else return <></>;
+                      })}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="5">
+                    <Accordion.Header>CENTER DIAMOND INFO</Accordion.Header>
+                    <Accordion.Body>
+                      {Object.keys(FieldData.CenterInfo).map((key, Index) => {
+                        if (resultData[key]) {
+                          return (
+                            <div className="field_data" key={Index}>
+                              <label>{FieldData.CenterInfo[key].label} :</label>
+                              <label>{resultData[key]}</label>
+                            </div>
+                          );
+                        } else return <></>;
+                      })}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="6">
+                    <Accordion.Header>DIMENSIONS</Accordion.Header>
+                    <Accordion.Body>
+                      {Object.keys(FieldData.Dimensions).map((key, Index) => {
+                        if (resultData[key]) {
+                          return (
+                            <div className="field_data" key={Index}>
+                              <label>{FieldData.Dimensions[key].label} :</label>
+                              <label>{resultData[key]}</label>
+                            </div>
+                          );
+                        } else return <></>;
+                      })}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="7">
+                    <Accordion.Header>
+                      CERTIFIED DIAMOND REPORT
+                    </Accordion.Header>
+                    <Accordion.Body>
+                      {Object.keys(FieldData.CertifiedDiamondReports).map(
+                        (key, Index) => {
+                          if (resultData[key]) {
+                            return (
+                              <div className="field_data" key={Index}>
+                                <label>
+                                  {FieldData.CertifiedDiamondReports[key].label}{" "}
+                                  :
+                                </label>
+                                <label>{resultData[key]}</label>
+                              </div>
+                            );
+                          } else return <></>;
+                        }
+                      )}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
               </div>
             </div>
           </div>
