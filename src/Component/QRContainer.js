@@ -5,6 +5,8 @@ import axios from "axios";
 import { Item } from "../Data/SampleItem";
 import { FieldData } from "../Data/FieldData";
 import Accordion from "react-bootstrap/Accordion";
+import ImageGallery from "react-image-gallery";
+import currencyFormatter from "currency-formatter";
 // import QrReader from "react-qr-reader";
 // import QRScan from "qrscan";
 
@@ -30,10 +32,64 @@ class QRContainer extends React.Component {
       showIframe: false,
       pdfURL: "",
       // resultData: Item,
+      imgArr: [],
     };
 
     this.handleScan = this.handleScan.bind(this);
     this.handleImage = this.handleImage.bind(this);
+    this.handleImageGallery = this.handleImageGallery.bind(this);
+  }
+
+  handleImageGallery() {
+    let res = this.state.resultData;
+    var imgArr = [];
+    if (res) {
+      function showWebImage(img) {
+        var src = "https://cdn4.kwiat.com/source-images/web/original/" + img;
+        return src;
+      }
+      function showimage(image) {
+        let img,
+          str = "";
+        if (image && image != null) {
+          let searchimage;
+          searchimage = image;
+          str = searchimage.split("\\");
+          searchimage = str[str.length - 1];
+          img = "https://cdn.kwiat.com/source-images/large/" + searchimage;
+        } else {
+          img = "";
+        }
+        return img;
+      }
+      const webImgName = (img) => img.replace(/ /g, "");
+      const largeImgName = (img) => {
+        var str = img.split("\\");
+        return str[str.length - 1];
+      };
+
+      if (res.LargeImageName) {
+        imgArr.push({
+          original: showimage(res.LargeImageName),
+          thumbnail: showimage(res.LargeImageName),
+          imgName: largeImgName(res.LargeImageName),
+        });
+      }
+      for (let i = 1; i < 6; i++) {
+        var field = "WebImage" + i;
+        if (res[field]) {
+          imgArr.push({
+            original: showWebImage(res[field]),
+            thumbnail: showWebImage(res[field]),
+            imgName: webImgName(res[field]),
+          });
+        }
+      }
+    }
+    return imgArr;
+    // this.setState({
+    //   imgArr: imgArr,
+    // });
   }
 
   handleImage(item) {
@@ -185,6 +241,17 @@ class QRContainer extends React.Component {
               <div className="logo">
                 <img src="https://cdn4.kwiat.com/source-images/web/logos/kwiat.jpg"></img>
               </div>
+              <div className="retail_price">
+                <label>
+                  {(resultData.RetailPrice &&
+                    currencyFormatter.format(`${resultData.RetailPrice}`, {
+                      code: "USD",
+                      precision: 0,
+                    })) ||
+                    ""}
+                </label>{" "}
+                USD
+              </div>
               <div className="serial_no">
                 <label>SERIAL NUMBER: </label>
                 <label>{resultData.SerialNumber}</label>
@@ -194,7 +261,13 @@ class QRContainer extends React.Component {
                 <label>{resultData.StyleNumber}</label>
               </div>
               <div className="item_image">
-                <img src={this.handleImage(resultData)} />
+                <ImageGallery
+                  items={this.handleImageGallery()}
+                  showFullscreenButton={false}
+                  showPlayButton={false}
+                  showNav={false}
+                />
+                {/* <img src={this.handleImage(resultData)} /> */}
               </div>
               {/* <div> Serial Number: {resultData.SerialNumber} </div>
               <div> Inventory ID: {resultData.InventoryID} </div>
@@ -323,7 +396,7 @@ class QRContainer extends React.Component {
                       CERTIFIED DIAMOND REPORT
                     </Accordion.Header>
                     <Accordion.Body>
-                      {Object.keys(FieldData.CertifiedDiamondReports).map(
+                      {/* {Object.keys(FieldData.CertifiedDiamondReports).map(
                         (key, Index) => {
                           if (resultData[key]) {
                             return (
@@ -337,7 +410,14 @@ class QRContainer extends React.Component {
                             );
                           } else return <></>;
                         }
-                      )}
+                      )} */}
+                      <img
+                        className="report_img"
+                        src={resultData.ReportJpgUrls}
+                        onClick={() =>
+                          window.open(resultData.ReportPdfUrls, "_blank")
+                        }
+                      />
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -348,7 +428,7 @@ class QRContainer extends React.Component {
           <></>
         )}
         {error ? <p className={scan ? "result" : ""}> {errorMsg} </p> : <></>}
-        {!scan ? (
+        {/* {!scan ? (
           <button
             className="scan"
             onClick={() =>
@@ -361,7 +441,7 @@ class QRContainer extends React.Component {
           </button>
         ) : (
           <></>
-        )}
+        )} */}
       </div>
     );
   }
