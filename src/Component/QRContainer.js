@@ -33,11 +33,53 @@ class QRContainer extends React.Component {
       pdfURL: "",
       // resultData: Item,
       imgArr: [],
+      reportJPG: [],
+      reportPDF: [],
     };
 
     this.handleScan = this.handleScan.bind(this);
     this.handleImage = this.handleImage.bind(this);
     this.handleImageGallery = this.handleImageGallery.bind(this);
+    this.handleReports = this.handleReports.bind(this);
+  }
+
+  handleReports(type) {
+    let { resultData } = this.state;
+    if (type === "jpg") {
+      console.log(
+        "jpg",
+        resultData.ReportJpgUrls.split("|").map((value) =>
+          value.replace(" ", "")
+        )
+      );
+      return resultData.ReportJpgUrls.split("|").map((value) =>
+        value.replace(" ", "")
+      );
+    }
+    if (type === "pdf") {
+      console.log(
+        "pdf",
+        resultData.ReportPdfUrls.split("|").map((value) =>
+          value.replace(" ", "")
+        )
+      );
+      return resultData.ReportPdfUrls.split("|").map((value) =>
+        value.replace(" ", "")
+      );
+    }
+
+    // let fileIdNames = res.FileIdNames;
+    // let fileData = fileIdNames.split("|");
+    // // console.log("fileData: ", fileData);
+    // if (fileData.length === 1) {
+    //   let fileID = fileData[0].slice(fileData[0].indexOf(":") + 1);
+    //   // console.log("fileID: ", fileID);
+    //   window
+    //     .open(BaseURL + "/Frames/GetFile.ashx?fileID=" + fileID, "_blank")
+    //     .focus();
+    // } else {
+    //   this.setState({ fileData, showFileModal: true });
+    // }
   }
 
   handleImageGallery() {
@@ -411,13 +453,18 @@ class QRContainer extends React.Component {
                           } else return <></>;
                         }
                       )} */}
-                      <img
-                        className="report_img"
-                        src={resultData.ReportJpgUrls}
-                        onClick={() =>
-                          window.open(resultData.ReportPdfUrls, "_blank")
-                        }
-                      />
+                      {this.handleReports("jpg").map((jpg, index) => (
+                        <img
+                          className="report_img"
+                          src={jpg}
+                          onClick={() =>
+                            window.open(
+                              this.handleReports("pdf")[index],
+                              "_blank"
+                            )
+                          }
+                        />
+                      ))}
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
