@@ -15,9 +15,9 @@ class QRContainer extends React.Component {
     super(props);
     this.state = {
       delay: 100,
-      scan: true,
-      resultData: {},
-      resultStatus: false,
+      scan: false,
+//       resultData: {},
+      resultStatus: true,
       // result: "No result",
       error: false,
       errorMsg: "Item Not Found",
@@ -31,7 +31,7 @@ class QRContainer extends React.Component {
       }),
       showIframe: false,
       pdfURL: "",
-      // resultData: Item,
+      resultData: Item,
       imgArr: [],
       reportJPG: [],
       reportPDF: [],
