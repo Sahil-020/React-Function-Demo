@@ -25,6 +25,7 @@
             }
         }
         .retail_price {
+            margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -52,15 +53,15 @@
         // font-size: 22px;
         .item_image {
             width: 100%;
-            padding: 30px 20px;
+            padding: 10px 20px 20px 20px;
             // img {
             //     width: 80%;
             // }
             .image-gallery-slides {
                 .image-gallery-image {
-                    max-height: 45vh;
-                    min-height: 45vh;
-                    max-width: 80%;
+                    max-height: 40vh;
+                    min-height: 40vh;
+                    max-width: 90%;
                 }
             }
             .image-gallery-thumbnails-container {
