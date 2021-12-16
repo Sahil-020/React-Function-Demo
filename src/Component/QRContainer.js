@@ -50,7 +50,7 @@ class QRContainer extends React.Component {
 
   componentDidMount() {
     if (this.state.id) {
-      console.log("id : ", this.state.id);
+      // console.log("id : ", this.state.id);
       this.setState({ scan: false, resultStatus: false, error: false });
       this.handleGetData(this.state.id);
     }
@@ -60,12 +60,12 @@ class QRContainer extends React.Component {
     let { resultData } = this.state;
     if (type === "jpg") {
       if (resultData.ReportJpgUrls) {
-        console.log(
-          "jpg",
-          resultData.ReportJpgUrls.split("|").map((value) =>
-            value.replace(" ", "")
-          )
-        );
+        // console.log(
+        //   "jpg",
+        //   resultData.ReportJpgUrls.split("|").map((value) =>
+        //     value.replace(" ", "")
+        //   )
+        // );
         return resultData.ReportJpgUrls.split("|").map((value) =>
           value.replace(" ", "")
         );
@@ -74,12 +74,12 @@ class QRContainer extends React.Component {
     }
     if (type === "pdf") {
       if (resultData.ReportPdfUrls) {
-        console.log(
-          "pdf",
-          resultData.ReportPdfUrls.split("|").map((value) =>
-            value.replace(" ", "")
-          )
-        );
+        // console.log(
+        //   "pdf",
+        //   resultData.ReportPdfUrls.split("|").map((value) =>
+        //     value.replace(" ", "")
+        //   )
+        // );
         return resultData.ReportPdfUrls.split("|").map((value) =>
           value.replace(" ", "")
         );
@@ -196,13 +196,13 @@ class QRContainer extends React.Component {
   async handleGetData(query) {
     let res;
     if (query.includes("/")) {
-      console.log("Query Includes /");
+      // console.log("Query Includes /");
       res = await axios.get(`/api/${query}`);
     } else {
-      console.log("Query Doesn't Includes /");
+      // console.log("Query Doesn't Includes /");
       res = await axios.get(`api/${query}`);
     }
-    console.log("res :", res);
+    // console.log("res :", res);
     if (res.status === 200 && res.data && res.data.status === 200) {
       if (res.data.destinationURL) {
         this.setState({
@@ -252,7 +252,7 @@ class QRContainer extends React.Component {
       // let url = "https://kwqr.me/8530362177/D";
       //     let url = "https://kwqr.me/98138F41618";
       let query = url.substring(16);
-      console.log("query: ", query);
+      // console.log("query: ", query);
       this.handleGetData(query);
       // let res;
       // if (query.includes("/")) {
