@@ -58,6 +58,7 @@ class QRContainer extends React.Component {
   handleReports(type) {
     let { resultData } = this.state;
     if (type === "jpg") {
+      if(resultData.ReportJpgUrls){
       console.log(
         "jpg",
         resultData.ReportJpgUrls.split("|").map((value) =>
@@ -66,9 +67,11 @@ class QRContainer extends React.Component {
       );
       return resultData.ReportJpgUrls.split("|").map((value) =>
         value.replace(" ", "")
-      );
+      );}
+      return []
     }
     if (type === "pdf") {
+      if(resultData.ReportPdfUrls){
       console.log(
         "pdf",
         resultData.ReportPdfUrls.split("|").map((value) =>
@@ -77,7 +80,8 @@ class QRContainer extends React.Component {
       );
       return resultData.ReportPdfUrls.split("|").map((value) =>
         value.replace(" ", "")
-      );
+      );}
+      return []
     }
 
     // let fileIdNames = res.FileIdNames;
