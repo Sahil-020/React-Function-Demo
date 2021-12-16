@@ -1,16 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
 import QRContainer from "./Component/QRContainer";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Routes>
+        <Switch>
           {/* <QRContainer /> */}
-          <Route path="/" element={<QRContainer />} />
-        </Routes>
+          <Route path="/" component={QRContainer} />
+          {/* <Route exact path="/:id" component={QRContainer} /> */}
+        </Switch>
       </div>
     </BrowserRouter>
   );

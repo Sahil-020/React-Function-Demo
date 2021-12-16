@@ -7,8 +7,11 @@ import { FieldData } from "../Data/FieldData";
 import Accordion from "react-bootstrap/Accordion";
 import ImageGallery from "react-image-gallery";
 import currencyFormatter from "currency-formatter";
+import { withRouter } from "react-router-dom";
 // import QrReader from "react-qr-reader";
 // import QRScan from "qrscan";
+
+// const id = useParams();
 
 class QRContainer extends React.Component {
   constructor(props) {
@@ -31,16 +34,25 @@ class QRContainer extends React.Component {
       }),
       showIframe: false,
       pdfURL: "",
-//       resultData: Item,
+      // resultData: Item,
       imgArr: [],
       reportJPG: [],
       reportPDF: [],
+      id: props.location.pathname.replace("/", ""),
     };
 
     this.handleScan = this.handleScan.bind(this);
     this.handleImage = this.handleImage.bind(this);
     this.handleImageGallery = this.handleImageGallery.bind(this);
     this.handleReports = this.handleReports.bind(this);
+    this.handleGetData = this.handleGetData.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.state.id) {
+      console.log("id : ", this.state.id);
+      this.handleGetData(this.state.id);
+    }
   }
 
   handleReports(type) {
@@ -174,6 +186,46 @@ class QRContainer extends React.Component {
     }
   }
 
+  async handleGetData(query) {
+    let res;
+    if (query.includes("/")) {
+      console.log("Query Includes /");
+      res = await axios.get(`api/${query}`);
+    } else {
+      console.log("Query Doesn't Includes /");
+      res = await axios.get(`api/${query}`);
+    }
+    console.log("res :", res);
+    if (res.status === 200 && res.data && res.data.status === 200) {
+      if (res.data.destinationURL) {
+        this.setState({
+          showIframe: true,
+          pdfURL: res.data.destinationURL,
+          scan: false,
+          resultStatus: false,
+          error: false,
+        });
+        window.open(res.data.destinationURL, "_self");
+        return;
+      }
+
+      this.setState({
+        resultData: JSON.parse(res.data.results),
+        scan: false,
+        resultStatus: true,
+        error: false,
+        showIframe: false,
+      });
+    } else {
+      this.setState({
+        error: true,
+        resultStatus: false,
+        scan: false,
+        showIframe: false,
+      });
+    }
+  }
+
   async handleScan(data) {
     // console.log("data :", data);
 
@@ -194,43 +246,44 @@ class QRContainer extends React.Component {
       //     let url = "https://kwqr.me/98138F41618";
       let query = url.substring(16);
       console.log("query: ", query);
-      let res;
-      if (query.includes("/")) {
-        console.log("Query Includes /");
-        res = await axios.get(`api/${query}`);
-      } else {
-        console.log("Query Doesn't Includes /");
-        res = await axios.get(`api/${query}`);
-      }
-      console.log("res :", res);
-      if (res.status === 200 && res.data && res.data.status === 200) {
-        if (res.data.destinationURL) {
-          this.setState({
-            showIframe: true,
-            pdfURL: res.data.destinationURL,
-            scan: false,
-            resultStatus: false,
-            error: false,
-          });
-          window.open(res.data.destinationURL, "_self");
-          return;
-        }
+      this.handleGetData(query);
+      // let res;
+      // if (query.includes("/")) {
+      //   console.log("Query Includes /");
+      //   res = await axios.get(`api/${query}`);
+      // } else {
+      //   console.log("Query Doesn't Includes /");
+      //   res = await axios.get(`api/${query}`);
+      // }
+      // console.log("res :", res);
+      // if (res.status === 200 && res.data && res.data.status === 200) {
+      //   if (res.data.destinationURL) {
+      //     this.setState({
+      //       showIframe: true,
+      //       pdfURL: res.data.destinationURL,
+      //       scan: false,
+      //       resultStatus: false,
+      //       error: false,
+      //     });
+      //     window.open(res.data.destinationURL, "_self");
+      //     return;
+      //   }
 
-        this.setState({
-          resultData: JSON.parse(res.data.results),
-          scan: false,
-          resultStatus: true,
-          error: false,
-          showIframe: false,
-        });
-      } else {
-        this.setState({
-          error: true,
-          resultStatus: false,
-          scan: false,
-          showIframe: false,
-        });
-      }
+      //   this.setState({
+      //     resultData: JSON.parse(res.data.results),
+      //     scan: false,
+      //     resultStatus: true,
+      //     error: false,
+      //     showIframe: false,
+      //   });
+      // } else {
+      //   this.setState({
+      //     error: true,
+      //     resultStatus: false,
+      //     scan: false,
+      //     showIframe: false,
+      //   });
+      // }
     } else {
       this.setState({
         error: false,
@@ -261,7 +314,10 @@ class QRContainer extends React.Component {
       showIframe,
       pdfURL,
       sampleData,
+      id,
     } = this.state;
+
+    console.log("params : ", id);
 
     return (
       <div>
@@ -494,4 +550,4 @@ class QRContainer extends React.Component {
   }
 }
 
-export default QRContainer;
+export default withRouter(QRContainer);
