@@ -51,6 +51,7 @@ class QRContainer extends React.Component {
   componentDidMount() {
     if (this.state.id) {
       console.log("id : ", this.state.id);
+      this.setState({ scan: false, resultStatus: false, error: false });
       this.handleGetData(this.state.id);
     }
   }
@@ -58,30 +59,32 @@ class QRContainer extends React.Component {
   handleReports(type) {
     let { resultData } = this.state;
     if (type === "jpg") {
-      if(resultData.ReportJpgUrls){
-      console.log(
-        "jpg",
-        resultData.ReportJpgUrls.split("|").map((value) =>
+      if (resultData.ReportJpgUrls) {
+        console.log(
+          "jpg",
+          resultData.ReportJpgUrls.split("|").map((value) =>
+            value.replace(" ", "")
+          )
+        );
+        return resultData.ReportJpgUrls.split("|").map((value) =>
           value.replace(" ", "")
-        )
-      );
-      return resultData.ReportJpgUrls.split("|").map((value) =>
-        value.replace(" ", "")
-      );}
-      return []
+        );
+      }
+      return [];
     }
     if (type === "pdf") {
-      if(resultData.ReportPdfUrls){
-      console.log(
-        "pdf",
-        resultData.ReportPdfUrls.split("|").map((value) =>
+      if (resultData.ReportPdfUrls) {
+        console.log(
+          "pdf",
+          resultData.ReportPdfUrls.split("|").map((value) =>
+            value.replace(" ", "")
+          )
+        );
+        return resultData.ReportPdfUrls.split("|").map((value) =>
           value.replace(" ", "")
-        )
-      );
-      return resultData.ReportPdfUrls.split("|").map((value) =>
-        value.replace(" ", "")
-      );}
-      return []
+        );
+      }
+      return [];
     }
 
     // let fileIdNames = res.FileIdNames;
@@ -321,7 +324,7 @@ class QRContainer extends React.Component {
       id,
     } = this.state;
 
-    console.log("params : ", id);
+    // console.log("params : ", id);
 
     return (
       <div>
