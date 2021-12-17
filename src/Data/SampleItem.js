@@ -174,6 +174,7 @@
 //     "https://www.fredleighton.com/?opt_product_id=SERFL41618&acu=true&image=https://cdn4.kwiat.com/source-images/large/E-41618-FL-0-0-large.JPG&desc=Earrings, Vintage Jewelry Collection, Style FL41618&price=&serial=FL41618&inv=98138&video=",
 //   WebImage1URL: null,
 // };
+
 // export const Item = Object.fromEntries(
 //   Object.entries({
 //     SoldDate: null,
