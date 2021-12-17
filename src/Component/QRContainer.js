@@ -20,9 +20,17 @@ class QRContainer extends React.Component {
     super(props);
     this.state = {
       delay: 100,
-      scan: true,
+      scan: ![undefined, null, ""].includes(
+        props.location.pathname.replace("/", "")
+      )
+        ? false
+        : true,
       resultData: {},
-      resultStatus: false,
+      resultStatus: ![undefined, null, ""].includes(
+        props.location.pathname.replace("/", "")
+      )
+        ? true
+        : false,
       // result: "No result",
       error: false,
       errorMsg: "Item Not Found",
@@ -55,6 +63,23 @@ class QRContainer extends React.Component {
       // console.log("id : ", this.state.id);
       this.setState({ scan: false, resultStatus: false, error: false });
       this.handleGetData(this.state.id);
+    }
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    if (
+      ![undefined, null, ""].includes(
+        nextProps.location.pathname.replace("/", "")
+      )
+    ) {
+      let id = nextProps.location.pathname.replace("/", "");
+      this.setState({
+        scan: false,
+        resultStatus: false,
+        error: false,
+        id: nextProps.location.pathname.replace("/", ""),
+      });
+      this.handleGetData(id);
     }
   }
 
@@ -327,6 +352,11 @@ class QRContainer extends React.Component {
     } = this.state;
 
     // console.log("params : ", id);
+    // console.log(
+    //   "props : ",
+    //   typeof this.props.location.pathname.replace("/", "")
+    // );
+
     // console.log(
     //   "color details:",
     //   Object.keys(FieldData.ColorDetail)
