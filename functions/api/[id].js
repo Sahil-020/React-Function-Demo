@@ -92,7 +92,7 @@ export const onRequestGet = async (context) => {
         });
       }
       if (urlFetch.includes("RFIDValue")) {
-        let results = updatedResults.hits.hits._source;
+        let results = updatedResults.hits.hits[0]._source;
         return new Response(JSON.stringify({ results, status: 200 }), {
           headers: {
             "content-type": "application/json;charset=UTF-8",
