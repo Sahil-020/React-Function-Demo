@@ -132,6 +132,13 @@ class QRContainer extends React.Component {
     let res = this.state.resultData;
     var imgArr = [];
     if (res) {
+      function showShapeImage(shape) {
+        let imageurl =
+          "https://cdn.kwiat.com/apps/kwiat-elastic-search/dia-shapes/" +
+          shape +
+          ".jpg";
+        return imageurl;
+      }
       function showWebImage(img) {
         var src = "https://cdn4.kwiat.com/source-images/web/original/" + img;
         return src;
@@ -161,6 +168,13 @@ class QRContainer extends React.Component {
           original: showimage(res.LargeImageName),
           thumbnail: showimage(res.LargeImageName),
           imgName: largeImgName(res.LargeImageName),
+        });
+      }
+      if (res.Shape) {
+        imgArr.push({
+          original: showShapeImage(res.Shape),
+          thumbnail: showShapeImage(res.Shape),
+          imgName: res.shape,
         });
       }
       for (let i = 1; i < 6; i++) {
