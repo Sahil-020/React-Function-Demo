@@ -155,7 +155,7 @@ export const onRequestGet = async (context) => {
       //       console.log(response.status, " - ", response.statusText);
       let results = await gatherResponse(response);
       let updatedResults = JSON.parse(results);
-      results = updatedResults.hits.hits[0]._source;
+//       results = updatedResults.hits.hits[0]._source;
       return new Response(
         JSON.stringify({ results, status: 200, type: "RFID" }),
         {
