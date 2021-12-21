@@ -249,7 +249,7 @@ class QRContainer extends React.Component {
   }
 
   async handleGetData(query) {
-    this.props.setShowLoader(true);
+    // this.props.setShowLoader(true);
     let res;
     if (query.includes("/")) {
       // console.log("Query Includes /");
@@ -269,7 +269,7 @@ class QRContainer extends React.Component {
           resultStatus: false,
           error: false,
         });
-        this.props.setShowLoader(false);
+        // this.props.setShowLoader(false);
         window.open(res.data.destinationURL, "_self");
         return;
       }
@@ -282,7 +282,7 @@ class QRContainer extends React.Component {
           error: false,
           showIframe: false,
         });
-        this.props.setShowLoader(false);
+        // this.props.setShowLoader(false);
         return;
       }
 
@@ -294,7 +294,7 @@ class QRContainer extends React.Component {
         error: false,
         showIframe: false,
       });
-      this.props.setShowLoader(false);
+      // this.props.setShowLoader(false);
     } else {
       this.setState({
         error: true,
@@ -303,7 +303,7 @@ class QRContainer extends React.Component {
         search: false,
         showIframe: false,
       });
-      this.props.setShowLoader(false);
+      // this.props.setShowLoader(false);
     }
   }
 
@@ -401,7 +401,7 @@ class QRContainer extends React.Component {
       id,
     } = this.state;
 
-    let { setShowLoader } = this.props;
+    // let { setShowLoader } = this.props;
 
     // console.log("params : ", id);
     // console.log(
