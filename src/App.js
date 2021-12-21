@@ -1,19 +1,27 @@
 import logo from "./logo.svg";
+import { useState } from "react";
 import "./App.css";
 import QRContainer from "./Component/QRContainer";
 import { BrowserRouter, Switch, Route, Navigate } from "react-router-dom";
+import LoadingOverlay from "react-loading-overlay";
 
 function App() {
+  const [showLoader, setShowLoader] = useState(false);
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          {/* <QRContainer /> */}
-          <Route path="/" component={QRContainer} />
-          {/* <Route exact path="/:id" component={QRContainer} /> */}
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <LoadingOverlay active={showLoader} spinner text="Loading...">
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            {/* <QRContainer /> */}
+            <Route
+              path="/"
+              component={() => <QRContainer setShowLoader={setShowLoader} />}
+            />
+            {/* <Route exact path="/:id" component={QRContainer} /> */}
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </LoadingOverlay>
   );
 }
 

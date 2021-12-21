@@ -1,10 +1,24 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
+._loading_overlay_overlay {
+    z-index: 11111;
+    height: 100%;
+    .css-42igfv {
+        position: fixed !important;
+        left: 50%;
+        top: 45%;
+        @media (max-width: 767px) {
+            left: 40%;
+            top: 50%;
+        }
+    }
+}
+
 .main_container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-//     padding: 40px;
+    // padding: 40px;
     .scanner {
         // height: 300px;
         width: 200px;
@@ -28,6 +42,10 @@
         button {
             width: 30%;
             font-size: 14px;
+            background: #58585a !important;
+            color: #fff !important;
+            text-shadow: none !important;
+            border-color: #58585a !important;
         }
     }
     .result {
