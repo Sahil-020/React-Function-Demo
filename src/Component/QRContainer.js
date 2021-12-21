@@ -20,11 +20,17 @@ class QRContainer extends React.Component {
     super(props);
     this.state = {
       delay: 100,
+      search: ![undefined, null, ""].includes(
+        props.location.pathname.replace("/", "")
+      )
+        ? false
+        : true,
       scan: ![undefined, null, ""].includes(
         props.location.pathname.replace("/", "")
       )
         ? false
         : true,
+      searchValue: "",
       resultData: {},
       resultStatus: ![undefined, null, ""].includes(
         props.location.pathname.replace("/", "")
@@ -59,9 +65,16 @@ class QRContainer extends React.Component {
   }
 
   componentDidMount() {
+    document.getElementById("searchBox") &&
+      document.getElementById("searchBox").focus();
     if (this.state.id) {
       // console.log("id : ", this.state.id);
-      this.setState({ scan: false, resultStatus: false, error: false });
+      this.setState({
+        scan: false,
+        resultStatus: false,
+        error: false,
+        search: false,
+      });
       this.handleGetData(this.state.id);
     }
   }
@@ -177,6 +190,7 @@ class QRContainer extends React.Component {
           imgName: res.shape,
         });
       }
+
       for (let i = 1; i < 6; i++) {
         var field = "WebImage" + i;
         if (res[field]) {
@@ -250,6 +264,7 @@ class QRContainer extends React.Component {
           showIframe: true,
           pdfURL: res.data.destinationURL,
           scan: false,
+          search: false,
           resultStatus: false,
           error: false,
         });
@@ -260,6 +275,7 @@ class QRContainer extends React.Component {
         this.setState({
           resultData: res.data.results,
           scan: false,
+          search: false,
           resultStatus: true,
           error: false,
           showIframe: false,
@@ -270,6 +286,7 @@ class QRContainer extends React.Component {
       this.setState({
         resultData: JSON.parse(res.data.results),
         scan: false,
+        search: false,
         resultStatus: true,
         error: false,
         showIframe: false,
@@ -279,6 +296,7 @@ class QRContainer extends React.Component {
         error: true,
         resultStatus: false,
         scan: false,
+        search: false,
         showIframe: false,
       });
     }
@@ -347,6 +365,7 @@ class QRContainer extends React.Component {
         error: false,
         resultStatus: false,
         scan: true,
+        search: true,
         showIframe: false,
       });
     }
@@ -355,11 +374,11 @@ class QRContainer extends React.Component {
     console.error(err);
   }
   render() {
-    const previewStyle = {
-      height: 200,
-      width: 260,
-      margin: "auto",
-    };
+    // const previewStyle = {
+    //   height: 200,
+    //   width: 260,
+    //   margin: "auto",
+    // };
 
     let {
       resultStatus,
@@ -367,6 +386,8 @@ class QRContainer extends React.Component {
       error,
       errorMsg,
       scan,
+      search,
+      searchValue,
       formatter,
       delay,
       showIframe,
@@ -393,15 +414,35 @@ class QRContainer extends React.Component {
     // );
 
     return (
-      <div>
+      <div className="main_container">
         {scan ? (
           <QrReader
             delay={delay}
-            style={previewStyle}
+            // style={previewStyle}
+            className="scanner"
             onError={this.handleError}
             onScan={this.handleScan}
             facingMode={"environment"}
+            // showViewFinder={false}
           />
+        ) : (
+          <></>
+        )}
+        {search ? (
+          <div className="search_box">
+            <input
+              id="searchBox"
+              type="text"
+              onChange={(e) => {
+                this.setState({ searchValue: e.target.value });
+              }}
+              value={searchValue}
+              placeholder="Enter Serial...."
+            />
+            <button onClick={() => this.handleGetData(searchValue)}>
+              Search
+            </button>
+          </div>
         ) : (
           <></>
         )}
