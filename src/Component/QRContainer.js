@@ -242,6 +242,16 @@ class QRContainer extends React.Component {
         window.open(res.data.destinationURL, "_self");
         return;
       }
+      if (res.data.type && res.data.type === "RFID") {
+        this.setState({
+          resultData: res.data.results,
+          scan: false,
+          resultStatus: true,
+          error: false,
+          showIframe: false,
+        });
+        return;
+      }
 
       this.setState({
         resultData: JSON.parse(res.data.results),
