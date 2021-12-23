@@ -442,6 +442,18 @@ class QRContainer extends React.Component {
               type="text"
               onChange={(e) => {
                 this.setState({ searchValue: e.target.value });
+                if (e.target.value.length >= 20) {
+                  // console.log("greater than 20");
+                  this.handleGetData(e.target.value);
+                }
+              }}
+              onKeyPress={(e) => {
+                // console.log("key pressed: ", e.key);
+                // console.log("value: ", e.target.value);
+                if (e.target.value && e.key === "Enter") {
+                  // console.log("Okay");
+                  this.handleGetData(e.target.value);
+                }
               }}
               value={searchValue}
               placeholder="Enter Serial...."
