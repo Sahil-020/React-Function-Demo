@@ -85,7 +85,12 @@ export const onRequestGet = async (context) => {
         const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
         const statusCode = 301;
         //                 return Response.redirect(destinationURL, 301)
-        return new Response(JSON.stringify({ destinationURL, status: 200 }), {
+        // return new Response(JSON.stringify({ destinationURL, status: 200 }), {
+        //   headers: {
+        //     "content-type": "application/json;charset=UTF-8",
+        //   },
+        // });
+        return new Response(JSON.stringify(response), {
           headers: {
             "content-type": "application/json;charset=UTF-8",
           },
@@ -93,14 +98,19 @@ export const onRequestGet = async (context) => {
       }
       if (urlFetch.includes("RFIDValue")) {
         let results = updatedResults.hits.hits[0]._source;
-        return new Response(
-          JSON.stringify({ results, status: 200, type: "RFID" }),
-          {
-            headers: {
-              "content-type": "application/json;charset=UTF-8",
-            },
-          }
-        );
+        // return new Response(
+        //   JSON.stringify({ results, status: 200, type: "RFID" }),
+        //   {
+        //     headers: {
+        //       "content-type": "application/json;charset=UTF-8",
+        //     },
+        //   }
+        // );
+        return new Response(JSON.stringify(response), {
+          headers: {
+            "content-type": "application/json;charset=UTF-8",
+          },
+        });
       }
       var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -140,7 +150,13 @@ export const onRequestGet = async (context) => {
       //                     "content-type": "text/html;charset=UTF-8",
       //                 },
       //             });
-      return new Response(JSON.stringify({ results, status: 200 }), {
+      // return new Response(JSON.stringify({ results, status: 200 }), {
+      //   headers: {
+      //     "content-type": "application/json;charset=UTF-8",
+      //   },
+      // });
+
+      return new Response(JSON.stringify(response), {
         headers: {
           "content-type": "application/json;charset=UTF-8",
         },
@@ -158,19 +174,29 @@ export const onRequestGet = async (context) => {
       if (updatedResults.hits.hits.length !== 0) {
         results = updatedResults.hits.hits[0]._source;
         //       results = updatedResults.hits
-        return new Response(
-          JSON.stringify({ results, status: 200, type: "RFID", response }),
-          {
-            headers: {
-              "content-type": "application/json;charset=UTF-8",
-            },
-          }
-        );
+        // return new Response(
+        //   JSON.stringify({ results, status: 200, type: "RFID", response }),
+        //   {
+        //     headers: {
+        //       "content-type": "application/json;charset=UTF-8",
+        //     },
+        //   }
+        // );
+        return new Response(JSON.stringify(response), {
+          headers: {
+            "content-type": "application/json;charset=UTF-8",
+          },
+        });
       }
     }
   }
   let results = await gatherResponse(response);
-  return new Response(JSON.stringify(results), {
+  // return new Response(JSON.stringify(results), {
+  //   headers: {
+  //     "content-type": "application/json;charset=UTF-8",
+  //   },
+  // });
+  return new Response(JSON.stringify(response), {
     headers: {
       "content-type": "application/json;charset=UTF-8",
     },
