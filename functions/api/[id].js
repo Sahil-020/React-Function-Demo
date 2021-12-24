@@ -170,7 +170,7 @@ export const onRequestGet = async (context) => {
     }
   }
   let results = await gatherResponse(response);
-  return new Response(results, {
+  return new Response(JSON.stringify(results), {
     headers: {
       "content-type": "application/json;charset=UTF-8",
     },
