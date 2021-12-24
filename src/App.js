@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import QRContainer from "./Component/QRContainer";
 import { BrowserRouter, Switch, Route, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 // import LoadingOverlay from "react-loading-overlay";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           />
           {/* <Route exact path="/:id" component={QRContainer} /> */}
         </Switch>
+        <ToastContainer hideProgressBar={true} />
       </div>
     </BrowserRouter>
     // </LoadingOverlay>

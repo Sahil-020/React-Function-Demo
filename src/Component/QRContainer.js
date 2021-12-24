@@ -10,6 +10,7 @@ import currencyFormatter from "currency-formatter";
 import { withRouter } from "react-router-dom";
 import Kwiat from "../Logo/kwiat-logo-removebg-preview.png";
 import Fred from "../Logo/fredleighton-logo-removebg-preview.png";
+import { toast } from "react-toastify";
 // import QrReader from "react-qr-reader";
 // import QRScan from "qrscan";
 
@@ -296,6 +297,11 @@ class QRContainer extends React.Component {
       });
       // this.props.setShowLoader(false);
     } else {
+      toast.error(" Item not found ", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        pauseOnHover: false,
+      });
       this.setState({
         error: true,
         resultStatus: false,
