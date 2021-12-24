@@ -155,6 +155,7 @@ export const onRequestGet = async (context) => {
       //       console.log(response.status, " - ", response.statusText);
       let results = await gatherResponse(response);
       let updatedResults = JSON.parse(results);
+
       if (updatedResults.hits.hits.length !== 0) {
         results = updatedResults.hits.hits[0]._source;
         //       results = updatedResults.hits
@@ -167,6 +168,14 @@ export const onRequestGet = async (context) => {
           }
         );
       }
+      return new Response(
+        JSON.stringify({ response, updatedResults, results }),
+        {
+          headers: {
+            "content-type": "application/json;charset=UTF-8",
+          },
+        }
+      );
     }
   }
   let results = await gatherResponse(response);
