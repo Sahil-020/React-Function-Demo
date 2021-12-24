@@ -110,26 +110,26 @@ export const onRequestGet = async (context) => {
         //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
         //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
       });
-      const html = `<!DOCTYPE html>
-                <body>
-                  <div style="text-align: left; width:100%;" >
-                    <div style="text-align:center;max-width:100%;font-size:40px">
-                      <div style="width:100%;">
-                        <img
-                           style="width:80%;"
-                           src=${handleImage(updatedResults)}
-                         />
-                      </div>
-                      <div> Serial Number : ${
-                        updatedResults.SerialNumber
-                      } </div>
-                      <div>Inventory ID : ${updatedResults.InventoryID}</div>
-                      <div>Retail Price : ${formatter.format(
-                        updatedResults.RetailPrice
-                      )}</div> 
-                    </div>
-                  </div>
-                </body>`;
+      // const html = `<!DOCTYPE html>
+      //           <body>
+      //             <div style="text-align: left; width:100%;" >
+      //               <div style="text-align:center;max-width:100%;font-size:40px">
+      //                 <div style="width:100%;">
+      //                   <img
+      //                      style="width:80%;"
+      //                      src=${handleImage(updatedResults)}
+      //                    />
+      //                 </div>
+      //                 <div> Serial Number : ${
+      //                   updatedResults.SerialNumber
+      //                 } </div>
+      //                 <div>Inventory ID : ${updatedResults.InventoryID}</div>
+      //                 <div>Retail Price : ${formatter.format(
+      //                   updatedResults.RetailPrice
+      //                 )}</div>
+      //               </div>
+      //             </div>
+      //           </body>`;
       //     return new Response(`The id : ${ JSON.stringify(productType) }\n\nresult : ${results} \n\n ${typeof results}`, {
       //         headers: {
       //             "content-type": "application/json;charset=UTF-8"
