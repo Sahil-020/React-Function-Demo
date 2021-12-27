@@ -72,6 +72,9 @@
                 background: #f3f5f7;
                 img.kwiat {
                     max-width: 25%;
+                    @media (min-width: 768px) {
+                        max-width: 15%;
+                    }
                 }
                 img.fred {
                     max-width: 60%;
