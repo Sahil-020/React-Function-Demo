@@ -16,6 +16,15 @@ import { toast } from "react-toastify";
 
 // const id = useParams();
 
+const Error = () => {
+  toast.error(" Item not found ", {
+    position: toast.POSITION.TOP_RIGHT,
+    autoClose: 2000,
+    pauseOnHover: false,
+    theme: "colored",
+  });
+};
+
 class QRContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -303,10 +312,10 @@ class QRContainer extends React.Component {
         pauseOnHover: false,
       });
       this.setState({
-        error: true,
+        error: false,
         resultStatus: false,
-        scan: false,
-        search: false,
+        scan: true,
+        search: true,
         showIframe: false,
       });
       // this.props.setShowLoader(false);
@@ -467,6 +476,7 @@ class QRContainer extends React.Component {
             <button
               onClick={() => this.handleGetData(searchValue)}
               // onClick={() => setShowLoader(true)}
+              // onClick={Error}
             >
               Search
             </button>

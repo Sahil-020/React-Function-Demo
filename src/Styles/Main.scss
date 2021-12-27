@@ -1,19 +1,5 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
-.Toastify__toast-container {
-    z-index: 10021 !important;
-}
-.css-1mnns6r {
-    position: relative;
-}
-.Toastify__toast {
-    min-height: 54px !important;
-}
-.Toastify__toast--default {
-    background: #cecece !important;
-    color: #3c3c3c !important;
-}
-
 ._loading_overlay_overlay {
     z-index: 11111;
     height: 100vh;
@@ -201,4 +187,17 @@
             }
         }
     }
+}
+.Toastify__toast-container {
+    z-index: 10021 !important;
+}
+.css-1mnns6r {
+    position: relative;
+}
+.Toastify__toast {
+    min-height: 54px !important;
+}
+.Toastify__toast--default {
+    background: #cecece !important;
+    color: #3c3c3c !important;
 }
