@@ -115,7 +115,7 @@
                         max-height: 40vh;
                         min-height: 40vh;
                         max-width: 100%;
-                        @media only screen and (min-width: 768px) {
+                        @media (min-width: 768px) {
                             max-height: 55vh;
                         }
                     }
@@ -126,7 +126,7 @@
                         float: left;
                         .image-gallery-thumbnail {
                             width: 80px;
-                            @media only screen and (min-width: 768px) {
+                            @media (min-width: 768px) {
                                 width: 100px;
                             }
                         }
@@ -163,13 +163,13 @@
                             label {
                                 width: 45%;
                                 text-align: left;
-                                @media only screen and (min-width: 768px) {
+                                @media (min-width: 768px) {
                                     width: 30%;
                                 }
                             }
                             label:nth-child(2) {
                                 width: 55%;
-                                @media only screen and (min-width: 768px) {
+                                @media (min-width: 768px) {
                                     width: 70%;
                                 }
                             }
