@@ -310,6 +310,7 @@ class QRContainer extends React.Component {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
         pauseOnHover: false,
+        theme: "colored",
       });
       this.setState({
         error: false,
