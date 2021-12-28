@@ -88,7 +88,7 @@ class QRContainer extends React.Component {
         error: false,
         search: false,
       });
-      await this.handleGetData(this.state.id);
+      this.handleGetData(this.state.id);
     }
   }
 
@@ -105,7 +105,7 @@ class QRContainer extends React.Component {
         error: false,
         id: nextProps.location.pathname.replace("/", ""),
       });
-      await this.handleGetData(id);
+      this.handleGetData(id);
     }
   }
 
