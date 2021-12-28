@@ -312,7 +312,7 @@ class QRContainer extends React.Component {
       });
       // this.props.setShowLoader(false);
     } else {
-      console.log("Inside handlegetData else");
+      // console.log("Inside handlegetData else");
       toast.error(" Item not found ", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
@@ -389,7 +389,7 @@ class QRContainer extends React.Component {
       //   });
       // }
     } else {
-      console.log("Inside scan else");
+      // console.log("Inside scan else");
       this.setState({
         error: false,
         resultStatus: false,
@@ -425,7 +425,7 @@ class QRContainer extends React.Component {
       id,
     } = this.state;
 
-    console.log("state : ", this.state);
+    // console.log("state : ", this.state);
     // let { setShowLoader } = this.props;
 
     // console.log("params : ", id);
@@ -449,7 +449,7 @@ class QRContainer extends React.Component {
       <div className="main_container">
         <div
           className={
-            resultStatus ? "search_components op_0" : "search_components op_1"
+            resultStatus ? "search_components op_1" : "search_components op_1"
           }
         >
           {scan ? (
@@ -504,7 +504,9 @@ class QRContainer extends React.Component {
         {/* {resultStatus ? ( */}
         <div
           className={
-            resultStatus ? "item_container op_1" : "item_container op_0"
+            resultStatus
+              ? "item_container op_1 pos_relative"
+              : "item_container op_0"
           }
         >
           <div className="item">
