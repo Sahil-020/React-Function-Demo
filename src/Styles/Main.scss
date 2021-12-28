@@ -75,6 +75,9 @@
                     @media (min-width: 768px) {
                         max-width: 15%;
                     }
+                    @media (min-width: 1080px) {
+                        max-width: 8%;
+                    }
                 }
                 img.fred {
                     max-width: 60%;
@@ -140,8 +143,15 @@
                 .accordion-item {
                     border-color: white;
                     .accordion-header {
+                        @media (min-width: 1080px) {
+                            background-color: #f2f4f5;
+                        }
                         .accordion-button {
                             background-color: #f2f4f5;
+                            @media (min-width: 1080px) {
+                                width: 70%;
+                                margin: auto;
+                            }
                         }
                         .accordion-button:focus {
                             box-shadow: none;
@@ -162,6 +172,10 @@
                             font-size: 14px;
                             // font-weight: 500;
                             color: #7a7a7a;
+                            @media (min-width: 1080px) {
+                                width: 70%;
+                                margin: auto;
+                            }
 
                             label {
                                 width: 45%;
