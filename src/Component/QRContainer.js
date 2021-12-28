@@ -449,19 +449,19 @@ class QRContainer extends React.Component {
             resultStatus ? "search_components op_0" : "search_components op_1"
           }
         >
-          {/* {scan ? ( */}
-          <QrReader
-            delay={delay}
-            // style={previewStyle}
-            className="scanner"
-            onError={this.handleError}
-            onScan={this.handleScan}
-            facingMode={"environment"}
-            // showViewFinder={false}
-          />
-          {/* ) : (
+          {scan ? (
+            <QrReader
+              delay={delay}
+              // style={previewStyle}
+              className="scanner"
+              onError={this.handleError}
+              onScan={this.handleScan}
+              facingMode={"environment"}
+              // showViewFinder={false}
+            />
+          ) : (
             <></>
-          )} */}
+          )}
           {/* {search ? ( */}
           <div className="search_box">
             <input
