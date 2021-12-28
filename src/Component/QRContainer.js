@@ -29,7 +29,7 @@ class QRContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      delay: 100,
+      delay: 600,
       search: ![undefined, null, ""].includes(
         props.location.pathname.replace("/", "")
       )
@@ -88,7 +88,7 @@ class QRContainer extends React.Component {
         error: false,
         search: false,
       });
-      this.handleGetData(this.state.id);
+      await this.handleGetData(this.state.id);
     }
   }
 
@@ -105,7 +105,7 @@ class QRContainer extends React.Component {
         error: false,
         id: nextProps.location.pathname.replace("/", ""),
       });
-      this.handleGetData(id);
+      await this.handleGetData(id);
     }
   }
 
