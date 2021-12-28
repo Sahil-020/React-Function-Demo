@@ -30,26 +30,26 @@ class QRContainer extends React.Component {
     super(props);
     this.state = {
       delay: 100,
-      // search: ![undefined, null, ""].includes(
-      //   props.location.pathname.replace("/", "")
-      // )
-      //   ? false
-      //   : true,
-      search: true,
-      // scan: ![undefined, null, ""].includes(
-      //   props.location.pathname.replace("/", "")
-      // )
-      //   ? false
-      //   : true,
-      scan: true,
+      search: ![undefined, null, ""].includes(
+        props.location.pathname.replace("/", "")
+      )
+        ? false
+        : true,
+      // search: true,
+      scan: ![undefined, null, ""].includes(
+        props.location.pathname.replace("/", "")
+      )
+        ? false
+        : true,
+      // scan: true,
       searchValue: "",
-      // resultData: {},
-      // resultStatus: ![undefined, null, ""].includes(
-      //   props.location.pathname.replace("/", "")
-      // )
-      //   ? true
-      //   : false,
-      resultStatus: false,
+      resultData: {},
+      resultStatus: ![undefined, null, ""].includes(
+        props.location.pathname.replace("/", "")
+      )
+        ? true
+        : false,
+      // resultStatus: false,
       // result: "No result",
       error: false,
       errorMsg: "Item Not Found",
@@ -63,7 +63,7 @@ class QRContainer extends React.Component {
       }),
       showIframe: false,
       pdfURL: "",
-      resultData: Item,
+      // resultData: Item,
       imgArr: [],
       reportJPG: [],
       reportPDF: [],
@@ -77,37 +77,37 @@ class QRContainer extends React.Component {
     this.handleGetData = this.handleGetData.bind(this);
   }
 
-  // async componentDidMount() {
-  //   document.getElementById("searchBox") &&
-  //     document.getElementById("searchBox").focus();
-  //   if (this.state.id) {
-  //     // console.log("id : ", this.state.id);
-  //     this.setState({
-  //       scan: false,
-  //       resultStatus: false,
-  //       error: false,
-  //       search: false,
-  //     });
-  //     this.handleGetData(this.state.id);
-  //   }
-  // }
+  async componentDidMount() {
+    document.getElementById("searchBox") &&
+      document.getElementById("searchBox").focus();
+    if (this.state.id) {
+      // console.log("id : ", this.state.id);
+      this.setState({
+        scan: false,
+        resultStatus: true,
+        error: false,
+        search: false,
+      });
+      await this.handleGetData(this.state.id);
+    }
+  }
 
-  // async componentWillReceiveProps(nextProps) {
-  //   if (
-  //     ![undefined, null, ""].includes(
-  //       nextProps.location.pathname.replace("/", "")
-  //     )
-  //   ) {
-  //     let id = nextProps.location.pathname.replace("/", "");
-  //     this.setState({
-  //       scan: false,
-  //       resultStatus: false,
-  //       error: false,
-  //       id: nextProps.location.pathname.replace("/", ""),
-  //     });
-  //     this.handleGetData(id);
-  //   }
-  // }
+  async componentWillReceiveProps(nextProps) {
+    if (
+      ![undefined, null, ""].includes(
+        nextProps.location.pathname.replace("/", "")
+      )
+    ) {
+      let id = nextProps.location.pathname.replace("/", "");
+      this.setState({
+        scan: false,
+        resultStatus: true,
+        error: false,
+        id: nextProps.location.pathname.replace("/", ""),
+      });
+      await this.handleGetData(id);
+    }
+  }
 
   handleReports(type) {
     let { resultData } = this.state;
