@@ -14,39 +14,43 @@
     }
 }
 
-.main_container {
+.main_container,
+.search_components {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
     // padding: 40px;
-    .scanner {
-        // height: 300px;
-        width: 200px;
-        margin-top: 30px;
-        section {
-            > div {
-                border: 20px solid rgba(0, 0, 0, 0.3) !important;
+    .search_components {
+        opacity: 1;
+        .scanner {
+            // height: 300px;
+            width: 200px;
+            margin-top: 30px;
+            section {
+                > div {
+                    border: 20px solid rgba(0, 0, 0, 0.3) !important;
+                }
             }
         }
-    }
 
-    .search_box {
-        width: 200px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        column-gap: 10px;
-        input {
-            width: 70%;
-        }
-        button {
-            width: 30%;
-            font-size: 14px;
-            background: #58585a !important;
-            color: #fff !important;
-            text-shadow: none !important;
-            border-color: #58585a !important;
+        .search_box {
+            width: 200px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            column-gap: 10px;
+            input {
+                width: 70%;
+            }
+            button {
+                width: 30%;
+                font-size: 14px;
+                background: #58585a !important;
+                color: #fff !important;
+                text-shadow: none !important;
+                border-color: #58585a !important;
+            }
         }
     }
     .result {
@@ -64,6 +68,8 @@
         text-align: left;
         width: 100%;
         padding: 0px 0px 15px 0px;
+        position: absolute;
+        opacity: 0;
         .item {
             text-align: center;
             max-width: 100%;
@@ -204,6 +210,12 @@
             }
         }
     }
+}
+.op_0 {
+    opacity: 0 !important;
+}
+.op_1 {
+    opacity: 1 !important;
 }
 .Toastify__toast-container {
     z-index: 10021 !important;

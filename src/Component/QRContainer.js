@@ -30,23 +30,26 @@ class QRContainer extends React.Component {
     super(props);
     this.state = {
       delay: 100,
-      search: ![undefined, null, ""].includes(
-        props.location.pathname.replace("/", "")
-      )
-        ? false
-        : true,
-      scan: ![undefined, null, ""].includes(
-        props.location.pathname.replace("/", "")
-      )
-        ? false
-        : true,
+      // search: ![undefined, null, ""].includes(
+      //   props.location.pathname.replace("/", "")
+      // )
+      //   ? false
+      //   : true,
+      search: true,
+      // scan: ![undefined, null, ""].includes(
+      //   props.location.pathname.replace("/", "")
+      // )
+      //   ? false
+      //   : true,
+      scan: true,
       searchValue: "",
-      resultData: {},
-      resultStatus: ![undefined, null, ""].includes(
-        props.location.pathname.replace("/", "")
-      )
-        ? true
-        : false,
+      // resultData: {},
+      // resultStatus: ![undefined, null, ""].includes(
+      //   props.location.pathname.replace("/", "")
+      // )
+      //   ? true
+      //   : false,
+      resultStatus: false,
       // result: "No result",
       error: false,
       errorMsg: "Item Not Found",
@@ -60,7 +63,7 @@ class QRContainer extends React.Component {
       }),
       showIframe: false,
       pdfURL: "",
-      // resultData: Item,
+      resultData: Item,
       imgArr: [],
       reportJPG: [],
       reportPDF: [],
@@ -74,37 +77,37 @@ class QRContainer extends React.Component {
     this.handleGetData = this.handleGetData.bind(this);
   }
 
-  componentDidMount() {
-    document.getElementById("searchBox") &&
-      document.getElementById("searchBox").focus();
-    if (this.state.id) {
-      // console.log("id : ", this.state.id);
-      this.setState({
-        scan: false,
-        resultStatus: false,
-        error: false,
-        search: false,
-      });
-      this.handleGetData(this.state.id);
-    }
-  }
+  // async componentDidMount() {
+  //   document.getElementById("searchBox") &&
+  //     document.getElementById("searchBox").focus();
+  //   if (this.state.id) {
+  //     // console.log("id : ", this.state.id);
+  //     this.setState({
+  //       scan: false,
+  //       resultStatus: false,
+  //       error: false,
+  //       search: false,
+  //     });
+  //     this.handleGetData(this.state.id);
+  //   }
+  // }
 
-  async componentWillReceiveProps(nextProps) {
-    if (
-      ![undefined, null, ""].includes(
-        nextProps.location.pathname.replace("/", "")
-      )
-    ) {
-      let id = nextProps.location.pathname.replace("/", "");
-      this.setState({
-        scan: false,
-        resultStatus: false,
-        error: false,
-        id: nextProps.location.pathname.replace("/", ""),
-      });
-      this.handleGetData(id);
-    }
-  }
+  // async componentWillReceiveProps(nextProps) {
+  //   if (
+  //     ![undefined, null, ""].includes(
+  //       nextProps.location.pathname.replace("/", "")
+  //     )
+  //   ) {
+  //     let id = nextProps.location.pathname.replace("/", "");
+  //     this.setState({
+  //       scan: false,
+  //       resultStatus: false,
+  //       error: false,
+  //       id: nextProps.location.pathname.replace("/", ""),
+  //     });
+  //     this.handleGetData(id);
+  //   }
+  // }
 
   handleReports(type) {
     let { resultData } = this.state;
@@ -438,56 +441,66 @@ class QRContainer extends React.Component {
 
     return (
       <div className="main_container">
-        {scan ? (
-          <QrReader
-            delay={delay}
-            // style={previewStyle}
-            className="scanner"
-            onError={this.handleError}
-            onScan={this.handleScan}
-            facingMode={"environment"}
-            // showViewFinder={false}
-          />
-        ) : (
-          <></>
-        )}
-        {search ? (
-          <div className="search_box">
-            <input
-              id="searchBox"
-              type="text"
-              onChange={(e) => {
-                this.setState({ searchValue: e.target.value });
-                if (e.target.value.length >= 20) {
-                  // console.log("greater than 20");
-                  this.handleGetData(e.target.value);
-                }
-              }}
-              onKeyPress={(e) => {
-                // console.log("key pressed: ", e.key);
-                // console.log("value: ", e.target.value);
-                if (e.target.value && e.key === "Enter") {
-                  // console.log("Okay");
-                  this.handleGetData(e.target.value);
-                }
-              }}
-              value={searchValue}
-              placeholder="Enter Serial...."
+        <div
+          className={
+            resultStatus ? "search_components op_0" : "search_components op_1"
+          }
+        >
+          {scan ? (
+            <QrReader
+              delay={delay}
+              // style={previewStyle}
+              className="scanner"
+              onError={this.handleError}
+              onScan={this.handleScan}
+              facingMode={"environment"}
+              // showViewFinder={false}
             />
-            <button
-              onClick={() => this.handleGetData(searchValue)}
-              // onClick={() => setShowLoader(true)}
-              // onClick={Error}
-            >
-              Search
-            </button>
-          </div>
-        ) : (
-          <></>
-        )}
+          ) : (
+            <></>
+          )}
+          {search ? (
+            <div className="search_box">
+              <input
+                id="searchBox"
+                type="text"
+                onChange={(e) => {
+                  this.setState({ searchValue: e.target.value });
+                  if (e.target.value.length >= 20) {
+                    // console.log("greater than 20");
+                    this.handleGetData(e.target.value);
+                  }
+                }}
+                onKeyPress={(e) => {
+                  // console.log("key pressed: ", e.key);
+                  // console.log("value: ", e.target.value);
+                  if (e.target.value && e.key === "Enter") {
+                    // console.log("Okay");
+                    this.handleGetData(e.target.value);
+                  }
+                }}
+                value={searchValue}
+                placeholder="Enter Serial...."
+              />
+              <button
+                onClick={() => this.handleGetData(searchValue)}
+                // onClick={() => setShowLoader(true)}
+                // onClick={Error}
+              >
+                Search
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
         {/* <p className={scan ? "result" : ""}>{result}</p> */}
         {resultStatus ? (
-          <div className="item_container">
+          <div
+            className={
+              resultStatus ? "item_container op_1" : "item_container op_1"
+            }
+          >
             <div className="item">
               <div className="logo">
                 <img
