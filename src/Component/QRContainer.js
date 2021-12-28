@@ -281,6 +281,7 @@ class QRContainer extends React.Component {
           search: false,
           resultStatus: false,
           error: false,
+          searchValue: "",
         });
         // this.props.setShowLoader(false);
         window.open(res.data.destinationURL, "_self");
@@ -294,6 +295,7 @@ class QRContainer extends React.Component {
           resultStatus: true,
           error: false,
           showIframe: false,
+          searchValue: "",
         });
         // this.props.setShowLoader(false);
         return;
@@ -306,6 +308,7 @@ class QRContainer extends React.Component {
         resultStatus: true,
         error: false,
         showIframe: false,
+        searchValue: "",
       });
       // this.props.setShowLoader(false);
     } else {
