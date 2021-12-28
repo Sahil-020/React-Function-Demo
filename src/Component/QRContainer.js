@@ -498,7 +498,7 @@ class QRContainer extends React.Component {
         {resultStatus ? (
           <div
             className={
-              resultStatus ? "item_container op_1" : "item_container op_1"
+              resultStatus ? "item_container op_1" : "item_container op_0"
             }
           >
             <div className="item">
