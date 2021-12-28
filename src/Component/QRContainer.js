@@ -446,53 +446,53 @@ class QRContainer extends React.Component {
             resultStatus ? "search_components op_0" : "search_components op_1"
           }
         >
-          {scan ? (
-            <QrReader
-              delay={delay}
-              // style={previewStyle}
-              className="scanner"
-              onError={this.handleError}
-              onScan={this.handleScan}
-              facingMode={"environment"}
-              // showViewFinder={false}
+          {/* {scan ? ( */}
+          <QrReader
+            delay={delay}
+            // style={previewStyle}
+            className="scanner"
+            onError={this.handleError}
+            onScan={this.handleScan}
+            facingMode={"environment"}
+            // showViewFinder={false}
+          />
+          {/* ) : (
+            <></>
+          )} */}
+          {/* {search ? ( */}
+          <div className="search_box">
+            <input
+              id="searchBox"
+              type="text"
+              onChange={(e) => {
+                this.setState({ searchValue: e.target.value });
+                if (e.target.value.length >= 20) {
+                  // console.log("greater than 20");
+                  this.handleGetData(e.target.value);
+                }
+              }}
+              onKeyPress={(e) => {
+                // console.log("key pressed: ", e.key);
+                // console.log("value: ", e.target.value);
+                if (e.target.value && e.key === "Enter") {
+                  // console.log("Okay");
+                  this.handleGetData(e.target.value);
+                }
+              }}
+              value={searchValue}
+              placeholder="Enter Serial...."
             />
-          ) : (
+            <button
+              onClick={() => this.handleGetData(searchValue)}
+              // onClick={() => setShowLoader(true)}
+              // onClick={Error}
+            >
+              Search
+            </button>
+          </div>
+          {/* ) : (
             <></>
-          )}
-          {search ? (
-            <div className="search_box">
-              <input
-                id="searchBox"
-                type="text"
-                onChange={(e) => {
-                  this.setState({ searchValue: e.target.value });
-                  if (e.target.value.length >= 20) {
-                    // console.log("greater than 20");
-                    this.handleGetData(e.target.value);
-                  }
-                }}
-                onKeyPress={(e) => {
-                  // console.log("key pressed: ", e.key);
-                  // console.log("value: ", e.target.value);
-                  if (e.target.value && e.key === "Enter") {
-                    // console.log("Okay");
-                    this.handleGetData(e.target.value);
-                  }
-                }}
-                value={searchValue}
-                placeholder="Enter Serial...."
-              />
-              <button
-                onClick={() => this.handleGetData(searchValue)}
-                // onClick={() => setShowLoader(true)}
-                // onClick={Error}
-              >
-                Search
-              </button>
-            </div>
-          ) : (
-            <></>
-          )}
+          )} */}
         </div>
         {/* <p className={scan ? "result" : ""}>{result}</p> */}
         {resultStatus ? (

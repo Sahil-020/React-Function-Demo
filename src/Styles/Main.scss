@@ -87,6 +87,9 @@
                 }
                 img.fred {
                     max-width: 60%;
+                    @media (min-width: 1080px) {
+                        max-width: 30%;
+                    }
                 }
             }
             .retail_price {
