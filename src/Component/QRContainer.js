@@ -75,14 +75,11 @@ class QRContainer extends React.Component {
     this.handleImageGallery = this.handleImageGallery.bind(this);
     this.handleReports = this.handleReports.bind(this);
     this.handleGetData = this.handleGetData.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   async componentDidMount() {
-    setInterval(
-      document.getElementById("searchBox") &&
-        document.getElementById("searchBox").focus,
-      5000
-    );
+    setInterval(this.handleFocus, 1000);
     if (this.state.id) {
       // console.log("id : ", this.state.id);
       this.setState({
@@ -112,6 +109,10 @@ class QRContainer extends React.Component {
     }
   }
 
+  handleFocus() {
+    document.getElementById("searchBox") &&
+      document.getElementById("searchBox").focus();
+  }
   handleReports(type) {
     let { resultData } = this.state;
     if (type === "jpg") {
