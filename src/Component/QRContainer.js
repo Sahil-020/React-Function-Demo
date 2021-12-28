@@ -78,8 +78,11 @@ class QRContainer extends React.Component {
   }
 
   async componentDidMount() {
-    document.getElementById("searchBox") &&
-      document.getElementById("searchBox").focus();
+    setInterval(
+      document.getElementById("searchBox") &&
+        document.getElementById("searchBox").focus(),
+      5000
+    );
     if (this.state.id) {
       // console.log("id : ", this.state.id);
       this.setState({
