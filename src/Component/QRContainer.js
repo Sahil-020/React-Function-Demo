@@ -84,7 +84,7 @@ class QRContainer extends React.Component {
       // console.log("id : ", this.state.id);
       this.setState({
         scan: false,
-        resultStatus: false,
+        resultStatus: true,
         error: false,
         search: false,
       });
@@ -101,7 +101,7 @@ class QRContainer extends React.Component {
       let id = nextProps.location.pathname.replace("/", "");
       this.setState({
         scan: false,
-        resultStatus: false,
+        resultStatus: true,
         error: false,
         id: nextProps.location.pathname.replace("/", ""),
       });
