@@ -512,7 +512,7 @@ class QRContainer extends React.Component {
         <div
           className={
             resultStatus
-              ? "item_container op_1 pos_relative"
+              ? "item_container op_1"
               : "item_container op_0"
           }
         >
