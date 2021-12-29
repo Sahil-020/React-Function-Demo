@@ -323,13 +323,13 @@ class QRContainer extends React.Component {
         pauseOnHover: false,
         theme: "colored",
       });
-      this.setState({
+      this.setState((prevState) => ({
         error: false,
-        resultStatus: false,
-        scan: true,
+        resultStatus: prevState.resultData ? true : false,
+        scan: prevState.resultData ? true : false,
         search: true,
         showIframe: false,
-      });
+      }));
       // this.props.setShowLoader(false);
     }
   }
@@ -476,6 +476,7 @@ class QRContainer extends React.Component {
             <input
               id="searchBox"
               type="text"
+              autocomplete="off"
               onChange={(e) => {
                 this.setState({ searchValue: e.target.value });
                 if (e.target.value.length >= 20) {
@@ -510,7 +511,9 @@ class QRContainer extends React.Component {
         {/* {resultStatus ? ( */}
         <div
           className={
-            resultStatus ? "item_container op_1" : "item_container op_0"
+            resultStatus
+              ? "item_container op_1 pos_relative"
+              : "item_container op_0"
           }
         >
           <div className="item">
