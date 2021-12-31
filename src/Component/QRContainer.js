@@ -329,6 +329,7 @@ class QRContainer extends React.Component {
         scan: prevState.resultData ? true : false,
         search: true,
         showIframe: false,
+        searchValue: "",
       }));
       // this.props.setShowLoader(false);
     }
