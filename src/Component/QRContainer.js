@@ -457,6 +457,7 @@ class QRContainer extends React.Component {
               ? "search_components op_0 h_100vh"
               : "search_components op_1"
           }
+          className="search_components op_1"
         >
           {scan ? (
             <QrReader
@@ -472,7 +473,10 @@ class QRContainer extends React.Component {
             <></>
           )}
           {/* {search ? ( */}
-          <div className={resultStatus ? "search_box h_100" : "search_box"}>
+          <div
+            // className={resultStatus ? "search_box h_100" : "search_box"}
+            className="search_box"
+          >
             <input
               id="searchBox"
               type="text"
@@ -512,7 +516,7 @@ class QRContainer extends React.Component {
         <div
           className={
             resultStatus
-              ? "item_container op_1"
+              ? "item_container op_1 pos_relative"
               : "item_container op_0"
           }
         >
