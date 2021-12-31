@@ -483,10 +483,10 @@ class QRContainer extends React.Component {
               autocomplete="off"
               onChange={(e) => {
                 this.setState({ searchValue: e.target.value });
-                if (e.target.value.length >= 20) {
-                  // console.log("greater than 20");
-                  this.handleGetData(e.target.value);
-                }
+//                 if (e.target.value.length >= 20) {
+//                   // console.log("greater than 20");
+//                   this.handleGetData(e.target.value);
+//                 }
               }}
               onKeyPress={(e) => {
                 // console.log("key pressed: ", e.key);
