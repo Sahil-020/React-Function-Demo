@@ -164,7 +164,7 @@ export const onRequestGet = async (context) => {
             results,
             status: 200,
             type: "RFID",
-            response: JSON.stringify(JSON.parse(response)),
+            response,
           }),
           {
             headers: {
@@ -173,14 +173,14 @@ export const onRequestGet = async (context) => {
           }
         );
       }
-      return new Response(
-        JSON.stringify({ response, updatedResults, results }),
-        {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
-        }
-      );
+      // return new Response(
+      //   JSON.stringify({ response, updatedResults, results }),
+      //   {
+      //     headers: {
+      //       "content-type": "application/json;charset=UTF-8",
+      //     },
+      //   }
+      // );
     }
   }
   let results = await gatherResponse(response);
