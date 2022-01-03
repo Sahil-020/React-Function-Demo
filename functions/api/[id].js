@@ -91,18 +91,19 @@ export const onRequestGet = async (context) => {
           },
         });
       }
-      if (urlFetch.includes("RFIDValue")) {
-        if (updatedResults.hits.hits.length !== 0) {
-          let results = updatedResults.hits.hits[0]._source;
-          return new Response(
-            JSON.stringify({ results, status: 200, type: "RFID" }),
-            {
-              headers: {
-                "content-type": "application/json;charset=UTF-8",
-              },
-            }
-          );
-        }
+      if (
+        urlFetch.includes("RFIDValue") &&
+        updatedResults.hits.hits.length !== 0
+      ) {
+        let results = updatedResults.hits.hits[0]._source;
+        return new Response(
+          JSON.stringify({ results, status: 200, type: "RFID" }),
+          {
+            headers: {
+              "content-type": "application/json;charset=UTF-8",
+            },
+          }
+        );
       }
       var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -142,11 +143,13 @@ export const onRequestGet = async (context) => {
       //                     "content-type": "text/html;charset=UTF-8",
       //                 },
       //             });
-      return new Response(JSON.stringify({ results, status: 200 }), {
-        headers: {
-          "content-type": "application/json;charset=UTF-8",
-        },
-      });
+      if (!urlFetch.includes("RFIDValue")) {
+        return new Response(JSON.stringify({ results, status: 200 }), {
+          headers: {
+            "content-type": "application/json;charset=UTF-8",
+          },
+        });
+      }
     }
   }
   for (let i = 0; i < appNameData.length; i++) {
