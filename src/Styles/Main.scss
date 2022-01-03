@@ -35,16 +35,17 @@
         }
 
         .search_box {
-            width: 210px;
+            width: 300px;
             display: flex;
             flex-direction: row;
             align-items: center;
-            column-gap: 10px;
+            column-gap: 5px;
+            font-size: 15px;
             input {
-                width: 70%;
+                width: 80%;
             }
             button {
-                width: 30%;
+                width: 20%;
                 font-size: 14px;
                 background: #58585a !important;
                 color: #fff !important;
