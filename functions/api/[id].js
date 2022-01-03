@@ -92,15 +92,17 @@ export const onRequestGet = async (context) => {
         });
       }
       if (urlFetch.includes("RFIDValue")) {
-        let results = updatedResults.hits.hits[0]._source;
-        return new Response(
-          JSON.stringify({ results, status: 200, type: "RFID" }),
-          {
-            headers: {
-              "content-type": "application/json;charset=UTF-8",
-            },
-          }
-        );
+        if (updatedResults.hits.hits.length !== 0) {
+          let results = updatedResults.hits.hits[0]._source;
+          return new Response(
+            JSON.stringify({ results, status: 200, type: "RFID" }),
+            {
+              headers: {
+                "content-type": "application/json;charset=UTF-8",
+              },
+            }
+          );
+        }
       }
       var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
