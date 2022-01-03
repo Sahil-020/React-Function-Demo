@@ -173,14 +173,14 @@ export const onRequestGet = async (context) => {
           }
         );
       }
-      // return new Response(
-      //   JSON.stringify({ response, updatedResults, results }),
-      //   {
-      //     headers: {
-      //       "content-type": "application/json;charset=UTF-8",
-      //     },
-      //   }
-      // );
+      return new Response(
+        JSON.stringify({ response, updatedResults, results }),
+        {
+          headers: {
+            "content-type": "application/json;charset=UTF-8",
+          },
+        }
+      );
     }
   }
   let results = await gatherResponse(response);
