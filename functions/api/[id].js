@@ -160,7 +160,12 @@ export const onRequestGet = async (context) => {
         results = updatedResults.hits.hits[0]._source;
         //       results = updatedResults.hits
         return new Response(
-          JSON.stringify({ results, status: 200, type: "RFID", response: JSON.stringify(JSON.parse(response)) }),
+          JSON.stringify({
+            results,
+            status: 200,
+            type: "RFID",
+            response: JSON.stringify(JSON.parse(response)),
+          }),
           {
             headers: {
               "content-type": "application/json;charset=UTF-8",
@@ -168,18 +173,18 @@ export const onRequestGet = async (context) => {
           }
         );
       }
-      return new Response(
-        JSON.stringify({ response, updatedResults, results }),
-        {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
-        }
-      );
+      // return new Response(
+      //   JSON.stringify({ response, updatedResults, results }),
+      //   {
+      //     headers: {
+      //       "content-type": "application/json;charset=UTF-8",
+      //     },
+      //   }
+      // );
     }
   }
   let results = await gatherResponse(response);
-  return new Response({JSON.stringify({results,response})}, {
+  return new Response(JSON.stringify({ results, response }), {
     headers: {
       "content-type": "application/json;charset=UTF-8",
     },
