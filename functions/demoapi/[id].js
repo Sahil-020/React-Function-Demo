@@ -79,7 +79,7 @@ export const onRequestGet = async (context) => {
     if (response.status === 200) {
       //       console.log("response :", response);
       //       console.log(response.status, " - ", response.statusText);
-      // let results = await gatherResponse(response);
+      let results = await gatherResponse(response);
       // let updatedResults = JSON.parse(results);
       // if (appNameData[i] === DiamondSerialApp && updatedResults.LabReportNbr) {
       //   const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
@@ -151,7 +151,7 @@ export const onRequestGet = async (context) => {
       //   });
       // }
 
-      return new Response(JSON.stringify({ response, status: 200 }), {
+      return new Response(JSON.stringify({ response, results, status: 200 }), {
         headers: {
           "content-type": "application/json;charset=UTF-8",
         },
