@@ -83,7 +83,7 @@ export const onRequestGet = async (context) => {
       let updatedResults = JSON.parse(results);
       if (
         updatedResults.hits.hits.length !== 0 ||
-        updatedResults.transformType
+        (updatedResults && updatedResults.transformType)
       ) {
         if (
           appNameData[i] === DiamondSerialApp &&
