@@ -79,7 +79,7 @@ class QRContainer extends React.Component {
   }
 
   async componentDidMount() {
-//     setInterval(this.handleFocus, 1000);
+    //     setInterval(this.handleFocus, 1000);
     if (this.state.id) {
       // console.log("id : ", this.state.id);
       this.setState({
@@ -288,7 +288,19 @@ class QRContainer extends React.Component {
           searchValue: "",
         });
         // this.props.setShowLoader(false);
-        window.open(res.data.destinationURL, "_self");
+        await axios
+          .get(res.data.destinationURL, {
+            responseType: "blob",
+          })
+          .then((response) => {
+            const file = new Blob([response.data], { type: "application/pdf" });
+            const fileURL = URL.createObjectURL(file);
+            window.open(fileURL, "_blank");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        // window.open(res.data.destinationURL, "_self");
         return;
       }
       if (res.data.type && res.data.type === "RFID") {
@@ -484,10 +496,10 @@ class QRContainer extends React.Component {
               autocomplete="off"
               onChange={(e) => {
                 this.setState({ searchValue: e.target.value });
-//                 if (e.target.value.length >= 20) {
-//                   // console.log("greater than 20");
-//                   this.handleGetData(e.target.value);
-//                 }
+                //                 if (e.target.value.length >= 20) {
+                //                   // console.log("greater than 20");
+                //                   this.handleGetData(e.target.value);
+                //                 }
               }}
               onKeyPress={(e) => {
                 // console.log("key pressed: ", e.key);
