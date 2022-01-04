@@ -160,20 +160,20 @@ export const onRequestGet = async (context) => {
       //       console.log(response.status, " - ", response.statusText);
       let results = await gatherResponse(response);
       let updatedResults = JSON.parse(results);
-      if (
-        appNameData[i] === DiamondSerialApp &&
-        updatedResults.hits.hits.length !== 0 &&
-        updatedResults.hits.hits[0]._source.LabReportNbr
-      ) {
-        const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
-        const statusCode = 301;
-        //                 return Response.redirect(destinationURL, 301)
-        return new Response(JSON.stringify({ destinationURL, status: 200 }), {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
-        });
-      }
+      // if (
+      //   appNameData[i] === DiamondSerialApp &&
+      //   updatedResults.hits.hits.length !== 0 &&
+      //   updatedResults.hits.hits[0]._source.LabReportNbr
+      // ) {
+      //   const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
+      //   const statusCode = 301;
+      //   //                 return Response.redirect(destinationURL, 301)
+      //   return new Response(JSON.stringify({ destinationURL, status: 200 }), {
+      //     headers: {
+      //       "content-type": "application/json;charset=UTF-8",
+      //     },
+      //   });
+      // }
 
       if (updatedResults.hits.hits.length !== 0) {
         results = updatedResults.hits.hits[0]._source;
