@@ -289,18 +289,23 @@ class QRContainer extends React.Component {
           searchValue: "",
         });
         // this.props.setShowLoader(false);
-        await axios
-          .get(res.data.destinationURL, {
-            responseType: "blob",
-          })
-          .then((response) => {
-            const file = new Blob([response.data], { type: "application/pdf" });
-            const fileURL = URL.createObjectURL(file);
-            window.open(fileURL, "_blank");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        // await axios
+        //   .get(res.data.destinationURL, {
+        //     responseType: "blob",
+        //   })
+        //   .then((response) => {
+        //     const file = new Blob([response.data], { type: "application/pdf" });
+        //     const fileURL = URL.createObjectURL(file);
+        //     window.open(fileURL, "_blank");
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //   });
+        let pdfWindow = window.open("");
+        pdfWindow.document.write(
+          "<iframe width='100%' height='99.5%' src=" + res.data,
+          destinationURL + "></iframe>"
+        );
         // window.open(res.data.destinationURL, "_self");
         return;
       }
