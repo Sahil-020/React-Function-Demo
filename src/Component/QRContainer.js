@@ -303,8 +303,9 @@ class QRContainer extends React.Component {
         //   });
         let pdfWindow = window.open("");
         pdfWindow.document.write(
-          "<iframe width='100%' height='99.5%' src=" + res.data,
-          destinationURL + "></iframe>"
+          "<iframe width='100%' height='99.5%' src=" +
+            res.data.destinationURL +
+            "></iframe>"
         );
         // window.open(res.data.destinationURL, "_self");
         return;
