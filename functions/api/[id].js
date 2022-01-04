@@ -160,7 +160,11 @@ export const onRequestGet = async (context) => {
       //       console.log(response.status, " - ", response.statusText);
       let results = await gatherResponse(response);
       let updatedResults = JSON.parse(results);
-      if (appNameData[i] === DiamondSerialApp && updatedResults.LabReportNbr) {
+      if (
+        appNameData[i] === DiamondSerialApp &&
+        updatedResults.hits.hits.length !== 0 &&
+        updatedResults.hits.hits[0]._source.LabReportNbr
+      ) {
         const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
         const statusCode = 301;
         //                 return Response.redirect(destinationURL, 301)
