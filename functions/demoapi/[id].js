@@ -166,7 +166,7 @@ export const onRequestGet = async (context) => {
       // );
     }
   }
-  if (params.id.toString().length > 15) {
+  if (params.id.toString().length < 15) {
     for (let i = 0; i < appNameData.length; i++) {
       let urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=SerialNumber : ${params.id}`;
       response = await fetch(urlFetch, init);
