@@ -241,6 +241,7 @@ class QRContainer extends React.Component {
         }
       }
     }
+    console.log("imgArr : ", imgArr);
     return imgArr;
     // this.setState({
     //   imgArr: imgArr,
