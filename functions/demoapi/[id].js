@@ -285,10 +285,17 @@ export const onRequestGet = async (context) => {
   //     }
   //   }
   // }
-  let results = await gatherResponse(response);
-  return new Response(JSON.stringify({ results, response }), {
-    headers: {
-      "content-type": "application/json;charset=UTF-8",
-    },
-  });
+  return new Response(
+    JSON.stringify({
+      response,
+      // updatedResults,
+      // results,
+      // text: "seraiall reply",
+    }),
+    {
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+      },
+    }
+  );
 };
