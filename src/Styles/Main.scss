@@ -98,13 +98,18 @@
             .collection_itemName {
                 display: flex;
                 flex-direction: column;
+                gap: 10px;
                 row-gap: 10px;
+                padding: 20px 10px 0px 10px;
                 .collection {
-                    color: #b0b0b0;
+                    color: #838383;
                     text-decoration: underline;
+                    font-size: 20px;
                 }
                 .itemName {
                     color: #31406f;
+                    font-family: -webkit-body;
+                    font-size: 28px;
                 }
             }
 
