@@ -352,7 +352,12 @@ class QRContainer extends React.Component {
       this.setState((prevState) => ({
         error: false,
         resultStatus: prevState.resultData ? true : false,
-        scan: prevState.resultData ? true : false,
+        scan:
+          Object.keys(prevState.resultData).length !== 0 &&
+          (prevState.resultData.constructor === Object ||
+            prevState.resultData.constructor === Array)
+            ? true
+            : false,
         search: true,
         showIframe: false,
         searchValue: "",
