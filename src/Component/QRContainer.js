@@ -211,8 +211,8 @@ class QRContainer extends React.Component {
       }
       if (res.EditorialVideo) {
         imgArr.push({
-          original: res.EditorialVideo,
-          thumbnail: res.EditorialVideo,
+          original: showimage(res.LargeImageName),
+          thumbnail: showimage(res.LargeImageName),
           // imgName: res.EditorialVideo,
           embedUrl: res.EditorialVideo,
           renderItem: this.handleVideo(this),
@@ -220,8 +220,8 @@ class QRContainer extends React.Component {
       }
       if (res.SerialVideoLink) {
         imgArr.push({
-          original: res.SerialVideoLink,
-          thumbnail: res.SerialVideoLink,
+          original: showimage(res.LargeImageName),
+          thumbnail: showimage(res.LargeImageName),
           embedUrl: res.SerialVideoLink,
           // imgName: res.SerialVideoLink,
           renderItem: this.handleVideo(this),
@@ -229,8 +229,8 @@ class QRContainer extends React.Component {
       }
       if (res.StyleVideoLink) {
         imgArr.push({
-          original: res.StyleVideoLink,
-          thumbnail: res.StyleVideoLink,
+          original: showimage(res.LargeImageName),
+          thumbnail: showimage(res.LargeImageName),
           // imgName: res.StyleVideoLink,
           embedUrl: res.StyleVideoLink,
           renderItem: this.handleVideo(this),
