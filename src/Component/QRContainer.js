@@ -215,7 +215,7 @@ class QRContainer extends React.Component {
           thumbnail: res.EditorialVideo,
           // imgName: res.EditorialVideo,
           embedUrl: res.EditorialVideo,
-          renderItem: this.handleVideo(res.EditorialVideo),
+          renderItem: this.handleVideo(this),
         });
       }
       if (res.SerialVideoLink) {
@@ -224,7 +224,7 @@ class QRContainer extends React.Component {
           thumbnail: res.SerialVideoLink,
           embedUrl: res.SerialVideoLink,
           // imgName: res.SerialVideoLink,
-          renderItem: this.handleVideo(res.SerialVideoLink),
+          renderItem: this.handleVideo(this),
         });
       }
       if (res.StyleVideoLink) {
@@ -233,7 +233,7 @@ class QRContainer extends React.Component {
           thumbnail: res.StyleVideoLink,
           // imgName: res.StyleVideoLink,
           embedUrl: res.StyleVideoLink,
-          renderItem: this.handleVideo(res.StyleVideoLink),
+          renderItem: this.handleVideo(this),
         });
       }
 
@@ -255,7 +255,7 @@ class QRContainer extends React.Component {
     // });
   }
 
-  handleVideo(src) {
+  handleVideo(item) {
     return (
       <div className="video-wrapper">
         {/* <a
@@ -265,7 +265,7 @@ class QRContainer extends React.Component {
         <iframe
           width="560"
           height="315"
-          src={src}
+          src={item.embedUrl}
           frameBorder="0"
           allowFullScreen
         ></iframe>
