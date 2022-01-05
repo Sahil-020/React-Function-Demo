@@ -213,7 +213,8 @@ class QRContainer extends React.Component {
         imgArr.push({
           original: res.EditorialVideo,
           thumbnail: res.EditorialVideo,
-          imgName: res.EditorialVideo,
+          // imgName: res.EditorialVideo,
+          embedUrl: res.EditorialVideo,
           renderItem: this.handleVideo(res.EditorialVideo),
         });
       }
@@ -221,7 +222,8 @@ class QRContainer extends React.Component {
         imgArr.push({
           original: res.SerialVideoLink,
           thumbnail: res.SerialVideoLink,
-          imgName: res.SerialVideoLink,
+          embedUrl: res.SerialVideoLink,
+          // imgName: res.SerialVideoLink,
           renderItem: this.handleVideo(res.SerialVideoLink),
         });
       }
@@ -229,7 +231,8 @@ class QRContainer extends React.Component {
         imgArr.push({
           original: res.StyleVideoLink,
           thumbnail: res.StyleVideoLink,
-          imgName: res.StyleVideoLink,
+          // imgName: res.StyleVideoLink,
+          embedUrl: res.StyleVideoLink,
           renderItem: this.handleVideo(res.StyleVideoLink),
         });
       }
