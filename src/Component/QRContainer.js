@@ -255,14 +255,14 @@ class QRContainer extends React.Component {
   handleVideo(src) {
     return (
       <div className="video-wrapper">
-        <a
+        {/* <a
           className="close-video"
           onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
-        ></a>
+        ></a> */}
         <iframe
           width="560"
           height="315"
-          src={srcl}
+          src={src}
           frameBorder="0"
           allowFullScreen
         ></iframe>
