@@ -208,6 +208,27 @@ class QRContainer extends React.Component {
           imgName: res.shape,
         });
       }
+      if (res.EditorialVideo) {
+        imgArr.push({
+          original: res.EditorialVideo,
+          thumbnail: res.EditorialVideo,
+          imgName: res.EditorialVideo,
+        });
+      }
+      if (res.SerialVideoLink) {
+        imgArr.push({
+          original: res.SerialVideoLink,
+          thumbnail: res.SerialVideoLink,
+          imgName: res.SerialVideoLink,
+        });
+      }
+      if (res.StyleVideoLink) {
+        imgArr.push({
+          original: res.StyleVideoLink,
+          thumbnail: res.StyleVideoLink,
+          imgName: res.StyleVideoLink,
+        });
+      }
 
       for (let i = 1; i < 6; i++) {
         var field = "WebImage" + i;
