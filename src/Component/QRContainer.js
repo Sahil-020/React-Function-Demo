@@ -269,7 +269,7 @@ class QRContainer extends React.Component {
           onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
         ></a> */}
         <iframe
-          width="560"
+          width="300"
           height="315"
           src={item.embedUrl}
           frameBorder="0"
