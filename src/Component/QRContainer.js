@@ -76,7 +76,7 @@ class QRContainer extends React.Component {
     this.handleReports = this.handleReports.bind(this);
     this.handleGetData = this.handleGetData.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
-    thi.handleVideo = this.handleVideo.bind(this);
+    this.handleVideo = this.handleVideo.bind(this);
   }
 
   async componentDidMount() {
