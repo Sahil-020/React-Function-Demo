@@ -81,101 +81,103 @@ export const onRequestGet = async (context) => {
       //       console.log(response.status, " - ", response.statusText);
       let results = await gatherResponse(response);
       let updatedResults = JSON.parse(results);
-      if (appNameData[i] === DiamondSerialApp && updatedResults.LabReportNbr) {
-        const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
-        const statusCode = 301;
-        //                 return Response.redirect(destinationURL, 301)
-        return new Response(JSON.stringify({ destinationURL, status: 200 }), {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
-        });
-      }
       if (
-        urlFetch.includes("RFIDValue") &&
-        updatedResults.hits.hits.length !== 0
+        updatedResults.hits.hits.length !== 0 ||
+        (updatedResults && updatedResults.transformType)
       ) {
-        let results = updatedResults.hits.hits[0]._source;
-        return new Response(
-          JSON.stringify({ results, status: 200, type: "RFID" }),
-          {
+        if (
+          appNameData[i] === DiamondSerialApp &&
+          updatedResults.LabReportNbr
+        ) {
+          const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
+          const statusCode = 301;
+          //                 return Response.redirect(destinationURL, 301)
+          return new Response(JSON.stringify({ destinationURL, status: 200 }), {
             headers: {
               "content-type": "application/json;charset=UTF-8",
             },
-          }
-        );
-      }
-      var formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
+          });
+        }
+        if (urlFetch.includes("RFIDValue")) {
+          let results = updatedResults.hits.hits[0]._source;
+          return new Response(
+            JSON.stringify({ results, status: 200, type: "RFID" }),
+            {
+              headers: {
+                "content-type": "application/json;charset=UTF-8",
+              },
+            }
+          );
+        }
+        var formatter = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
 
-        // These options are needed to round to whole numbers if that's what you want.
-        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-      });
-      // const html = `<!DOCTYPE html>
-      //           <body>
-      //             <div style="text-align: left; width:100%;" >
-      //               <div style="text-align:center;max-width:100%;font-size:40px">
-      //                 <div style="width:100%;">
-      //                   <img
-      //                      style="width:80%;"
-      //                      src=${handleImage(updatedResults)}
-      //                    />
-      //                 </div>
-      //                 <div> Serial Number : ${
-      //                   updatedResults.SerialNumber
-      //                 } </div>
-      //                 <div>Inventory ID : ${updatedResults.InventoryID}</div>
-      //                 <div>Retail Price : ${formatter.format(
-      //                   updatedResults.RetailPrice
-      //                 )}</div>
-      //               </div>
-      //             </div>
-      //           </body>`;
-      //     return new Response(`The id : ${ JSON.stringify(productType) }\n\nresult : ${results} \n\n ${typeof results}`, {
-      //         headers: {
-      //             "content-type": "application/json;charset=UTF-8"
-      //         }
-      //     })
-      //             return new Response(html, {
-      //                 headers: {
-      //                     "content-type": "text/html;charset=UTF-8",
-      //                 },
-      //             });
-      if (!urlFetch.includes("RFIDValue")) {
-        return new Response(JSON.stringify({ results, status: 200 }), {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
+          // These options are needed to round to whole numbers if that's what you want.
+          //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+          //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
         });
+        // const html = `<!DOCTYPE html>
+        //           <body>
+        //             <div style="text-align: left; width:100%;" >
+        //               <div style="text-align:center;max-width:100%;font-size:40px">
+        //                 <div style="width:100%;">
+        //                   <img
+        //                      style="width:80%;"
+        //                      src=${handleImage(updatedResults)}
+        //                    />
+        //                 </div>
+        //                 <div> Serial Number : ${
+        //                   updatedResults.SerialNumber
+        //                 } </div>
+        //                 <div>Inventory ID : ${updatedResults.InventoryID}</div>
+        //                 <div>Retail Price : ${formatter.format(
+        //                   updatedResults.RetailPrice
+        //                 )}</div>
+        //               </div>
+        //             </div>
+        //           </body>`;
+        //     return new Response(`The id : ${ JSON.stringify(productType) }\n\nresult : ${results} \n\n ${typeof results}`, {
+        //         headers: {
+        //             "content-type": "application/json;charset=UTF-8"
+        //         }
+        //     })
+        //             return new Response(html, {
+        //                 headers: {
+        //                     "content-type": "text/html;charset=UTF-8",
+        //                 },
+        //             });
+        if (!urlFetch.includes("RFIDValue")) {
+          return new Response(JSON.stringify({ results, status: 200 }), {
+            headers: {
+              "content-type": "application/json;charset=UTF-8",
+            },
+          });
+        }
       }
     }
-  }
-  for (let i = 0; i < appNameData.length; i++) {
-    let urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=SerialNumber : ${params.id}`;
+    urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=SerialNumber : ${params.id}`;
     response = await fetch(urlFetch, init);
     if (response.status === 200) {
       //       console.log("response :", response);
       //       console.log(response.status, " - ", response.statusText);
       let results = await gatherResponse(response);
       let updatedResults = JSON.parse(results);
-      if (
-        appNameData[i] === DiamondSerialApp &&
-        updatedResults.hits.hits.length !== 0 &&
-        updatedResults.hits.hits[0]._source.LabReportNbr
-      ) {
-        const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.hits.hits[0]._source.LabReportNbr}.pdf`;
-        const statusCode = 301;
-        //                 return Response.redirect(destinationURL, 301)
-        return new Response(JSON.stringify({ destinationURL, status: 200 }), {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
-        });
-      }
+      if (updatedResults && updatedResults.hits.hits.length !== 0) {
+        if (
+          appNameData[i] === DiamondSerialApp &&
+          updatedResults.hits.hits[0]._source.LabReportNbr
+        ) {
+          const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.hits.hits[0]._source.LabReportNbr}.pdf`;
+          const statusCode = 301;
+          //                 return Response.redirect(destinationURL, 301)
+          return new Response(JSON.stringify({ destinationURL, status: 200 }), {
+            headers: {
+              "content-type": "application/json;charset=UTF-8",
+            },
+          });
+        }
 
-      if (updatedResults.hits.hits.length !== 0) {
         results = updatedResults.hits.hits[0]._source;
         //       results = updatedResults.hits
         return new Response(
@@ -191,9 +193,27 @@ export const onRequestGet = async (context) => {
             },
           }
         );
+        // return new Response(
+        //   JSON.stringify({
+        //     response,
+        //     updatedResults,
+        //     results,
+        //     text: "seraiall reply",
+        //   }),
+        //   {
+        //     headers: {
+        //       "content-type": "application/json;charset=UTF-8",
+        //     },
+        //   }
+        // );
       }
       // return new Response(
-      //   JSON.stringify({ response, updatedResults, results }),
+      //   JSON.stringify({
+      //     response,
+      //     updatedResults,
+      //     results,
+      //     text: "seraiall reply",
+      //   }),
       //   {
       //     headers: {
       //       "content-type": "application/json;charset=UTF-8",
@@ -202,10 +222,68 @@ export const onRequestGet = async (context) => {
       // );
     }
   }
-  let results = await gatherResponse(response);
-  return new Response(JSON.stringify({ results, response }), {
-    headers: {
-      "content-type": "application/json;charset=UTF-8",
-    },
-  });
+  // for (let i = 0; i < appNameData.length; i++) {
+  //   let urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=SerialNumber : ${params.id}`;
+  //   response = await fetch(urlFetch, init);
+  //   if (response.status === 200) {
+  //     //       console.log("response :", response);
+  //     //       console.log(response.status, " - ", response.statusText);
+  //     let results = await gatherResponse(response);
+  //     let updatedResults = JSON.parse(results);
+  //     if (
+  //       appNameData[i] === DiamondSerialApp &&
+  //       updatedResults.hits.hits.length !== 0 &&
+  //       updatedResults.hits.hits[0]._source.LabReportNbr
+  //     ) {
+  //       const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.hits.hits[0]._source.LabReportNbr}.pdf`;
+  //       const statusCode = 301;
+  //       //                 return Response.redirect(destinationURL, 301)
+  //       return new Response(JSON.stringify({ destinationURL, status: 200 }), {
+  //         headers: {
+  //           "content-type": "application/json;charset=UTF-8",
+  //         },
+  //       });
+  //     }
+
+  //     if (updatedResults.hits.hits.length !== 0) {
+  //       results = updatedResults.hits.hits[0]._source;
+  //       //       results = updatedResults.hits
+  //       return new Response(
+  //         JSON.stringify({
+  //           results,
+  //           status: 200,
+  //           type: "RFID",
+  //           response,
+  //         }),
+  //         {
+  //           headers: {
+  //             "content-type": "application/json;charset=UTF-8",
+  //           },
+  //         }
+  //       );
+  //     }
+  //     // return new Response(
+  //     //   JSON.stringify({ response, updatedResults, results }),
+  //     //   {
+  //     //     headers: {
+  //     //       "content-type": "application/json;charset=UTF-8",
+  //     //     },
+  //     //   }
+  //     // );
+  //   }
+  // }
+  // let results = await gatherResponse(response);
+  return new Response(
+    JSON.stringify({
+      response,
+      // updatedResults,
+      // results,
+      // text: "seraiall reply",
+    }),
+    {
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+      },
+    }
+  );
 };

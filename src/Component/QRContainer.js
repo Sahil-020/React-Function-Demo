@@ -274,8 +274,8 @@ class QRContainer extends React.Component {
       res = await axios.get(`/api/${query}`);
     } else {
       // console.log("Query Doesn't Includes /");
-      // res = await axios.get(`api/${query}`);
-      res = await axios.get(`demoapi/${query}`);
+      res = await axios.get(`api/${query}`);
+      // res = await axios.get(`demoapi/${query}`);
     }
     console.log("res :", res);
     if (res.status === 200 && res.data && res.data.status === 200) {
