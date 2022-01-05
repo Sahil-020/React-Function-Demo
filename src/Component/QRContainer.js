@@ -270,7 +270,7 @@ class QRContainer extends React.Component {
         ></a> */}
         <iframe
           width="300"
-          height="315"
+          height="300"
           src={item.embedUrl}
           frameBorder="0"
           allowFullScreen
