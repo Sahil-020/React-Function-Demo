@@ -209,33 +209,33 @@ class QRContainer extends React.Component {
           imgName: res.shape,
         });
       }
-      if (res.EditorialVideo) {
-        imgArr.push({
-          original: showimage(res.LargeImageName),
-          thumbnail: showimage(res.LargeImageName),
-          // imgName: res.EditorialVideo,
-          embedUrl: res.EditorialVideo,
-          renderItem: this.handleVideo(this),
-        });
-      }
-      if (res.SerialVideoLink) {
-        imgArr.push({
-          original: showimage(res.LargeImageName),
-          thumbnail: showimage(res.LargeImageName),
-          embedUrl: res.SerialVideoLink,
-          // imgName: res.SerialVideoLink,
-          renderItem: this.handleVideo(this),
-        });
-      }
-      if (res.StyleVideoLink) {
-        imgArr.push({
-          original: showimage(res.LargeImageName),
-          thumbnail: showimage(res.LargeImageName),
-          // imgName: res.StyleVideoLink,
-          embedUrl: res.StyleVideoLink,
-          renderItem: this.handleVideo(this),
-        });
-      }
+      // if (res.EditorialVideo) {
+      //   imgArr.push({
+      //     original: showimage(res.LargeImageName),
+      //     thumbnail: showimage(res.LargeImageName),
+      //     // imgName: res.EditorialVideo,
+      //     embedUrl: res.EditorialVideo,
+      //     renderItem: this.handleVideo(this),
+      //   });
+      // }
+      // if (res.SerialVideoLink) {
+      //   imgArr.push({
+      //     original: showimage(res.LargeImageName),
+      //     thumbnail: showimage(res.LargeImageName),
+      //     embedUrl: res.SerialVideoLink,
+      //     // imgName: res.SerialVideoLink,
+      //     renderItem: this.handleVideo(this),
+      //   });
+      // }
+      // if (res.StyleVideoLink) {
+      //   imgArr.push({
+      //     original: showimage(res.LargeImageName),
+      //     thumbnail: showimage(res.LargeImageName),
+      //     // imgName: res.StyleVideoLink,
+      //     embedUrl: res.StyleVideoLink,
+      //     renderItem: this.handleVideo(this),
+      //   });
+      // }
 
       for (let i = 1; i < 6; i++) {
         var field = "WebImage" + i;
