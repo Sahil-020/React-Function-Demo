@@ -584,6 +584,7 @@ class QRContainer extends React.Component {
                 showFullscreenButton={false}
                 showPlayButton={false}
                 showNav={false}
+                onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
               />
               {/* <img src={this.handleImage(resultData)} /> */}
             </div>
