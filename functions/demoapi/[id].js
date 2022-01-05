@@ -172,50 +172,63 @@ export const onRequestGet = async (context) => {
       //       console.log(response.status, " - ", response.statusText);
       let results = await gatherResponse(response);
       let updatedResults = JSON.parse(results);
-      // if (updatedResults && updatedResults.hits.hits.length !== 0) {
-      //   if (
-      //     appNameData[i] === DiamondSerialApp &&
-      //     updatedResults.hits.hits[0]._source.LabReportNbr
-      //   ) {
-      //     const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.hits.hits[0]._source.LabReportNbr}.pdf`;
-      //     const statusCode = 301;
-      //     //                 return Response.redirect(destinationURL, 301)
-      //     return new Response(JSON.stringify({ destinationURL, status: 200 }), {
-      //       headers: {
-      //         "content-type": "application/json;charset=UTF-8",
-      //       },
-      //     });
-      //   }
+      if (updatedResults && updatedResults.hits.hits.length !== 0) {
+        // if (
+        //   appNameData[i] === DiamondSerialApp &&
+        //   updatedResults.hits.hits[0]._source.LabReportNbr
+        // ) {
+        //   const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.hits.hits[0]._source.LabReportNbr}.pdf`;
+        //   const statusCode = 301;
+        //   //                 return Response.redirect(destinationURL, 301)
+        //   return new Response(JSON.stringify({ destinationURL, status: 200 }), {
+        //     headers: {
+        //       "content-type": "application/json;charset=UTF-8",
+        //     },
+        //   });
+        // }
 
-      //   results = updatedResults.hits.hits[0]._source;
-      //   //       results = updatedResults.hits
-      //   return new Response(
-      //     JSON.stringify({
-      //       results,
-      //       status: 200,
-      //       type: "RFID",
-      //       response,
-      //     }),
-      //     {
-      //       headers: {
-      //         "content-type": "application/json;charset=UTF-8",
-      //       },
-      //     }
-      //   );
-      // }
-      return new Response(
-        JSON.stringify({
-          response,
-          updatedResults,
-          results,
-          text: "seraiall reply",
-        }),
-        {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
-        }
-      );
+        // results = updatedResults.hits.hits[0]._source;
+        // //       results = updatedResults.hits
+        // return new Response(
+        //   JSON.stringify({
+        //     results,
+        //     status: 200,
+        //     type: "RFID",
+        //     response,
+        //   }),
+        //   {
+        //     headers: {
+        //       "content-type": "application/json;charset=UTF-8",
+        //     },
+        //   }
+        // );
+        return new Response(
+          JSON.stringify({
+            response,
+            updatedResults,
+            results,
+            text: "seraiall reply",
+          }),
+          {
+            headers: {
+              "content-type": "application/json;charset=UTF-8",
+            },
+          }
+        );
+      }
+      // return new Response(
+      //   JSON.stringify({
+      //     response,
+      //     updatedResults,
+      //     results,
+      //     text: "seraiall reply",
+      //   }),
+      //   {
+      //     headers: {
+      //       "content-type": "application/json;charset=UTF-8",
+      //     },
+      //   }
+      // );
     }
   }
   // if (params.id.toString().length < 15) {
