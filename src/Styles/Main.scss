@@ -94,6 +94,20 @@
                     }
                 }
             }
+
+            .collection_itemName {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+                .collection {
+                    color: #b0b0b0;
+                    text-decoration: underline;
+                }
+                .itemName {
+                    color: #31406f;
+                }
+            }
+
             .retail_price {
                 margin-top: 20px;
                 display: flex;
@@ -108,7 +122,7 @@
                     font-weight: bold;
                 }
             }
-            .collection_itemName,
+
             .serial_no,
             .style_no {
                 label {

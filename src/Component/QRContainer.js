@@ -607,9 +607,8 @@ class QRContainer extends React.Component {
               ></img>
             </div>
             <div className="collection_itemName">
-              <label>{resultData.Collection}</label>
-              <span> - </span>
-              <label>{resultData.ShortDescription}</label>
+              <label className="collection">{resultData.Collection}</label>
+              <label className="itemName">{resultData.ShortDescription}</label>
             </div>
             <div className="retail_price">
               <label>
