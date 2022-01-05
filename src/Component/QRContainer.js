@@ -76,7 +76,7 @@ class QRContainer extends React.Component {
     this.handleReports = this.handleReports.bind(this);
     this.handleGetData = this.handleGetData.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
-    this.handleVideo = this.handleVideo.bind(this);
+    this.renderVideo = this.renderVideo.bind(this);
   }
 
   async componentDidMount() {
@@ -209,33 +209,39 @@ class QRContainer extends React.Component {
           imgName: res.shape,
         });
       }
-      // if (res.EditorialVideo) {
-      //   imgArr.push({
-      //     original: showimage(res.LargeImageName),
-      //     thumbnail: showimage(res.LargeImageName),
-      //     // imgName: res.EditorialVideo,
-      //     embedUrl: res.EditorialVideo,
-      //     renderItem: this.handleVideo(this),
-      //   });
-      // }
-      // if (res.SerialVideoLink) {
-      //   imgArr.push({
-      //     original: showimage(res.LargeImageName),
-      //     thumbnail: showimage(res.LargeImageName),
-      //     embedUrl: res.SerialVideoLink,
-      //     // imgName: res.SerialVideoLink,
-      //     renderItem: this.handleVideo(this),
-      //   });
-      // }
-      // if (res.StyleVideoLink) {
-      //   imgArr.push({
-      //     original: showimage(res.LargeImageName),
-      //     thumbnail: showimage(res.LargeImageName),
-      //     // imgName: res.StyleVideoLink,
-      //     embedUrl: res.StyleVideoLink,
-      //     renderItem: this.handleVideo(this),
-      //   });
-      // }
+      if (res.EditorialVideo) {
+        imgArr.push({
+          thumbnail:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          original:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          embedUrl: res.EditorialVideo,
+          // description: "Render custom slides (such as videos)",
+          renderItem: this.renderVideo.bind(this),
+        });
+      }
+      if (res.SerialVideoLink) {
+        imgArr.push({
+          thumbnail:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          original:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          embedUrl: res.SerialVideoLink,
+          // description: "Render custom slides (such as videos)",
+          renderItem: this.renderVideo.bind(this),
+        });
+      }
+      if (res.StyleVideoLink) {
+        imgArr.push({
+          thumbnail:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          original:
+            "https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Video-Icon-Stock-Black.svg",
+          embedUrl: res.StyleVideoLink,
+          // description: "Render custom slides (such as videos)",
+          renderItem: this.renderVideo.bind(this),
+        });
+      }
 
       for (let i = 1; i < 6; i++) {
         var field = "WebImage" + i;
@@ -255,7 +261,7 @@ class QRContainer extends React.Component {
     // });
   }
 
-  handleVideo(item) {
+  renderVideo(item) {
     return (
       <div className="video-wrapper">
         {/* <a
