@@ -343,6 +343,12 @@ class QRContainer extends React.Component {
         pauseOnHover: false,
         theme: "colored",
       });
+      console.log(
+        "resultData: ",
+        this.state.resultData,
+        "\n",
+        typeof this.state.resultData
+      );
       this.setState((prevState) => ({
         error: false,
         resultStatus: prevState.resultData ? true : false,
