@@ -113,7 +113,7 @@
                     max-width: 15%;
                 }
                 @media (min-width: 1080px) {
-                    max-width: 8%;
+                    max-width: 40%;
                 }
             }
             img.fred {
@@ -142,6 +142,10 @@
                 width: 60%;
                 border: 1.5px solid #acacac;
                 height: 30px;
+                @media (min-width: 1080px) {
+                    height: 45px;
+                    font-size: 18px;
+                }
             }
             input:focus {
                 // border: #acacac solid 1.5px;
@@ -155,6 +159,10 @@
                 color: #fff !important;
                 text-shadow: none !important;
                 border: none !important;
+                @media (min-width: 1080px) {
+                    height: 45px;
+                    font-size: 18px;
+                }
             }
         }
     }
