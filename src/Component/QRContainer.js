@@ -609,12 +609,12 @@ class QRContainer extends React.Component {
             // }
           >
             <div className="item">
-              <div className="logo">
+              {/* <div className="logo">
                 <img
                   className={resultData.Brand === "Kwiat" ? "kwiat" : "fred"}
                   src={resultData.Brand === "Kwiat" ? Kwiat : Fred}
                 ></img>
-              </div>
+              </div> */}
               <div className="item_description">
                 {resultData.Collection || resultData.ShortDescription ? (
                   <div className="collection_itemName">
