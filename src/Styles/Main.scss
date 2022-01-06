@@ -303,6 +303,10 @@
                             // img {
                             //     width: 80%;
                             // }
+                            @media (min-width: 1080px) {
+                                width: 70%;
+                                margin: auto;
+                            }
                             .image-gallery-slides {
                                 .image-gallery-image {
                                     max-height: 40vh;
@@ -315,6 +319,10 @@
                             }
                             .image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal {
                                 padding: 10px;
+                                @media (min-width: 1080px) {
+                                    width: 74%;
+                                    margin: auto;
+                                }
                                 .image-gallery-thumbnails-container {
                                     float: left;
                                     .image-gallery-thumbnail {
@@ -322,6 +330,13 @@
                                         @media (min-width: 768px) {
                                             width: 100px;
                                         }
+                                        outline: none;
+                                        border: 1px solid #acacac;
+                                    }
+                                    .image-gallery-thumbnail.active,
+                                    .image-gallery-thumbnail:focus {
+                                        outline: none;
+                                        border: 1px solid #1c3279;
                                     }
                                 }
                             }
@@ -360,7 +375,7 @@
                         .field_data:last-child {
                             border-bottom: none;
                         }
-                        img {
+                        .report_img {
                             cursor: pointer;
                             margin-bottom: 10px;
                             max-width: 100%;
