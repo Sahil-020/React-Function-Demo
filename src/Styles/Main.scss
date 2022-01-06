@@ -75,28 +75,28 @@
         .item {
             text-align: center;
             max-width: 100%;
-            .item_description {
-                padding: 10px;
-                .logo {
-                    padding: 15px 0px;
-                    background: #f3f5f7;
-                    img.kwiat {
-                        max-width: 25%;
-                        @media (min-width: 768px) {
-                            max-width: 15%;
-                        }
-                        @media (min-width: 1080px) {
-                            max-width: 8%;
-                        }
+
+            .logo {
+                padding: 15px 0px;
+                background: #f3f5f7;
+                img.kwiat {
+                    max-width: 25%;
+                    @media (min-width: 768px) {
+                        max-width: 15%;
                     }
-                    img.fred {
-                        max-width: 60%;
-                        @media (min-width: 1080px) {
-                            max-width: 30%;
-                        }
+                    @media (min-width: 1080px) {
+                        max-width: 8%;
                     }
                 }
-
+                img.fred {
+                    max-width: 60%;
+                    @media (min-width: 1080px) {
+                        max-width: 30%;
+                    }
+                }
+            }
+            .item_description {
+                padding: 10px;
                 .collection_itemName {
                     display: flex;
                     flex-direction: column;
