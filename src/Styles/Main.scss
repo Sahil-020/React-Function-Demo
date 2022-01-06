@@ -99,28 +99,32 @@
         align-items: center;
         background: #f3f5f7;
         column-gap: 10%;
-        height: 15vh;
+        height: 100px;
         width: 100%;
+        @media (min-width: 1080px) {
+            height: 120px;
+        }
         .main_logo {
             padding: 10px 10px;
             background: #f3f5f7;
             /* width: 100%!important; */
+            height: 100%;
             width: 30%;
             img.kwiat {
                 max-width: 100%;
                 max-height: 100%;
-                @media (min-width: 768px) {
-                    max-width: 15%;
-                }
-                @media (min-width: 1080px) {
-                    max-width: 40%;
-                }
+                // @media (min-width: 768px) {
+                //     max-width: 15%;
+                // }
+                // @media (min-width: 1080px) {
+                //     max-width: 100%;
+                // }
             }
             img.fred {
                 max-width: 100%;
-                @media (min-width: 1080px) {
-                    max-width: 100%;
-                }
+                // @media (min-width: 1080px) {
+                //     max-width: 100%;
+                // }
             }
         }
         .search_box {
