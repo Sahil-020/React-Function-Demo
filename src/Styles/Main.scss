@@ -92,10 +92,10 @@
             padding: 10px 10px;
             background: #f3f5f7;
             /* width: 100%!important; */
-            max-width: 100%;
-            max-height: 100%;
+            width: 30%;
             img.kwiat {
-                max-width: 35%;
+                max-width: 100%;
+                max-height: 100%;
                 @media (min-width: 768px) {
                     max-width: 15%;
                 }
