@@ -75,7 +75,6 @@
         .item {
             text-align: center;
             max-width: 100%;
-
             .logo {
                 padding: 15px 0px;
                 background: #f3f5f7;
@@ -97,11 +96,14 @@
             }
             .item_description {
                 padding: 10px;
+                display: flex;
+                flex-direction: column;
                 .collection_itemName {
                     display: flex;
                     flex-direction: column;
+                    grid-row-gap: 10px;
                     row-gap: 10px;
-                    padding: 20px 10px 0px 10px;
+                    padding: 0px;
                     .collection {
                         color: #838383;
                         text-decoration: underline;
@@ -115,12 +117,12 @@
                 }
 
                 .retail_price {
-                    margin-top: 20px;
+                    margin: 10px 0px 25px 0px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    grid-column-gap: 5px;
                     column-gap: 5px;
-
                     label {
                         font-size: 32px;
                         color: #31406f;
@@ -132,9 +134,9 @@
                 .serial_no,
                 .style_no {
                     label {
-                        color: rgb(31, 45, 78);
+                        color: #1b387d;
                         font-size: 12px;
-                        font-weight: 500;
+                        font-weight: bold;
                     }
                     label:nth-child(2) {
                         margin-left: 4px;
@@ -145,6 +147,7 @@
             // font-size: 22px;
 
             .fields {
+                margin: 25px 0px 0px 0px;
                 .accordion-item {
                     border-color: white;
                     .accordion-header {
