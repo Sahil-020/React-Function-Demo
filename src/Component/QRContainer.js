@@ -415,6 +415,7 @@ class QRContainer extends React.Component {
         showIframe: false,
         searchValue: "",
       }));
+      this.handleFocus();
       // this.props.setShowLoader(false);
     }
   }

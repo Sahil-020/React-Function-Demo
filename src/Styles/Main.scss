@@ -119,7 +119,7 @@
             img.fred {
                 max-width: 100%;
                 @media (min-width: 1080px) {
-                    max-width: 30%;
+                    max-width: 100%;
                 }
             }
         }
@@ -347,7 +347,8 @@
                                         border: 1px solid #acacac;
                                     }
                                     .image-gallery-thumbnail.active,
-                                    .image-gallery-thumbnail:focus {
+                                    .image-gallery-thumbnail:focus,
+                                    .image-gallery-thumbnail:hover {
                                         outline: none;
                                         border: 1px solid #1c3279;
                                     }
