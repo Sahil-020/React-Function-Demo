@@ -308,27 +308,36 @@
                                 margin: auto;
                             }
                             .image-gallery-slides {
-                                .image-gallery-image {
+                                .image-gallery-image,
+                                iframe {
                                     max-height: 40vh;
                                     min-height: 40vh;
-                                    max-width: 100%;
+                                    width: 100%;
                                     @media (min-width: 768px) {
-                                        max-height: 55vh;
+                                        max-height: 60vh;
+                                    }
+                                }
+                                iframe {
+                                    @media (min-width: 768px) {
+                                        min-height: 60vh;
                                     }
                                 }
                             }
                             .image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal {
                                 padding: 10px;
                                 @media (min-width: 1080px) {
-                                    width: 74%;
+                                    width: 80%;
                                     margin: auto;
                                 }
                                 .image-gallery-thumbnails-container {
                                     float: left;
                                     .image-gallery-thumbnail {
                                         width: 80px;
+                                        height: 80px;
+                                        margin: 0px 4px;
                                         @media (min-width: 768px) {
                                             width: 100px;
+                                            height: 100px;
                                         }
                                         outline: none;
                                         border: 1px solid #acacac;
