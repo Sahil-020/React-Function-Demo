@@ -160,13 +160,17 @@
                                 width: 70%;
                                 margin: auto;
                             }
+                            font-weight: 700 !important;
                         }
                         .accordion-button:focus {
                             box-shadow: none;
-                            color: #212529 !important;
+                            // color: #1b387d !important;
+                            // font-weight: 700;
                         }
-                        .accordion-button:not(.collapsed) {
-                            color: #212529 !important;
+                        .accordion-button:not(.collapsed),
+                        .accordion-button:focus {
+                            color: #1b387d !important;
+                            // font-weight: 700;
                             // font-size: 1.5rem;
                             // background-color: #e7f1ff;
                             // box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
