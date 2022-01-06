@@ -557,7 +557,22 @@ class QRContainer extends React.Component {
           )} */}
           {/* {search ? ( */}
           <div className="main_logo">
-            <img className="kwiat" src={Kwiat}></img>
+            <img
+              className={
+                resultStatus
+                  ? resultData.Brand === "Kwiat"
+                    ? "kwiat"
+                    : "fred"
+                  : "kwiat"
+              }
+              src={
+                resultStatus
+                  ? resultData.Brand === "Kwiat"
+                    ? Kwiat
+                    : Fred
+                  : Kwiat
+              }
+            ></img>
           </div>
           <div
             // className={resultStatus ? "search_box h_100" : "search_box"}

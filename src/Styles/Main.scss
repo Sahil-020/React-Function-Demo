@@ -104,6 +104,12 @@
                     max-width: 8%;
                 }
             }
+            img.fred {
+                max-width: 100%;
+                @media (min-width: 1080px) {
+                    max-width: 30%;
+                }
+            }
         }
         .search_box {
             width: 60% !important;
