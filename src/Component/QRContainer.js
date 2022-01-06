@@ -599,47 +599,50 @@ class QRContainer extends React.Component {
         {/* <p className={scan ? "result" : ""}>{result}</p> */}
         {/* {resultStatus ? ( */}
         <div
-          className={
-            resultStatus
-              ? "item_container op_1 pos_relative"
-              : "item_container op_0"
-          }
+          className="item_container"
+          // className={
+          //   resultStatus
+          //     ? "item_container op_1 pos_relative"
+          //     : "item_container op_0"
+          // }
         >
           <div className="item">
-            <div className="logo">
-              <img
-                className={resultData.Brand === "Kwiat" ? "kwiat" : "fred"}
-                src={resultData.Brand === "Kwiat" ? Kwiat : Fred}
-              ></img>
-            </div>
-            {resultData.Collection || resultData.ShortDescription ? (
-              <div className="collection_itemName">
-                <label className="collection">{resultData.Collection}</label>
-                <label className="itemName">
-                  {resultData.ShortDescription}
-                </label>
+            <div className="item_description">
+              <div className="logo">
+                <img
+                  className={resultData.Brand === "Kwiat" ? "kwiat" : "fred"}
+                  src={resultData.Brand === "Kwiat" ? Kwiat : Fred}
+                ></img>
               </div>
-            ) : (
-              <></>
-            )}
-            <div className="retail_price">
-              <label>
-                {(resultData.RetailPrice &&
-                  currencyFormatter.format(`${resultData.RetailPrice}`, {
-                    code: "USD",
-                    precision: 0,
-                  })) ||
-                  ""}
-              </label>{" "}
-              USD
-            </div>
-            <div className="serial_no">
-              <label>SERIAL NUMBER: </label>
-              <label>{resultData.SerialNumber}</label>
-            </div>
-            <div className="style_no">
-              <label>STYLE NUMBER: </label>
-              <label>{resultData.StyleNumber}</label>
+              {resultData.Collection || resultData.ShortDescription ? (
+                <div className="collection_itemName">
+                  <label className="collection">{resultData.Collection}</label>
+                  <label className="itemName">
+                    {resultData.ShortDescription}
+                  </label>
+                </div>
+              ) : (
+                <></>
+              )}
+              <div className="retail_price">
+                <label>
+                  {(resultData.RetailPrice &&
+                    currencyFormatter.format(`${resultData.RetailPrice}`, {
+                      code: "USD",
+                      precision: 0,
+                    })) ||
+                    ""}
+                </label>{" "}
+                USD
+              </div>
+              <div className="serial_no">
+                <label>SERIAL NUMBER: </label>
+                <label>{resultData.SerialNumber}</label>
+              </div>
+              <div className="style_no">
+                <label>STYLE NUMBER: </label>
+                <label>{resultData.StyleNumber}</label>
+              </div>
             </div>
             {/* <div className="item_image">
               <ImageGallery
