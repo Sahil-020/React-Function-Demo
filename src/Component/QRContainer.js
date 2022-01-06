@@ -641,15 +641,15 @@ class QRContainer extends React.Component {
               <label>STYLE NUMBER: </label>
               <label>{resultData.StyleNumber}</label>
             </div>
-            <div className="item_image">
+            {/* <div className="item_image">
               <ImageGallery
                 items={this.handleImageGallery()}
                 showFullscreenButton={false}
                 showPlayButton={false}
                 showNav={false}
                 onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
-              />
-              {/* <img src={this.handleImage(resultData)} /> */}
+              
+              {/* <img src={this.handleImage(resultData)} /> 
             </div>
             {/* <div> Serial Number: {resultData.SerialNumber} </div>
               <div> Inventory ID: {resultData.InventoryID} </div>
