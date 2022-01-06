@@ -70,7 +70,7 @@
         text-align: left;
         width: 100%;
         padding: 0px 0px 15px 0px;
-        position: absolute;
+        // position: absolute;
         // opacity: 0;
         .item {
             text-align: center;
@@ -95,7 +95,7 @@
                 }
             }
             .item_description {
-                padding: 10px;
+                padding: 10px 25px;
                 display: flex;
                 flex-direction: column;
                 .collection_itemName {

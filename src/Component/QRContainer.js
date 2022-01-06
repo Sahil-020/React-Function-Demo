@@ -662,7 +662,7 @@ class QRContainer extends React.Component {
                 Retail Price: {formatter.format(resultData.RetailPrice)}
               </div> */}
               <div className="fields">
-                <Accordion defaultActiveKey="0" flush>
+                <Accordion defaultActiveKey="" flush>
                   {this.handleImageGallery().length !== 0 ? (
                     <Accordion.Item eventKey="0">
                       <Accordion.Header>IMAGES</Accordion.Header>
@@ -712,7 +712,7 @@ class QRContainer extends React.Component {
                     .map((key, Index) => resultData[key])
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
-                    <Accordion.Item eventKey="1">
+                    <Accordion.Item eventKey="2">
                       <Accordion.Header>DESCRIPTION</Accordion.Header>
                       <Accordion.Body>
                         {Object.keys(FieldData.Description).map(
@@ -738,7 +738,7 @@ class QRContainer extends React.Component {
                     .map((key, Index) => resultData[key])
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
-                    <Accordion.Item eventKey="2">
+                    <Accordion.Item eventKey="3">
                       <Accordion.Header>RING DETAILS</Accordion.Header>
                       <Accordion.Body>
                         {Object.keys(FieldData.RingDetail).map((key, Index) => {
@@ -762,7 +762,7 @@ class QRContainer extends React.Component {
                     .map((key, Index) => resultData[key])
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
-                    <Accordion.Item eventKey="3">
+                    <Accordion.Item eventKey="4">
                       <Accordion.Header>DIAMOND DETAIL</Accordion.Header>
                       <Accordion.Body>
                         {Object.keys(FieldData.DiamondDetail).map(
@@ -788,7 +788,7 @@ class QRContainer extends React.Component {
                     .map((key, Index) => resultData[key])
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
-                    <Accordion.Item eventKey="4">
+                    <Accordion.Item eventKey="5">
                       <Accordion.Header>COLOR DETAIL</Accordion.Header>
                       <Accordion.Body>
                         {Object.keys(FieldData.ColorDetail).map(
@@ -814,7 +814,7 @@ class QRContainer extends React.Component {
                     .map((key, Index) => resultData[key])
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
-                    <Accordion.Item eventKey="5">
+                    <Accordion.Item eventKey="6">
                       <Accordion.Header>CENTER DIAMOND INFO</Accordion.Header>
                       <Accordion.Body>
                         {Object.keys(FieldData.CenterInfo).map((key, Index) => {
@@ -838,7 +838,7 @@ class QRContainer extends React.Component {
                     .map((key, Index) => resultData[key])
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
-                    <Accordion.Item eventKey="6">
+                    <Accordion.Item eventKey="7">
                       <Accordion.Header>DIMENSIONS</Accordion.Header>
                       <Accordion.Body>
                         {Object.keys(FieldData.Dimensions).map((key, Index) => {
@@ -862,7 +862,7 @@ class QRContainer extends React.Component {
                     .map((key, Index) => resultData[key])
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
-                    <Accordion.Item eventKey="7">
+                    <Accordion.Item eventKey="8">
                       <Accordion.Header>
                         CERTIFIED DIAMOND REPORT
                       </Accordion.Header>
