@@ -612,10 +612,16 @@ class QRContainer extends React.Component {
                 src={resultData.Brand === "Kwiat" ? Kwiat : Fred}
               ></img>
             </div>
-            <div className="collection_itemName">
-              <label className="collection">{resultData.Collection}</label>
-              <label className="itemName">{resultData.ShortDescription}</label>
-            </div>
+            {resultData.Collection || resultData.ShortDescription ? (
+              <div className="collection_itemName">
+                <label className="collection">{resultData.Collection}</label>
+                <label className="itemName">
+                  {resultData.ShortDescription}
+                </label>
+              </div>
+            ) : (
+              <></>
+            )}
             <div className="retail_price">
               <label>
                 {(resultData.RetailPrice &&
@@ -652,11 +658,30 @@ class QRContainer extends React.Component {
               </div> */}
             <div className="fields">
               <Accordion defaultActiveKey="0" flush>
+                {this.handleImageGallery().length !== 0 ? (
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>IMAGES</Accordion.Header>
+                    <Accordion.Body>
+                      <div className="item_image">
+                        <ImageGallery
+                          items={this.handleImageGallery()}
+                          showFullscreenButton={false}
+                          showPlayButton={false}
+                          showNav={false}
+                          onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
+                        />
+                        {/* <img src={this.handleImage(resultData)} /> */}
+                      </div>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                ) : (
+                  <></>
+                )}
                 {Object.keys(FieldData.GeneralData)
                   .map((key, Index) => resultData[key])
                   .filter((value) => ![undefined, null, ""].includes(value))
                   .length !== 0 ? (
-                  <Accordion.Item eventKey="0">
+                  <Accordion.Item eventKey="1">
                     <Accordion.Header>GENERAL INFORMATION</Accordion.Header>
                     <Accordion.Body>
                       {Object.keys(FieldData.GeneralData).map((key, Index) => {
