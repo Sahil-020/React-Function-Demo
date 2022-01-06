@@ -563,7 +563,7 @@ class QRContainer extends React.Component {
             // className={resultStatus ? "search_box h_100" : "search_box"}
             className="search_box"
           >
-            <label>Enter Serial #</label>
+            {!resultStatus ? <label>Enter Serial #</label> : <></>}
             <input
               id="searchBox"
               type="text"
@@ -584,7 +584,7 @@ class QRContainer extends React.Component {
                 }
               }}
               value={searchValue}
-              // placeholder="Enter Serial...."
+              placeholder={resultStatus && "Enter Serial...."}
             />
             <button
               onClick={() => this.handleGetData(searchValue)}

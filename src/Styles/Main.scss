@@ -85,10 +85,15 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        background: #f3f5f7;
+        column-gap: 10%;
+        height: 15vh;
         .main_logo {
-            padding: 25px 0px 25px 0px;
+            padding: 10px 10px;
             background: #f3f5f7;
-            width: 100% !important;
+            /* width: 100%!important; */
+            max-width: 100%;
+            max-height: 100%;
             img.kwiat {
                 max-width: 35%;
                 @media (min-width: 768px) {
@@ -100,13 +105,15 @@
             }
         }
         .search_box {
-            width: 100% !important;
+            width: 60% !important;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            row-gap: 10px;
-            margin: 30px 0px 25px 0px;
+            /* grid-row-gap: 10px; */
+            column-gap: 10px;
+            /* margin: 30px 0 25px; */
             font-size: 15px;
+            padding: 0px 2px 0px 0px;
 
             label {
                 font-size: 12px;
@@ -114,15 +121,20 @@
             }
             input {
                 width: 60%;
-                border: #acacac solid 1.5px;
+                border: 1.5px solid #acacac;
+                height: 30px;
+            }
+            input:focus {
+                // border: #acacac solid 1.5px;
+                outline: none;
             }
             button {
-                width: 25%;
-                font-size: 14px;
+                width: 33%;
+                height: 30px;
+                font-size: 16px;
                 background: #31406f;
                 color: #fff !important;
                 text-shadow: none !important;
-                // border-color: #58585a !important;
                 border: none !important;
             }
         }
