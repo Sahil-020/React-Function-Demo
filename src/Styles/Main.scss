@@ -65,6 +65,10 @@
                 width: 60%;
                 border: #acacac solid 1.5px;
             }
+            input:focus {
+                // border: #acacac solid 1.5px;
+                outline: none;
+            }
             button {
                 width: 25%;
                 font-size: 14px;
