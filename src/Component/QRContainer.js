@@ -11,19 +11,25 @@ import { withRouter } from "react-router-dom";
 import Kwiat from "../Logo/kwiat-logo-removebg-preview.png";
 import Fred from "../Logo/fredleighton-logo-removebg-preview.png";
 import { toast } from "react-toastify";
+import { useAccordionButton } from "react-bootstrap/AccordionButton";
 // import QrReader from "react-qr-reader";
 // import QRScan from "qrscan";
 
 // const id = useParams();
 
-const Error = () => {
-  toast.error(" Item not found ", {
-    position: toast.POSITION.TOP_RIGHT,
-    autoClose: 2000,
-    pauseOnHover: false,
-    theme: "colored",
-  });
-};
+// const Error = () => {
+//   toast.error(" Item not found ", {
+//     position: toast.POSITION.TOP_RIGHT,
+//     autoClose: 2000,
+//     pauseOnHover: false,
+//     theme: "colored",
+//   });
+// };
+
+const scrollToTop = useAccordionButton(
+  eventKey,
+  () => callback && callback(eventKey)
+);
 
 class QRContainer extends React.Component {
   constructor(props) {
@@ -119,7 +125,10 @@ class QRContainer extends React.Component {
     //   left: 0,
     //   behavior: "smooth",
     // });
-    window.scrollTo({ top: 200, behavior: "smooth" });
+    const scrollToTop = useAccordionButton(eventKey, () =>
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    );
+    scrollToTop();
   }
   handleFocus() {
     document.getElementById("searchBox") &&
