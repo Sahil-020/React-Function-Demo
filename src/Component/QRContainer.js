@@ -586,14 +586,14 @@ class QRContainer extends React.Component {
                 }
               }}
               value={searchValue}
-              placeholder="Enter Serial...."
+              // placeholder="Enter Serial...."
             />
             <button
               onClick={() => this.handleGetData(searchValue)}
               // onClick={() => setShowLoader(true)}
               // onClick={Error}
             >
-              Search
+              SEARCH
             </button>
           </div>
           {/* ) : (
