@@ -537,12 +537,10 @@ class QRContainer extends React.Component {
     return (
       <div className="main_container">
         <div
-          // className={
-          //   resultStatus
-          //     ? "search_components op_0 h_100vh"
-          //     : "search_components op_1"
-          // }
-          className="search_components"
+          className={
+            resultStatus ? "search_components_results" : "search_components"
+          }
+          // className="search_components"
         >
           {/* {scan ? (
             <QrReader

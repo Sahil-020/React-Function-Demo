@@ -76,6 +76,53 @@
             }
         }
     }
+
+    .search_components_results {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .main_logo {
+            padding: 25px 0px 25px 0px;
+            background: #f3f5f7;
+            width: 100% !important;
+            img.kwiat {
+                max-width: 35%;
+                @media (min-width: 768px) {
+                    max-width: 15%;
+                }
+                @media (min-width: 1080px) {
+                    max-width: 8%;
+                }
+            }
+        }
+        .search_box {
+            width: 100% !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 10px;
+            margin: 30px 0px 25px 0px;
+            font-size: 15px;
+
+            label {
+                font-size: 12px;
+                color: #838383;
+            }
+            input {
+                width: 60%;
+                border: #acacac solid 1.5px;
+            }
+            button {
+                width: 25%;
+                font-size: 14px;
+                background: #31406f;
+                color: #fff !important;
+                text-shadow: none !important;
+                // border-color: #58585a !important;
+                border: none !important;
+            }
+        }
+    }
     .result {
         position: absolute;
         top: 50vh;
