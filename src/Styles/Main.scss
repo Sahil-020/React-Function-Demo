@@ -44,7 +44,7 @@
                     max-width: 15%;
                 }
                 @media (min-width: 1080px) {
-                    max-width: 8%;
+                    max-width: 15%;
                 }
             }
         }
@@ -60,10 +60,17 @@
             label {
                 font-size: 14px;
                 color: #838383;
+                @media (min-width: 1080px) {
+                    font-size: 18px;
+                }
             }
             input {
                 width: 60%;
                 border: #acacac solid 1.5px;
+                @media (min-width: 1080px) {
+                    width: 40%;
+                    font-size: 18px;
+                }
             }
             input:focus {
                 // border: #acacac solid 1.5px;
@@ -77,6 +84,11 @@
                 text-shadow: none !important;
                 // border-color: #58585a !important;
                 border: none !important;
+                @media (min-width: 1080px) {
+                    width: 12%;
+                    font-size: 16px;
+                    padding: 8px;
+                }
             }
         }
     }
@@ -251,8 +263,9 @@
                                 width: 70%;
                                 margin: auto;
                             }
-                            font-weight: 700 !important;
+                            font-weight: 600 !important;
                             color: #1b387d !important;
+                            font-size: 14px;
                         }
                         .accordion-button:focus {
                             box-shadow: none;
