@@ -117,7 +117,7 @@ class QRContainer extends React.Component {
       await this.handleGetData(id);
     }
   }
-  scrollToTop() {
+  scrollToTop(eventKey) {
     // scroll.scrollToTop();
     // let element = document.getElementById("preview-modal");
     // element.scrollTo({
@@ -724,7 +724,7 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="1">
-                      <Accordion.Header onClick={this.scrollToTop}>
+                      <Accordion.Header onClick={() => this.scrollToTop("1")}>
                         GENERAL INFORMATION
                       </Accordion.Header>
                       <Accordion.Body>
