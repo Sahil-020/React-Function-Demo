@@ -597,54 +597,56 @@ class QRContainer extends React.Component {
           )} */}
         </div>
         {/* <p className={scan ? "result" : ""}>{result}</p> */}
-        {/* {resultStatus ? ( */}
-        <div
-          className="item_container"
-          // className={
-          //   resultStatus
-          //     ? "item_container op_1 pos_relative"
-          //     : "item_container op_0"
-          // }
-        >
-          <div className="item">
-            <div className="item_description">
-              <div className="logo">
-                <img
-                  className={resultData.Brand === "Kwiat" ? "kwiat" : "fred"}
-                  src={resultData.Brand === "Kwiat" ? Kwiat : Fred}
-                ></img>
-              </div>
-              {resultData.Collection || resultData.ShortDescription ? (
-                <div className="collection_itemName">
-                  <label className="collection">{resultData.Collection}</label>
-                  <label className="itemName">
-                    {resultData.ShortDescription}
-                  </label>
+        {resultStatus ? (
+          <div
+            className="item_container"
+            // className={
+            //   resultStatus
+            //     ? "item_container op_1 pos_relative"
+            //     : "item_container op_0"
+            // }
+          >
+            <div className="item">
+              <div className="item_description">
+                <div className="logo">
+                  <img
+                    className={resultData.Brand === "Kwiat" ? "kwiat" : "fred"}
+                    src={resultData.Brand === "Kwiat" ? Kwiat : Fred}
+                  ></img>
                 </div>
-              ) : (
-                <></>
-              )}
-              <div className="retail_price">
-                <label>
-                  {(resultData.RetailPrice &&
-                    currencyFormatter.format(`${resultData.RetailPrice}`, {
-                      code: "USD",
-                      precision: 0,
-                    })) ||
-                    ""}
-                </label>{" "}
-                USD
+                {resultData.Collection || resultData.ShortDescription ? (
+                  <div className="collection_itemName">
+                    <label className="collection">
+                      {resultData.Collection}
+                    </label>
+                    <label className="itemName">
+                      {resultData.ShortDescription}
+                    </label>
+                  </div>
+                ) : (
+                  <></>
+                )}
+                <div className="retail_price">
+                  <label>
+                    {(resultData.RetailPrice &&
+                      currencyFormatter.format(`${resultData.RetailPrice}`, {
+                        code: "USD",
+                        precision: 0,
+                      })) ||
+                      ""}
+                  </label>{" "}
+                  USD
+                </div>
+                <div className="serial_no">
+                  <label>SERIAL NUMBER: </label>
+                  <label>{resultData.SerialNumber}</label>
+                </div>
+                <div className="style_no">
+                  <label>STYLE NUMBER: </label>
+                  <label>{resultData.StyleNumber}</label>
+                </div>
               </div>
-              <div className="serial_no">
-                <label>SERIAL NUMBER: </label>
-                <label>{resultData.SerialNumber}</label>
-              </div>
-              <div className="style_no">
-                <label>STYLE NUMBER: </label>
-                <label>{resultData.StyleNumber}</label>
-              </div>
-            </div>
-            {/* <div className="item_image">
+              {/* <div className="item_image">
               <ImageGallery
                 items={this.handleImageGallery()}
                 showFullscreenButton={false}
@@ -659,195 +661,213 @@ class QRContainer extends React.Component {
               <div>
                 Retail Price: {formatter.format(resultData.RetailPrice)}
               </div> */}
-            <div className="fields">
-              <Accordion defaultActiveKey="0" flush>
-                {this.handleImageGallery().length !== 0 ? (
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>IMAGES</Accordion.Header>
-                    <Accordion.Body>
-                      <div className="item_image">
-                        <ImageGallery
-                          items={this.handleImageGallery()}
-                          showFullscreenButton={false}
-                          showPlayButton={false}
-                          showNav={false}
-                          onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
-                        />
-                        {/* <img src={this.handleImage(resultData)} /> */}
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-                {Object.keys(FieldData.GeneralData)
-                  .map((key, Index) => resultData[key])
-                  .filter((value) => ![undefined, null, ""].includes(value))
-                  .length !== 0 ? (
-                  <Accordion.Item eventKey="1">
-                    <Accordion.Header>GENERAL INFORMATION</Accordion.Header>
-                    <Accordion.Body>
-                      {Object.keys(FieldData.GeneralData).map((key, Index) => {
-                        if (resultData[key]) {
-                          return (
-                            <div className="field_data" key={Index}>
-                              <label>{FieldData.GeneralData[key].label}:</label>
-                              <label>{resultData[key]}</label>
-                            </div>
-                          );
-                        } else return <></>;
-                      })}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-                {Object.keys(FieldData.Description)
-                  .map((key, Index) => resultData[key])
-                  .filter((value) => ![undefined, null, ""].includes(value))
-                  .length !== 0 ? (
-                  <Accordion.Item eventKey="1">
-                    <Accordion.Header>DESCRIPTION</Accordion.Header>
-                    <Accordion.Body>
-                      {Object.keys(FieldData.Description).map((key, Index) => {
-                        if (resultData[key]) {
-                          return (
-                            <div className="field_data" key={Index}>
-                              <label>{FieldData.Description[key].label}:</label>
-                              <label>{resultData[key]}</label>
-                            </div>
-                          );
-                        } else return <></>;
-                      })}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-                {Object.keys(FieldData.RingDetail)
-                  .map((key, Index) => resultData[key])
-                  .filter((value) => ![undefined, null, ""].includes(value))
-                  .length !== 0 ? (
-                  <Accordion.Item eventKey="2">
-                    <Accordion.Header>RING DETAILS</Accordion.Header>
-                    <Accordion.Body>
-                      {Object.keys(FieldData.RingDetail).map((key, Index) => {
-                        if (resultData[key]) {
-                          return (
-                            <div className="field_data" key={Index}>
-                              <label>{FieldData.RingDetail[key].label}:</label>
-                              <label>{resultData[key]}</label>
-                            </div>
-                          );
-                        } else return <></>;
-                      })}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-                {Object.keys(FieldData.DiamondDetail)
-                  .map((key, Index) => resultData[key])
-                  .filter((value) => ![undefined, null, ""].includes(value))
-                  .length !== 0 ? (
-                  <Accordion.Item eventKey="3">
-                    <Accordion.Header>DIAMOND DETAIL</Accordion.Header>
-                    <Accordion.Body>
-                      {Object.keys(FieldData.DiamondDetail).map(
-                        (key, Index) => {
+              <div className="fields">
+                <Accordion defaultActiveKey="0" flush>
+                  {this.handleImageGallery().length !== 0 ? (
+                    <Accordion.Item eventKey="0">
+                      <Accordion.Header>IMAGES</Accordion.Header>
+                      <Accordion.Body>
+                        <div className="item_image">
+                          <ImageGallery
+                            items={this.handleImageGallery()}
+                            showFullscreenButton={false}
+                            showPlayButton={false}
+                            showNav={false}
+                            onErrorImageURL="https://cdn.kwiat.com/apps/kwiat-elastic-search/icons/Missing-Images-Final-100x75px-01.svg"
+                          />
+                          {/* <img src={this.handleImage(resultData)} /> */}
+                        </div>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                  {Object.keys(FieldData.GeneralData)
+                    .map((key, Index) => resultData[key])
+                    .filter((value) => ![undefined, null, ""].includes(value))
+                    .length !== 0 ? (
+                    <Accordion.Item eventKey="1">
+                      <Accordion.Header>GENERAL INFORMATION</Accordion.Header>
+                      <Accordion.Body>
+                        {Object.keys(FieldData.GeneralData).map(
+                          (key, Index) => {
+                            if (resultData[key]) {
+                              return (
+                                <div className="field_data" key={Index}>
+                                  <label>
+                                    {FieldData.GeneralData[key].label}:
+                                  </label>
+                                  <label>{resultData[key]}</label>
+                                </div>
+                              );
+                            } else return <></>;
+                          }
+                        )}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                  {Object.keys(FieldData.Description)
+                    .map((key, Index) => resultData[key])
+                    .filter((value) => ![undefined, null, ""].includes(value))
+                    .length !== 0 ? (
+                    <Accordion.Item eventKey="1">
+                      <Accordion.Header>DESCRIPTION</Accordion.Header>
+                      <Accordion.Body>
+                        {Object.keys(FieldData.Description).map(
+                          (key, Index) => {
+                            if (resultData[key]) {
+                              return (
+                                <div className="field_data" key={Index}>
+                                  <label>
+                                    {FieldData.Description[key].label}:
+                                  </label>
+                                  <label>{resultData[key]}</label>
+                                </div>
+                              );
+                            } else return <></>;
+                          }
+                        )}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                  {Object.keys(FieldData.RingDetail)
+                    .map((key, Index) => resultData[key])
+                    .filter((value) => ![undefined, null, ""].includes(value))
+                    .length !== 0 ? (
+                    <Accordion.Item eventKey="2">
+                      <Accordion.Header>RING DETAILS</Accordion.Header>
+                      <Accordion.Body>
+                        {Object.keys(FieldData.RingDetail).map((key, Index) => {
                           if (resultData[key]) {
                             return (
                               <div className="field_data" key={Index}>
                                 <label>
-                                  {FieldData.DiamondDetail[key].label}:
+                                  {FieldData.RingDetail[key].label}:
                                 </label>
                                 <label>{resultData[key]}</label>
                               </div>
                             );
                           } else return <></>;
-                        }
-                      )}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-                {Object.keys(FieldData.ColorDetail)
-                  .map((key, Index) => resultData[key])
-                  .filter((value) => ![undefined, null, ""].includes(value))
-                  .length !== 0 ? (
-                  <Accordion.Item eventKey="4">
-                    <Accordion.Header>COLOR DETAIL</Accordion.Header>
-                    <Accordion.Body>
-                      {Object.keys(FieldData.ColorDetail).map((key, Index) => {
-                        if (resultData[key]) {
-                          return (
-                            <div className="field_data" key={Index}>
-                              <label>{FieldData.ColorDetail[key].label}:</label>
-                              <label>{resultData[key]}</label>
-                            </div>
-                          );
-                        } else return <></>;
-                      })}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-                {Object.keys(FieldData.CenterInfo)
-                  .map((key, Index) => resultData[key])
-                  .filter((value) => ![undefined, null, ""].includes(value))
-                  .length !== 0 ? (
-                  <Accordion.Item eventKey="5">
-                    <Accordion.Header>CENTER DIAMOND INFO</Accordion.Header>
-                    <Accordion.Body>
-                      {Object.keys(FieldData.CenterInfo).map((key, Index) => {
-                        if (resultData[key]) {
-                          return (
-                            <div className="field_data" key={Index}>
-                              <label>{FieldData.CenterInfo[key].label}:</label>
-                              <label>{resultData[key]}</label>
-                            </div>
-                          );
-                        } else return <></>;
-                      })}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-                {Object.keys(FieldData.Dimensions)
-                  .map((key, Index) => resultData[key])
-                  .filter((value) => ![undefined, null, ""].includes(value))
-                  .length !== 0 ? (
-                  <Accordion.Item eventKey="6">
-                    <Accordion.Header>DIMENSIONS</Accordion.Header>
-                    <Accordion.Body>
-                      {Object.keys(FieldData.Dimensions).map((key, Index) => {
-                        if (resultData[key]) {
-                          return (
-                            <div className="field_data" key={Index}>
-                              <label>{FieldData.Dimensions[key].label}:</label>
-                              <label>{resultData[key]}</label>
-                            </div>
-                          );
-                        } else return <></>;
-                      })}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-                {Object.keys(FieldData.CertifiedDiamondReports)
-                  .map((key, Index) => resultData[key])
-                  .filter((value) => ![undefined, null, ""].includes(value))
-                  .length !== 0 ? (
-                  <Accordion.Item eventKey="7">
-                    <Accordion.Header>
-                      CERTIFIED DIAMOND REPORT
-                    </Accordion.Header>
-                    <Accordion.Body>
-                      {/* {Object.keys(FieldData.CertifiedDiamondReports).map(
+                        })}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                  {Object.keys(FieldData.DiamondDetail)
+                    .map((key, Index) => resultData[key])
+                    .filter((value) => ![undefined, null, ""].includes(value))
+                    .length !== 0 ? (
+                    <Accordion.Item eventKey="3">
+                      <Accordion.Header>DIAMOND DETAIL</Accordion.Header>
+                      <Accordion.Body>
+                        {Object.keys(FieldData.DiamondDetail).map(
+                          (key, Index) => {
+                            if (resultData[key]) {
+                              return (
+                                <div className="field_data" key={Index}>
+                                  <label>
+                                    {FieldData.DiamondDetail[key].label}:
+                                  </label>
+                                  <label>{resultData[key]}</label>
+                                </div>
+                              );
+                            } else return <></>;
+                          }
+                        )}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                  {Object.keys(FieldData.ColorDetail)
+                    .map((key, Index) => resultData[key])
+                    .filter((value) => ![undefined, null, ""].includes(value))
+                    .length !== 0 ? (
+                    <Accordion.Item eventKey="4">
+                      <Accordion.Header>COLOR DETAIL</Accordion.Header>
+                      <Accordion.Body>
+                        {Object.keys(FieldData.ColorDetail).map(
+                          (key, Index) => {
+                            if (resultData[key]) {
+                              return (
+                                <div className="field_data" key={Index}>
+                                  <label>
+                                    {FieldData.ColorDetail[key].label}:
+                                  </label>
+                                  <label>{resultData[key]}</label>
+                                </div>
+                              );
+                            } else return <></>;
+                          }
+                        )}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                  {Object.keys(FieldData.CenterInfo)
+                    .map((key, Index) => resultData[key])
+                    .filter((value) => ![undefined, null, ""].includes(value))
+                    .length !== 0 ? (
+                    <Accordion.Item eventKey="5">
+                      <Accordion.Header>CENTER DIAMOND INFO</Accordion.Header>
+                      <Accordion.Body>
+                        {Object.keys(FieldData.CenterInfo).map((key, Index) => {
+                          if (resultData[key]) {
+                            return (
+                              <div className="field_data" key={Index}>
+                                <label>
+                                  {FieldData.CenterInfo[key].label}:
+                                </label>
+                                <label>{resultData[key]}</label>
+                              </div>
+                            );
+                          } else return <></>;
+                        })}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                  {Object.keys(FieldData.Dimensions)
+                    .map((key, Index) => resultData[key])
+                    .filter((value) => ![undefined, null, ""].includes(value))
+                    .length !== 0 ? (
+                    <Accordion.Item eventKey="6">
+                      <Accordion.Header>DIMENSIONS</Accordion.Header>
+                      <Accordion.Body>
+                        {Object.keys(FieldData.Dimensions).map((key, Index) => {
+                          if (resultData[key]) {
+                            return (
+                              <div className="field_data" key={Index}>
+                                <label>
+                                  {FieldData.Dimensions[key].label}:
+                                </label>
+                                <label>{resultData[key]}</label>
+                              </div>
+                            );
+                          } else return <></>;
+                        })}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                  {Object.keys(FieldData.CertifiedDiamondReports)
+                    .map((key, Index) => resultData[key])
+                    .filter((value) => ![undefined, null, ""].includes(value))
+                    .length !== 0 ? (
+                    <Accordion.Item eventKey="7">
+                      <Accordion.Header>
+                        CERTIFIED DIAMOND REPORT
+                      </Accordion.Header>
+                      <Accordion.Body>
+                        {/* {Object.keys(FieldData.CertifiedDiamondReports).map(
                         (key, Index) => {
                           if (resultData[key]) {
                             return (
@@ -862,30 +882,30 @@ class QRContainer extends React.Component {
                           } else return <></>;
                         }
                       )} */}
-                      {this.handleReports("jpg").map((jpg, index) => (
-                        <img
-                          className="report_img"
-                          src={jpg}
-                          onClick={() =>
-                            window.open(
-                              this.handleReports("pdf")[index],
-                              "_blank"
-                            )
-                          }
-                        />
-                      ))}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                ) : (
-                  <></>
-                )}
-              </Accordion>
+                        {this.handleReports("jpg").map((jpg, index) => (
+                          <img
+                            className="report_img"
+                            src={jpg}
+                            onClick={() =>
+                              window.open(
+                                this.handleReports("pdf")[index],
+                                "_blank"
+                              )
+                            }
+                          />
+                        ))}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ) : (
+                    <></>
+                  )}
+                </Accordion>
+              </div>
             </div>
           </div>
-        </div>
-        {/* ) : (
+        ) : (
           <></>
-        )} */}
+        )}
         {/* {error ? <p className={scan ? "result" : ""}> {errorMsg} </p> : <></>} */}
         {/* {!scan ? (
           <button
