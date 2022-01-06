@@ -35,6 +35,15 @@
         }
         .main_logo {
             padding: 0px 0px 15px 0px;
+            img.kwiat {
+                max-width: 25%;
+                @media (min-width: 768px) {
+                    max-width: 15%;
+                }
+                @media (min-width: 1080px) {
+                    max-width: 8%;
+                }
+            }
         }
         .search_box {
             width: 300px;
@@ -81,8 +90,7 @@
         .item {
             text-align: center;
             max-width: 100%;
-            .logo,
-            .main_logo {
+            .logo {
                 padding: 15px 0px;
                 background: #f3f5f7;
                 img.kwiat {
