@@ -26,10 +26,10 @@ import { useAccordionButton } from "react-bootstrap/AccordionButton";
 //   });
 // };
 
-const scrollToTop = useAccordionButton(
-  eventKey,
-  () => callback && callback(eventKey)
-);
+// const scrollToTop = useAccordionButton(
+//   eventKey,
+//   () => callback && callback(eventKey)
+// );
 
 class QRContainer extends React.Component {
   constructor(props) {
@@ -125,10 +125,10 @@ class QRContainer extends React.Component {
     //   left: 0,
     //   behavior: "smooth",
     // });
-    const scrollToTop = useAccordionButton(eventKey, () =>
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    );
-    scrollToTop();
+    // const scrollToTop = useAccordionButton(eventKey, () =>
+    //   window.scrollTo({ top: 0, behavior: "smooth" })
+    // );
+    // scrollToTop();
   }
   handleFocus() {
     document.getElementById("searchBox") &&
@@ -724,7 +724,9 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="1">
-                      <Accordion.Header onClick={() => this.scrollToTop("1")}>
+                      <Accordion.Header
+                      // onClick={() => this.scrollToTop("1")}
+                      >
                         GENERAL INFORMATION
                       </Accordion.Header>
                       <Accordion.Body>
