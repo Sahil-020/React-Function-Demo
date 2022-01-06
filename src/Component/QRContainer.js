@@ -77,6 +77,7 @@ class QRContainer extends React.Component {
     this.handleGetData = this.handleGetData.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.renderVideo = this.renderVideo.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
   }
 
   async componentDidMount() {
@@ -110,7 +111,16 @@ class QRContainer extends React.Component {
       await this.handleGetData(id);
     }
   }
-
+  scrollToTop() {
+    // scroll.scrollToTop();
+    // let element = document.getElementById("preview-modal");
+    // element.scrollTo({
+    //   top: 0,
+    //   left: 0,
+    //   behavior: "smooth",
+    // });
+    window.scrollTo({ top: 200, behavior: "smooth" });
+  }
   handleFocus() {
     document.getElementById("searchBox") &&
       document.getElementById("searchBox").focus();
@@ -705,7 +715,9 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="1">
-                      <Accordion.Header>GENERAL INFORMATION</Accordion.Header>
+                      <Accordion.Header onClick={this.scrollToTop}>
+                        GENERAL INFORMATION
+                      </Accordion.Header>
                       <Accordion.Body>
                         {Object.keys(FieldData.GeneralData).map(
                           (key, Index) => {
