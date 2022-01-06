@@ -209,6 +209,10 @@
                 padding: 10px 25px;
                 display: flex;
                 flex-direction: column;
+                @media (min-width: 1080px) {
+                    width: 70%;
+                    margin: auto;
+                }
                 .collection_itemName {
                     display: flex;
                     flex-direction: column;
@@ -313,12 +317,12 @@
                                     max-height: 40vh;
                                     min-height: 40vh;
                                     width: 100%;
-                                    @media (min-width: 768px) {
+                                    @media (min-width: 1080px) {
                                         max-height: 60vh;
                                     }
                                 }
                                 iframe {
-                                    @media (min-width: 768px) {
+                                    @media (min-width: 1080px) {
                                         min-height: 60vh;
                                     }
                                 }
@@ -335,7 +339,7 @@
                                         width: 80px;
                                         height: 80px;
                                         margin: 0px 4px;
-                                        @media (min-width: 768px) {
+                                        @media (min-width: 1080px) {
                                             width: 100px;
                                             height: 100px;
                                         }
