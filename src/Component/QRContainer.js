@@ -49,13 +49,13 @@ class QRContainer extends React.Component {
         : true,
       // scan: true,
       searchValue: "",
-      // resultData: {},
-      // resultStatus: ![undefined, null, ""].includes(
-      //   props.location.pathname.replace("/", "")
-      // )
-      //   ? true
-      //   : false,
-      resultStatus: true,
+      resultData: {},
+      resultStatus: ![undefined, null, ""].includes(
+        props.location.pathname.replace("/", "")
+      )
+        ? true
+        : false,
+      // resultStatus: true,
       // result: "No result",
       error: false,
       errorMsg: "Item Not Found",
@@ -69,7 +69,7 @@ class QRContainer extends React.Component {
       }),
       showIframe: false,
       pdfURL: "",
-      resultData: Item,
+      // resultData: Item,
       imgArr: [],
       reportJPG: [],
       reportPDF: [],
