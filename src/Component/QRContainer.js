@@ -12,6 +12,7 @@ import Kwiat from "../Logo/kwiat-logo-removebg-preview.png";
 import Fred from "../Logo/fredleighton-logo-removebg-preview.png";
 import { toast } from "react-toastify";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
+import $ from "jquery";
 // import QrReader from "react-qr-reader";
 // import QRScan from "qrscan";
 
@@ -30,6 +31,21 @@ import { useAccordionButton } from "react-bootstrap/AccordionButton";
 //   eventKey,
 //   () => callback && callback(eventKey)
 // );
+function CustomToggle({ children, eventKey }) {
+  const decoratedOnClick = useAccordionButton(eventKey, () =>
+    console.log("totally custom!")
+  );
+
+  return (
+    <button
+      type="button"
+      style={{ backgroundColor: "pink" }}
+      onClick={decoratedOnClick}
+    >
+      {children}
+    </button>
+  );
+}
 
 class QRContainer extends React.Component {
   constructor(props) {
@@ -69,8 +85,8 @@ class QRContainer extends React.Component {
       }),
       showIframe: false,
       pdfURL: "",
-      // resultData: Item,
-      imgArr: [],
+      resultData: Item,
+      // imgArr: [],
       reportJPG: [],
       reportPDF: [],
       id: props.location.pathname.replace("/", ""),
@@ -273,7 +289,7 @@ class QRContainer extends React.Component {
         }
       }
     }
-    console.log("imgArr : ", imgArr);
+    // console.log("imgArr : ", imgArr);
     return imgArr;
     // this.setState({
     //   imgArr: imgArr,
@@ -349,7 +365,7 @@ class QRContainer extends React.Component {
       res = await axios.get(`api/${query}`);
       // res = await axios.get(`demoapi/${query}`);
     }
-    console.log("res :", res);
+    // console.log("res :", res);
     if (res.status === 200 && res.data && res.data.status === 200) {
       if (res.data.destinationURL) {
         this.setState({
@@ -415,12 +431,12 @@ class QRContainer extends React.Component {
         pauseOnHover: false,
         theme: "colored",
       });
-      console.log(
-        "resultData: ",
-        this.state.resultData,
-        "\n",
-        typeof this.state.resultData
-      );
+      // console.log(
+      //   "resultData: ",
+      //   this.state.resultData,
+      //   "\n",
+      //   typeof this.state.resultData
+      // );
       this.setState((prevState) => ({
         error: false,
         resultStatus:
@@ -602,7 +618,7 @@ class QRContainer extends React.Component {
             <input
               id="searchBox"
               type="text"
-              autocomplete="off"
+              autoComplete="off"
               onChange={(e) => {
                 this.setState({ searchValue: e.target.value });
                 //                 if (e.target.value.length >= 20) {
@@ -699,10 +715,40 @@ class QRContainer extends React.Component {
                 Retail Price: {formatter.format(resultData.RetailPrice)}
               </div> */}
               <div className="fields">
-                <Accordion defaultActiveKey="" flush>
+                <Accordion
+                  flush
+                  onClick={(e) => {
+                    console.log("target : ", e);
+                    console.log("e : ", e.target.id);
+                    if (e.target.id && e.target.id !== "Center Diamond") {
+                      console.log(
+                        "el : ",
+                        document.getElementById(e.target.id).nextSibling
+                          .className
+                      );
+                      const id = e.target.id;
+                      const el = document.getElementById(e.target.id);
+                      const clsname = document.getElementById(e.target.id)
+                        .nextSibling.className;
+                      // window.scroll({
+                      //   top: 2 * e.pageY,
+                      //   left: 0,
+                      //   behavior: "smooth",
+                      // });
+                      if (clsname === "accordion-collapse collapse") {
+                        // el.scrollIntoView({behavior:smooth});
+                        $([document.documentElement, document.body]).animate({
+                          scrollTop: $(`#${id}`).offset().top,
+                        });
+
+                        // $("html,body").scrollTo(`#${id}`);
+                      }
+                    }
+                  }}
+                >
                   {this.handleImageGallery().length !== 0 ? (
                     <Accordion.Item eventKey="0">
-                      <Accordion.Header>IMAGES</Accordion.Header>
+                      <Accordion.Button id="Images">IMAGES</Accordion.Button>
                       <Accordion.Body>
                         <div className="item_image">
                           <ImageGallery
@@ -724,17 +770,18 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="1">
-                      <Accordion.Header
-                      // onClick={() => this.scrollToTop("1")}
+                      <Accordion.Button
+                        id="General"
+                        // onClick={() => this.scrollToTop("1")}
                       >
                         GENERAL INFORMATION
-                      </Accordion.Header>
+                      </Accordion.Button>
                       <Accordion.Body>
                         {Object.keys(FieldData.GeneralData).map(
                           (key, Index) => {
                             if (resultData[key]) {
                               return (
-                                <div className="field_data" key={Index}>
+                                <div className="field_data" key={key}>
                                   <label>
                                     {FieldData.GeneralData[key].label}:
                                   </label>
@@ -754,13 +801,15 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="2">
-                      <Accordion.Header>DESCRIPTION</Accordion.Header>
+                      <Accordion.Button id="Description">
+                        DESCRIPTION
+                      </Accordion.Button>
                       <Accordion.Body>
                         {Object.keys(FieldData.Description).map(
                           (key, Index) => {
                             if (resultData[key]) {
                               return (
-                                <div className="field_data" key={Index}>
+                                <div className="field_data" key={key}>
                                   <label>
                                     {FieldData.Description[key].label}:
                                   </label>
@@ -780,12 +829,14 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="3">
-                      <Accordion.Header>RING DETAILS</Accordion.Header>
+                      <Accordion.Button id="Ring">
+                        RING DETAILS
+                      </Accordion.Button>
                       <Accordion.Body>
                         {Object.keys(FieldData.RingDetail).map((key, Index) => {
                           if (resultData[key]) {
                             return (
-                              <div className="field_data" key={Index}>
+                              <div className="field_data" key={key}>
                                 <label>
                                   {FieldData.RingDetail[key].label}:
                                 </label>
@@ -804,13 +855,15 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="4">
-                      <Accordion.Header>DIAMOND DETAIL</Accordion.Header>
+                      <Accordion.Button id="Diamond">
+                        DIAMOND DETAIL
+                      </Accordion.Button>
                       <Accordion.Body>
                         {Object.keys(FieldData.DiamondDetail).map(
                           (key, Index) => {
                             if (resultData[key]) {
                               return (
-                                <div className="field_data" key={Index}>
+                                <div className="field_data" key={key}>
                                   <label>
                                     {FieldData.DiamondDetail[key].label}:
                                   </label>
@@ -830,13 +883,15 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="5">
-                      <Accordion.Header>COLOR DETAIL</Accordion.Header>
+                      <Accordion.Button id="Color">
+                        COLOR DETAIL
+                      </Accordion.Button>
                       <Accordion.Body>
                         {Object.keys(FieldData.ColorDetail).map(
                           (key, Index) => {
                             if (resultData[key]) {
                               return (
-                                <div className="field_data" key={Index}>
+                                <div className="field_data" key={key}>
                                   <label>
                                     {FieldData.ColorDetail[key].label}:
                                   </label>
@@ -856,12 +911,14 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="6">
-                      <Accordion.Header>CENTER DIAMOND INFO</Accordion.Header>
+                      <Accordion.Button id="Center Diamond">
+                        CENTER DIAMOND INFO
+                      </Accordion.Button>
                       <Accordion.Body>
                         {Object.keys(FieldData.CenterInfo).map((key, Index) => {
                           if (resultData[key]) {
                             return (
-                              <div className="field_data" key={Index}>
+                              <div className="field_data" key={key}>
                                 <label>
                                   {FieldData.CenterInfo[key].label}:
                                 </label>
@@ -880,12 +937,14 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="7">
-                      <Accordion.Header>DIMENSIONS</Accordion.Header>
+                      <Accordion.Button id="Dimensions">
+                        DIMENSIONS
+                      </Accordion.Button>
                       <Accordion.Body>
                         {Object.keys(FieldData.Dimensions).map((key, Index) => {
                           if (resultData[key]) {
                             return (
-                              <div className="field_data" key={Index}>
+                              <div className="field_data" key={key}>
                                 <label>
                                   {FieldData.Dimensions[key].label}:
                                 </label>
@@ -904,15 +963,15 @@ class QRContainer extends React.Component {
                     .filter((value) => ![undefined, null, ""].includes(value))
                     .length !== 0 ? (
                     <Accordion.Item eventKey="8">
-                      <Accordion.Header>
+                      <Accordion.Button id="Certificate">
                         CERTIFIED DIAMOND REPORT
-                      </Accordion.Header>
+                      </Accordion.Button>
                       <Accordion.Body>
                         {/* {Object.keys(FieldData.CertifiedDiamondReports).map(
                         (key, Index) => {
                           if (resultData[key]) {
                             return (
-                              <div className="field_data" key={Index}>
+                              <div className="field_data" key={key}>
                                 <label>
                                   {FieldData.CertifiedDiamondReports[key].label}{" "}
                                   :
