@@ -40,7 +40,7 @@
             width: 100% !important;
             img.kwiat {
                 max-width: 35%;
-                @media (min-width: 768px) {
+                @media (max-width: 768px) {
                     max-width: 15%;
                 }
                 @media (min-width: 1080px) {
