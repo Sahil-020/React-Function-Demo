@@ -38,14 +38,20 @@
             padding: 25px 0px 25px 0px;
             background: #f3f5f7;
             width: 100% !important;
+            height: 120px;
+            @media (min-width: 768px) {
+                height: 150px;
+            }
             img.kwiat {
-                max-width: 35%;
-                @media (max-width: 768px) {
-                    max-width: 15%;
-                }
-                @media (min-width: 1080px) {
-                    max-width: 15%;
-                }
+                // max-width: 35%;
+                // @media (max-width: 768px) {
+                //     max-width: 15%;
+                // }
+                // @media (min-width: 1080px) {
+                //     max-width: 15%;
+                // }
+                max-width: 100%;
+                max-height: 100%;
             }
         }
         .search_box {
