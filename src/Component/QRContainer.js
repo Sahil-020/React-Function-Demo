@@ -306,7 +306,7 @@ class QRContainer extends React.Component {
         <iframe
           // width="350"
           // height="300"
-          src={item.embedUrl}
+          src={`${item.embedUrl}?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1`}
           // src={`https://iframe.videodelivery.net/${item.embedUrl}`}
           style={{ border: "none" }}
           allowFullScreen="true"
