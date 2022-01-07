@@ -66,14 +66,14 @@
             label {
                 font-size: 14px;
                 color: #838383;
-                @media (min-width: 1080px) {
+                @media (min-width: 768px) {
                     font-size: 18px;
                 }
             }
             input {
                 width: 60%;
                 border: #acacac solid 1.5px;
-                @media (min-width: 1080px) {
+                @media (min-width: 768px) {
                     width: 40%;
                     font-size: 18px;
                 }
@@ -83,14 +83,15 @@
                 outline: none;
             }
             button {
-                width: 25%;
+                width: 18%;
                 font-size: 14px;
                 background: #31406f;
                 color: #fff !important;
                 text-shadow: none !important;
                 // border-color: #58585a !important;
                 border: none !important;
-                @media (min-width: 1080px) {
+                padding: 4px;
+                @media (min-width: 768px) {
                     width: 12%;
                     font-size: 16px;
                     padding: 8px;
@@ -219,8 +220,8 @@
                 padding: 10px 25px;
                 display: flex;
                 flex-direction: column;
-                @media (min-width: 1080px) {
-                    width: 70%;
+                @media (min-width: 768px) {
+                    width: 40%;
                     margin: auto;
                 }
                 .collection_itemName {
@@ -276,12 +277,12 @@
                 .accordion-item {
                     border-color: white;
                     .accordion-header {
-                        @media (min-width: 1080px) {
+                        @media (min-width: 768px) {
                             background-color: #f2f4f5;
                         }
                         .accordion-button {
                             background-color: #f2f4f5;
-                            @media (min-width: 1080px) {
+                            @media (min-width: 768px) {
                                 width: 70%;
                                 margin: auto;
                             }
@@ -317,7 +318,7 @@
                             // img {
                             //     width: 80%;
                             // }
-                            @media (min-width: 1080px) {
+                            @media (min-width: 768px) {
                                 width: 70%;
                                 margin: auto;
                             }
@@ -327,40 +328,43 @@
                                     max-height: 40vh;
                                     min-height: 40vh;
                                     width: 100%;
-                                    @media (min-width: 1080px) {
+                                    @media (min-width: 768px) {
                                         max-height: 60vh;
                                     }
                                 }
                                 iframe {
-                                    @media (min-width: 1080px) {
+                                    @media (min-width: 768px) {
                                         min-height: 60vh;
                                     }
                                 }
                             }
                             .image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal {
                                 padding: 10px;
-                                @media (min-width: 1080px) {
-                                    width: 70%;
-                                    margin: auto;
-                                }
-                                .image-gallery-thumbnails-container {
-                                    float: left;
-                                    .image-gallery-thumbnail {
-                                        width: 80px;
-                                        height: 80px;
-                                        margin: 0px 4px;
-                                        @media (min-width: 1080px) {
-                                            width: 100px;
-                                            height: 100px;
+                                // @media (min-width: 1080px) {
+                                //     width: 70%;
+                                //     margin: auto;
+                                // }
+                                .image-gallery-thumbnails {
+                                    display: grid;
+                                    .image-gallery-thumbnails-container {
+                                        float: left;
+                                        .image-gallery-thumbnail {
+                                            width: 52px;
+                                            height: 52px;
+                                            margin: 0px 4px;
+                                            @media (min-width: 768px) {
+                                                width: 82px;
+                                                height: 82px;
+                                            }
+                                            outline: none;
+                                            border: 1px solid #acacac;
                                         }
-                                        outline: none;
-                                        border: 1px solid #acacac;
-                                    }
-                                    .image-gallery-thumbnail.active,
-                                    .image-gallery-thumbnail:focus,
-                                    .image-gallery-thumbnail:hover {
-                                        outline: none;
-                                        border: 1px solid #1c3279;
+                                        .image-gallery-thumbnail.active,
+                                        .image-gallery-thumbnail:focus,
+                                        .image-gallery-thumbnail:hover {
+                                            outline: none;
+                                            border: 1px solid #1c3279;
+                                        }
                                     }
                                 }
                             }
