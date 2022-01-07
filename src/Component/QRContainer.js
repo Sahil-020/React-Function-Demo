@@ -722,7 +722,7 @@ class QRContainer extends React.Component {
                 <Accordion
                   flush
                   onClick={(e) => {
-                    console.log("target : ", e);
+                    // console.log("target : ", e);
                     // console.log("e : ", e.target.id);
                     if (e.target.id && e.target.id !== "Center Diamond") {
                       // console.log(
