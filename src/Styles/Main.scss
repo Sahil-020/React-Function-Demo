@@ -356,6 +356,10 @@
                                                 width: 82px;
                                                 height: 82px;
                                             }
+                                            @media (min-width: 1440px) {
+                                                width: 86px;
+                                                height: 86px;
+                                            }
                                             outline: none;
                                             border: 1px solid #acacac;
                                         }
