@@ -719,13 +719,13 @@ class QRContainer extends React.Component {
                   flush
                   onClick={(e) => {
                     console.log("target : ", e);
-                    console.log("e : ", e.target.id);
+                    // console.log("e : ", e.target.id);
                     if (e.target.id && e.target.id !== "Center Diamond") {
-                      console.log(
-                        "el : ",
-                        document.getElementById(e.target.id).nextSibling
-                          .className
-                      );
+                      // console.log(
+                      //   "el : ",
+                      //   document.getElementById(e.target.id).nextSibling
+                      //     .className
+                      // );
                       const id = e.target.id;
                       const el = document.getElementById(e.target.id);
                       const clsname = document.getElementById(e.target.id)
