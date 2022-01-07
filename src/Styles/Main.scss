@@ -353,7 +353,8 @@
                             }
                             .image-gallery-slides {
                                 .image-gallery-image,
-                                iframe {
+                                iframe,
+                                video {
                                     max-height: 40vh;
                                     min-height: 40vh;
                                     width: 100%;
@@ -361,7 +362,8 @@
                                         max-height: 60vh;
                                     }
                                 }
-                                iframe {
+                                iframe,
+                                video {
                                     @media (min-width: 768px) {
                                         min-height: 60vh;
                                     }

@@ -303,7 +303,7 @@ class QRContainer extends React.Component {
           className="close-video"
           onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
         ></a> */}
-        <iframe
+        {/* <iframe
           // width="350"
           // height="300"
           src={`${item.embedUrl}?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1`}
@@ -311,7 +311,10 @@ class QRContainer extends React.Component {
           style={{ border: "none" }}
           allowFullScreen="true"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-        ></iframe>
+        ></iframe> */}
+        <video autoPlay>
+          <source src={item.embedUrl} type="video/mp4" />
+        </video>
       </div>
     );
   }
