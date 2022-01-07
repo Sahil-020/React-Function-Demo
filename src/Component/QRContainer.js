@@ -147,8 +147,8 @@ class QRContainer extends React.Component {
     // scrollToTop();
   }
   handleFocus() {
-    document.getElementById("searchBox") &&
-      document.getElementById("searchBox").focus();
+    // document.getElementById("searchBox") &&
+    document.getElementById("searchBox").focus();
   }
   handleReports(type) {
     let { resultData } = this.state;
@@ -409,6 +409,7 @@ class QRContainer extends React.Component {
           showIframe: false,
           searchValue: "",
         });
+        this.handleFocus();
         // this.props.setShowLoader(false);
         return;
       }
@@ -422,6 +423,7 @@ class QRContainer extends React.Component {
         showIframe: false,
         searchValue: "",
       });
+      this.handleFocus();
       // this.props.setShowLoader(false);
     } else {
       // console.log("Inside handlegetData else");
