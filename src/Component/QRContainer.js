@@ -147,13 +147,13 @@ class QRContainer extends React.Component {
     // scrollToTop();
   }
   handleFocus() {
-    document.getElementById("searchBox").select();
-    document.getElementById("searchBox").value = this.state.searchValue;
+    // document.getElementById("searchBox").select();
+
     // let w = window.innerWidth;
     // if (w > 1024) {
-    // document.getElementById("searchBox").focus({
-    //   preventScroll: true,
-    // });
+    document.getElementById("searchBox").focus({
+      preventScroll: true,
+    });
     // } else {
     // $(document).on("touchstart", function (e) {
     //   if (e.target.nodeName !== "INPUT") {
