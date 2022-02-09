@@ -103,7 +103,7 @@ class QRContainer extends React.Component {
   }
 
   async componentDidMount() {
-    setInterval(this.handleFocus, 30000);
+    setInterval(this.handleFocus, 1000);
     // this.handleFocus();
     if (this.state.id) {
       // console.log("id : ", this.state.id);
@@ -148,6 +148,7 @@ class QRContainer extends React.Component {
   }
   handleFocus() {
     document.getElementById("searchBox").select();
+    document.getElementById("searchBox").value = this.state.searchValue;
     // let w = window.innerWidth;
     // if (w > 1024) {
     // document.getElementById("searchBox").focus({
