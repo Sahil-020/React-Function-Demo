@@ -103,7 +103,7 @@ class QRContainer extends React.Component {
   }
 
   async componentDidMount() {
-    setInterval(this.handleFocus, 1000);
+    // setInterval(this.handleFocus, 1000);
     // this.handleFocus();
     if (this.state.id) {
       // console.log("id : ", this.state.id);
