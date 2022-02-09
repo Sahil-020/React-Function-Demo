@@ -148,7 +148,7 @@ class QRContainer extends React.Component {
   }
   handleFocus() {
     let w = window.innerWidth;
-    if (w > 425) {
+    if (w > 768) {
       document.getElementById("searchBox").focus({
         preventScroll: true,
       });
