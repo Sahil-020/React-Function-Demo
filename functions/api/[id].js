@@ -129,7 +129,7 @@ export const onRequestGet = async (context) => {
         let results = updatedResults.hits.hits[0];
         // let results = updatedResults.hits.hits[0]._source;
         return new Response(
-          JSON.stringify({ results, status: 200, type: "RFID" }),
+          JSON.stringify({ results, status: 200, type: "RFID", type2: "RF" }),
           {
             headers: {
               "content-type": "application/json;charset=UTF-8",
