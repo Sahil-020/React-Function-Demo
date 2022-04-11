@@ -11,6 +11,7 @@
     "currency-formatter": "^1.5.9",
     "jquery": "^3.6.0",
     "modern-react-qr-reader": "^1.0.12",
+    "node-fetch": "^3.2.3",
     "node-sass-chokidar": "^1.5.0",
     "qrscan": "^1.0.6",
     "react": "^17.0.2",
