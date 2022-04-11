@@ -78,16 +78,16 @@ export const onRequestGet = async (context) => {
     query: {
       bool: {
         should: [
-          {
-            term: {
-              RFIDOldValue1: params.id,
-            },
-          },
-          {
-            term: {
-              RFIDOldValue2: params.id,
-            },
-          },
+          // {
+          //   term: {
+          //     RFIDOldValue1: params.id,
+          //   },
+          // },
+          // {
+          //   term: {
+          //     RFIDOldValue2: params.id,
+          //   },
+          // },
           {
             term: {
               RFIDValue: params.id,
@@ -151,7 +151,13 @@ export const onRequestGet = async (context) => {
         // let results = updatedResults.hits.hits[0];
         let results = updatedResults.hits.hits[0]._source;
         return new Response(
-          JSON.stringify({ results, status: 200, type: "RFID", type2: "RF" }),
+          JSON.stringify({
+            results,
+            status: 200,
+            type: "RFID",
+            type2: "RF",
+            response,
+          }),
           {
             headers: {
               "content-type": "application/json;charset=UTF-8",
