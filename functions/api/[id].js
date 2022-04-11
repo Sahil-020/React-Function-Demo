@@ -126,7 +126,8 @@ export const onRequestGet = async (context) => {
         }
         // if (urlFetch.includes("RFIDValue"))
         // if (params.id.toString().length > 15) {
-        let results = updatedResults.hits.hits[0]._source;
+        let results = updatedResults.hits.hits[0];
+        // let results = updatedResults.hits.hits[0]._source;
         return new Response(
           JSON.stringify({ results, status: 200, type: "RFID" }),
           {
