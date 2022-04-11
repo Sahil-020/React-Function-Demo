@@ -67,15 +67,33 @@ export const onRequestGet = async (context) => {
       Authorization: `Basic ${CredentialsBase64}`,
     },
   };
+  let rfidQuery = {
+    query: {
+      multi_match: {
+        query: params.id,
+        fields: ["RFIDOldValue1", "RFIDOldValue2", "RFIDValue"],
+      },
+    },
+  };
+  const rfidInit = {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${CredentialsBase64}`,
+      "Content-Type": "application/json",
+    },
+    data: rfidQuery,
+  };
   let response;
   for (let i = 0; i < appNameData.length; i++) {
     // appName = appNameData[i];
     let urlFetch = `https://${AppUrl}/${appNameData[i]}/_doc/${params.id}/_source`;
 
     if (params.id.toString().length > 15) {
-      urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=RFIDValue : ${params.id}`;
+      // urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=RFIDValue : ${params.id}`;
+      urlFetch = `https://${AppUrl}/${appNameData[i]}/_search`;
     }
-    response = await fetch(urlFetch, init);
+    // response = await fetch(urlFetch, init);
+    response = await fetch(urlFetch, rfidInit);
     if (response.status === 200) {
       //       console.log("response :", response);
       //       console.log(response.status, " - ", response.statusText);
@@ -98,7 +116,8 @@ export const onRequestGet = async (context) => {
             },
           });
         }
-        if (urlFetch.includes("RFIDValue")) {
+        // if (urlFetch.includes("RFIDValue"))
+        if (params.id.toString().length > 15) {
           let results = updatedResults.hits.hits[0]._source;
           return new Response(
             JSON.stringify({ results, status: 200, type: "RFID" }),
