@@ -62,7 +62,7 @@ export const onRequestGet = async (context) => {
     AppUrl,
   } = context.env;
   let appNameData = [JewelrySerialApp, DiamondSerialApp, GemstoneSerialApp];
-  const init = {
+  let init = {
     headers: {
       Authorization: `Basic ${CredentialsBase64}`,
     },
