@@ -68,12 +68,12 @@ export const onRequestGet = async (context) => {
     },
   };
   let rfidQuery = {
-    // query: {
-    //   multi_match: {
-    //     query: params.id,
-    //     fields: ["RFIDOldValue1", "RFIDOldValue2", "RFIDValue"],
-    //   },
-    // },
+    query: {
+      multi_match: {
+        query: params.id,
+        fields: ["RFIDOldValue1", "RFIDOldValue2", "RFIDValue"],
+      },
+    },
 
     // query: {
     //   bool: {
@@ -96,33 +96,33 @@ export const onRequestGet = async (context) => {
     //     ],
     //   },
     // },
-    query: {
-      bool: {
-        should: [
-          {
-            match_phrase: {
-              RFIDOldValue1: {
-                query: params.id,
-              },
-            },
-          },
-          {
-            match_phrase: {
-              RFIDOldValue2: {
-                query: params.id,
-              },
-            },
-          },
-          {
-            match_phrase: {
-              RFIDValue: {
-                query: params.id,
-              },
-            },
-          },
-        ],
-      },
-    },
+    // query: {
+    //   bool: {
+    //     should: [
+    //       {
+    //         match_phrase: {
+    //           RFIDOldValue1: {
+    //             query: params.id,
+    //           },
+    //         },
+    //       },
+    //       {
+    //         match_phrase: {
+    //           RFIDOldValue2: {
+    //             query: params.id,
+    //           },
+    //         },
+    //       },
+    //       {
+    //         match_phrase: {
+    //           RFIDValue: {
+    //             query: params.id,
+    //           },
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
   };
   // const rfidInit = {
   //   method: "POST",
@@ -151,55 +151,58 @@ export const onRequestGet = async (context) => {
     }
     // response = await fetch(urlFetch, init);
     response = await fetch(urlFetch, init);
-    // if (response.status === 200) {
-    //       console.log("response :", response);
-    //       console.log(response.status, " - ", response.statusText);
-    let results = await gatherResponse(response);
-    let updatedResults = JSON.parse(results);
-    if (
-      updatedResults.hits.hits.length !== 0 ||
-      (updatedResults && updatedResults.transformType)
-    ) {
-      if (appNameData[i] === DiamondSerialApp && updatedResults.LabReportNbr) {
-        const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
-        const statusCode = 301;
-        //                 return Response.redirect(destinationURL, 301)
-        return new Response(JSON.stringify({ destinationURL, status: 200 }), {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
-        });
-      }
-      // if (urlFetch.includes("RFIDValue"))
-      // if (params.id.toString().length > 15) {
-      // let results = updatedResults.hits.hits[0];
-      let results = updatedResults.hits.hits[0]._source;
-      return new Response(
-        JSON.stringify({
-          results,
-          status: 200,
-          type: "RFID",
-          type2: "RF",
-          response,
-          updatedResults: updatedResults,
-        }),
-        {
-          headers: {
-            "content-type": "application/json;charset=UTF-8",
-          },
+    if (response.status === 200) {
+      //       console.log("response :", response);
+      //       console.log(response.status, " - ", response.statusText);
+      let results = await gatherResponse(response);
+      let updatedResults = JSON.parse(results);
+      if (
+        updatedResults.hits.hits.length !== 0 ||
+        (updatedResults && updatedResults.transformType)
+      ) {
+        if (
+          appNameData[i] === DiamondSerialApp &&
+          updatedResults.LabReportNbr
+        ) {
+          const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
+          const statusCode = 301;
+          //                 return Response.redirect(destinationURL, 301)
+          return new Response(JSON.stringify({ destinationURL, status: 200 }), {
+            headers: {
+              "content-type": "application/json;charset=UTF-8",
+            },
+          });
         }
-      );
-      // }
+        // if (urlFetch.includes("RFIDValue"))
+        // if (params.id.toString().length > 15) {
+        // let results = updatedResults.hits.hits[0];
+        let results = updatedResults.hits.hits[0]._source;
+        return new Response(
+          JSON.stringify({
+            results,
+            status: 200,
+            type: "RFID",
+            type2: "RF",
+            response,
+            updatedResults: updatedResults,
+          }),
+          {
+            headers: {
+              "content-type": "application/json;charset=UTF-8",
+            },
+          }
+        );
+        // }
 
-      // if (params.id.toString().length >= 15) {
-      //   return new Response(JSON.stringify({ results, status: 200 }), {
-      //     headers: {
-      //       "content-type": "application/json;charset=UTF-8",
-      //     },
-      //   });
-      // }
+        // if (params.id.toString().length >= 15) {
+        //   return new Response(JSON.stringify({ results, status: 200 }), {
+        //     headers: {
+        //       "content-type": "application/json;charset=UTF-8",
+        //     },
+        //   });
+        // }
+      }
     }
-    // }
     urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=SerialNumber : ${params.id}`;
     response = await fetch(urlFetch, init);
     if (response.status === 200) {
