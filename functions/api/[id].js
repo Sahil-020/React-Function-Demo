@@ -69,11 +69,18 @@ export const onRequestGet = async (context) => {
   };
   let rfidQuery = {
     query: {
-      multi_match: {
-        query: params.id,
-        fields: ["RFIDOldValue1", "RFIDOldValue2", "RFIDValue"],
+      match_phrase: {
+        RFIDValue: {
+          query: params.id,
+        },
       },
     },
+    // query: {
+    //   multi_match: {
+    //     query: params.id,
+    //     fields: ["RFIDOldValue1", "RFIDOldValue2", "RFIDValue"],
+    //   },
+    // },
 
     // query: {
     //   bool: {
