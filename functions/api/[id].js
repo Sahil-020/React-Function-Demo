@@ -68,13 +68,6 @@ export const onRequestGet = async (context) => {
     },
   };
   let rfidQuery = {
-    query: {
-      match_phrase: {
-        RFIDValue: {
-          query: params.id,
-        },
-      },
-    },
     // query: {
     //   multi_match: {
     //     query: params.id,
@@ -82,54 +75,27 @@ export const onRequestGet = async (context) => {
     //   },
     // },
 
-    // query: {
-    //   bool: {
-    //     should: [
-    //       {
-    //         term: {
-    //           RFIDOldValue1: params.id,
-    //         },
-    //       },
-    //       {
-    //         term: {
-    //           RFIDOldValue2: params.id,
-    //         },
-    //       },
-    //       {
-    //         term: {
-    //           RFIDValue: params.id,
-    //         },
-    //       },
-    //     ],
-    //   },
-    // },
-    // query: {
-    //   bool: {
-    //     should: [
-    //       {
-    //         match_phrase: {
-    //           RFIDOldValue1: {
-    //             query: params.id,
-    //           },
-    //         },
-    //       },
-    //       {
-    //         match_phrase: {
-    //           RFIDOldValue2: {
-    //             query: params.id,
-    //           },
-    //         },
-    //       },
-    //       {
-    //         match_phrase: {
-    //           RFIDValue: {
-    //             query: params.id,
-    //           },
-    //         },
-    //       },
-    //     ],
-    //   },
-    // },
+    query: {
+      bool: {
+        should: [
+          {
+            term: {
+              RFIDOldValue1: params.id,
+            },
+          },
+          {
+            term: {
+              RFIDOldValue2: params.id,
+            },
+          },
+          {
+            term: {
+              RFIDValue: params.id,
+            },
+          },
+        ],
+      },
+    },
   };
   // const rfidInit = {
   //   method: "POST",
@@ -191,7 +157,8 @@ export const onRequestGet = async (context) => {
             type: "RFID",
             type2: "RF",
             response,
-            updatedResults: updatedResults,
+            updatedResults,
+            init,
           }),
           {
             headers: {
