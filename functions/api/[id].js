@@ -75,22 +75,49 @@ export const onRequestGet = async (context) => {
     //   },
     // },
 
+    // query: {
+    //   bool: {
+    //     should: [
+    //       {
+    //         term: {
+    //           RFIDOldValue1: params.id,
+    //         },
+    //       },
+    //       {
+    //         term: {
+    //           RFIDOldValue2: params.id,
+    //         },
+    //       },
+    //       {
+    //         term: {
+    //           RFIDValue: params.id,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
     query: {
       bool: {
         should: [
           {
-            term: {
-              RFIDOldValue1: params.id,
+            match_phrase: {
+              RFIDOldValue1: {
+                query: params.id,
+              },
             },
           },
           {
-            term: {
-              RFIDOldValue2: params.id,
+            match_phrase: {
+              RFIDOldValue2: {
+                query: params.id,
+              },
             },
           },
           {
-            term: {
-              RFIDValue: params.id,
+            match_phrase: {
+              RFIDValue: {
+                query: params.id,
+              },
             },
           },
         ],
