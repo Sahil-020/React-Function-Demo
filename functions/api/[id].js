@@ -74,28 +74,33 @@ export const onRequestGet = async (context) => {
     //     fields: ["RFIDOldValue1", "RFIDOldValue2", "RFIDValue"],
     //   },
     // },
-
     query: {
-      bool: {
-        should: [
-          {
-            term: {
-              RFIDOldValue1: params.id,
-            },
-          },
-          {
-            term: {
-              RFIDOldValue2: params.id,
-            },
-          },
-          {
-            term: {
-              RFIDValue: params.id,
-            },
-          },
-        ],
+      term: {
+        RFIDValue: params.id,
       },
     },
+
+    // query: {
+    //   bool: {
+    //     should: [
+    //       {
+    //         term: {
+    //           RFIDOldValue1: params.id,
+    //         },
+    //       },
+    //       {
+    //         term: {
+    //           RFIDOldValue2: params.id,
+    //         },
+    //       },
+    //       {
+    //         term: {
+    //           RFIDValue: params.id,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
   };
   // const rfidInit = {
   //   method: "POST",
