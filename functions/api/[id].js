@@ -78,16 +78,16 @@ export const onRequestGet = async (context) => {
     query: {
       bool: {
         should: [
-          // {
-          //   term: {
-          //     RFIDOldValue1: params.id,
-          //   },
-          // },
-          // {
-          //   term: {
-          //     RFIDOldValue2: params.id,
-          //   },
-          // },
+          {
+            term: {
+              RFIDOldValue1: params.id,
+            },
+          },
+          {
+            term: {
+              RFIDOldValue2: params.id,
+            },
+          },
           {
             term: {
               RFIDValue: params.id,
@@ -157,6 +157,7 @@ export const onRequestGet = async (context) => {
             type: "RFID",
             type2: "RF",
             response,
+            updatedResults: updatedResults,
           }),
           {
             headers: {
