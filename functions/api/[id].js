@@ -67,7 +67,7 @@ export const onRequestGet = async (context) => {
       Authorization: `Basic ${CredentialsBase64}`,
     },
   };
-  let rfidQuery = {
+  let rfidQuery = JSON.stringify({
     // query: {
     //   multi_match: {
     //     query: params.id,
@@ -101,7 +101,7 @@ export const onRequestGet = async (context) => {
     //     ],
     //   },
     // },
-  };
+  });
   // const rfidInit = {
   //   method: "POST",
   //   headers: {
@@ -116,16 +116,16 @@ export const onRequestGet = async (context) => {
     let urlFetch = `https://${AppUrl}/${appNameData[i]}/_doc/${params.id}/_source`;
 
     if (params.id.toString().length > 15) {
-      urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=RFIDValue : ${params.id}`;
-      // urlFetch = `https://${AppUrl}/${appNameData[i]}/_search`;
-      // init = {
-      //   method: "POST",
-      //   headers: {
-      //     Authorization: `Basic ${CredentialsBase64}`,
-      //     "Content-Type": "application/json",
-      //   },
-      //   data: rfidQuery,
-      // };
+      // urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=RFIDValue : ${params.id}`;
+      urlFetch = `https://${AppUrl}/${appNameData[i]}/_search`;
+      init = {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${CredentialsBase64}`,
+          "Content-Type": "application/json",
+        },
+        data: rfidQuery,
+      };
     }
     // response = await fetch(urlFetch, init);
     response = await fetch(urlFetch, init);
