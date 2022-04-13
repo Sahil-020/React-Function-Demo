@@ -74,33 +74,33 @@ export const onRequestGet = async (context) => {
     //     fields: ["RFIDOldValue1", "RFIDOldValue2", "RFIDValue"],
     //   },
     // },
-    query: {
-      term: {
-        RFIDValue: params.id,
-      },
-    },
-
     // query: {
-    //   bool: {
-    //     should: [
-    //       {
-    //         term: {
-    //           RFIDOldValue1: params.id,
-    //         },
-    //       },
-    //       {
-    //         term: {
-    //           RFIDOldValue2: params.id,
-    //         },
-    //       },
-    //       {
-    //         term: {
-    //           RFIDValue: params.id,
-    //         },
-    //       },
-    //     ],
+    //   term: {
+    //     RFIDValue: params.id,
     //   },
     // },
+
+    query: {
+      bool: {
+        should: [
+          {
+            term: {
+              RFIDOldValue1: params.id,
+            },
+          },
+          {
+            term: {
+              RFIDOldValue2: params.id,
+            },
+          },
+          {
+            term: {
+              RFIDValue: params.id,
+            },
+          },
+        ],
+      },
+    },
   });
   // const rfidInit = {
   //   method: "POST",
@@ -118,13 +118,22 @@ export const onRequestGet = async (context) => {
     if (params.id.toString().length > 15) {
       // urlFetch = `https://${AppUrl}/${appNameData[i]}/_search?q=RFIDValue : ${params.id}`;
       urlFetch = `https://${AppUrl}/${appNameData[i]}/_search`;
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `Basic ${CredentialsBase64}==`);
+      myHeaders.append("Content-Type", "application/json");
+      // init = {
+      //   method: "POST",
+      //   headers: {
+      //     Authorization: `Basic ${CredentialsBase64}`,
+      //     "Content-Type": "application/json",
+      //   },
+      //   data: rfidQuery,
+      // };
       init = {
         method: "POST",
-        headers: {
-          Authorization: `Basic ${CredentialsBase64}`,
-          "Content-Type": "application/json",
-        },
-        data: rfidQuery,
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
       };
     }
     // response = await fetch(urlFetch, init);
