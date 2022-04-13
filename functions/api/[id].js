@@ -102,14 +102,7 @@ export const onRequestGet = async (context) => {
       },
     },
   });
-  // const rfidInit = {
-  //   method: "POST",
-  //   headers: {
-  //     Authorization: `Basic ${CredentialsBase64}`,
-  //     "Content-Type": "application/json",
-  //   },
-  //   data: rfidQuery,
-  // };
+
   let response;
   for (let i = 0; i < appNameData.length; i++) {
     // appName = appNameData[i];
@@ -132,7 +125,7 @@ export const onRequestGet = async (context) => {
       init = {
         method: "POST",
         headers: myHeaders,
-        body: raw,
+        body: rfidQuery,
         redirect: "follow",
       };
     }
