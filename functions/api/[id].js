@@ -140,22 +140,22 @@ export const onRequestGet = async (context) => {
         updatedResults.hits.hits.length !== 0 ||
         (updatedResults && updatedResults.transformType)
       ) {
-        if (
-          appNameData[i] === DiamondSerialApp &&
-          updatedResults.LabReportNbr
-        ) {
-          const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
-          const statusCode = 301;
-          //                 return Response.redirect(destinationURL, 301)
-          return new Response(JSON.stringify({ destinationURL, status: 200 }), {
-            headers: {
-              "content-type": "application/json;charset=UTF-8",
-            },
-          });
-        }
-        // if (urlFetch.includes("RFIDValue"))
-        // if (params.id.toString().length > 15) {
-        // let results = updatedResults.hits.hits[0];
+        // if (
+        //   appNameData[i] === DiamondSerialApp &&
+        //   updatedResults.LabReportNbr
+        // ) {
+        //   const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
+        //   const statusCode = 301;
+        //   //                 return Response.redirect(destinationURL, 301)
+        //   return new Response(JSON.stringify({ destinationURL, status: 200 }), {
+        //     headers: {
+        //       "content-type": "application/json;charset=UTF-8",
+        //     },
+        //   });
+        // }
+        // // if (urlFetch.includes("RFIDValue"))
+        // // if (params.id.toString().length > 15) {
+        // // let results = updatedResults.hits.hits[0];
         let results = updatedResults.hits.hits[0]._source;
         return new Response(
           JSON.stringify({
