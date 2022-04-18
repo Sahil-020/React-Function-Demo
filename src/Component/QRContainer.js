@@ -914,41 +914,7 @@ class QRContainer extends React.Component {
                     ) : (
                       <></>
                     )
-                  ) : Object.keys(
-                      Object.keys(DiamondFieldData.DiamondDetail)
-                        .map((key, Index) => resultData[key])
-                        .filter(
-                          (value) => ![undefined, null, ""].includes(value)
-                        ).length !== 0 ? (
-                        <Accordion.Item eventKey="4">
-                          <Accordion.Button id="Diamond">
-                            DIAMOND DETAIL
-                          </Accordion.Button>
-                          <Accordion.Body>
-                            {Object.keys(DiamondFieldData.DiamondDetail).map(
-                              (key, Index) => {
-                                if (resultData[key]) {
-                                  return (
-                                    <div className="field_data" key={key}>
-                                      <label>
-                                        {
-                                          DiamondFieldData.DiamondDetail[key]
-                                            .label
-                                        }
-                                        :
-                                      </label>
-                                      <label>{resultData[key]}</label>
-                                    </div>
-                                  );
-                                } else return <></>;
-                              }
-                            )}
-                          </Accordion.Body>
-                        </Accordion.Item>
-                      ) : (
-                        <></>
-                      )
-                    )
+                  ) : Object.keys(DiamondFieldData.DiamondDetail)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))
                       .length !== 0 ? (
@@ -957,13 +923,13 @@ class QRContainer extends React.Component {
                         DIAMOND DETAIL
                       </Accordion.Button>
                       <Accordion.Body>
-                        {Object.keys(FieldData.DiamondDetail).map(
+                        {Object.keys(DiamondFieldData.DiamondDetail).map(
                           (key, Index) => {
                             if (resultData[key]) {
                               return (
                                 <div className="field_data" key={key}>
                                   <label>
-                                    {FieldData.DiamondDetail[key].label}:
+                                    {DiamondFieldData.DiamondDetail[key].label}:
                                   </label>
                                   <label>{resultData[key]}</label>
                                 </div>
