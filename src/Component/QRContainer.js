@@ -937,6 +937,24 @@ class QRContainer extends React.Component {
                             } else return <></>;
                           }
                         )}
+                        {Object.keys(DiamondFieldData.Measurements)
+                          .map((key, Index) => resultData[key])
+                          .filter(
+                            (value) => ![undefined, null, ""].includes(value)
+                          ).length !== 0 ? (
+                          <div className="field_data">
+                            <label>
+                              {/* {DiamondFieldData.DiamondDetail[key].label} */}
+                              Measurements:
+                            </label>
+                            <label>
+                              {resultData.Length} x {resultData.Width} x{" "}
+                              {resultData.Depth}
+                            </label>
+                          </div>
+                        ) : (
+                          <></>
+                        )}
                       </Accordion.Body>
                     </Accordion.Item>
                   ) : (
