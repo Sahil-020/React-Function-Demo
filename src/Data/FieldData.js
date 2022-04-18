@@ -354,13 +354,38 @@ export const FieldData = {
 
 export const DiamondFieldData = {
   DiamondDetail: {
+    DiamondCaratWeight: {
+      label: "Carat Weight",
+      // checkbox: true,
+      // advanced: false,
+    },
+    DiamondColorRange: {
+      label: "Color",
+      // checkbox: true,
+      // advanced: false,
+    },
+    DiamondClarityRange: {
+      label: "Clarity",
+      // checkbox: true,
+      // advanced: false,
+    },
     Shape: {
       label: "Shape",
       // checkbox: true,
       // advanced: false,
     },
-    GemstoneType: {
-      label: "Gemstone Type",
+    Giashape: {
+      label: "Gia Shape",
+      // checkbox: true,
+      // advanced: false,
+    },
+    StoneRatio: {
+      label: "Stone Ratio",
+      // checkbox: true,
+      // advanced: false,
+    },
+    StoneFluoresence: {
+      label: "Stone Fluoresence",
       // checkbox: true,
       // advanced: false,
     },
@@ -374,34 +399,8 @@ export const DiamondFieldData = {
       // checkbox: true,
       // advanced: false,
     },
-
-    DiamondCaratWeight: {
-      label: "Diamond Carat Weight",
-      // checkbox: true,
-      // advanced: false,
-    },
-    StoneFluoresence: {
-      label: "Stone Fluoresence",
-      // checkbox: true,
-      // advanced: false,
-    },
-    StoneRatio: {
-      label: "Stone Ratio",
-      // checkbox: true,
-      // advanced: false,
-    },
-    Giashape: {
-      label: "Gia Shape",
-      // checkbox: true,
-      // advanced: false,
-    },
-    DiamondClarityRange: {
-      label: "Diamond Clarity Range",
-      // checkbox: true,
-      // advanced: false,
-    },
-    DiamondColorRange: {
-      label: "Diamond Color Range",
+    TableP: {
+      label: "TableP",
       // checkbox: true,
       // advanced: false,
     },
@@ -410,8 +409,19 @@ export const DiamondFieldData = {
       // checkbox: true,
       // advanced: false,
     },
+    StoneCulet: {
+      label: "Stone Culet",
+      // checkbox: true,
+      // advanced: false,
+    },
+
     StoneGirdle: {
       label: "Stone Girdle",
+      // checkbox: true,
+      // advanced: false,
+    },
+    GemstoneType: {
+      label: "Gemstone Type",
       // checkbox: true,
       // advanced: false,
     },
@@ -422,16 +432,6 @@ export const DiamondFieldData = {
     },
     DiamondCut: {
       label: "Diamond Cut",
-      // checkbox: true,
-      // advanced: false,
-    },
-    TableP: {
-      label: "TableP",
-      // checkbox: true,
-      // advanced: false,
-    },
-    StoneCulet: {
-      label: "Stone Culet",
       // checkbox: true,
       // advanced: false,
     },
