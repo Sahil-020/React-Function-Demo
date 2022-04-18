@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import QrReader from "modern-react-qr-reader";
 import axios from "axios";
 import { Item } from "../Data/SampleItem";
-import { FieldData } from "../Data/FieldData";
+import { FieldData, DiamondFieldData } from "../Data/FieldData";
 import Accordion from "react-bootstrap/Accordion";
 import ImageGallery from "react-image-gallery";
 import currencyFormatter from "currency-formatter";
@@ -885,10 +885,73 @@ class QRContainer extends React.Component {
                   ) : (
                     <></>
                   )}
-                  {Object.keys(FieldData.DiamondDetail)
-                    .map((key, Index) => resultData[key])
-                    .filter((value) => ![undefined, null, ""].includes(value))
-                    .length !== 0 ? (
+                  {resultData.transformType !== "DiamondSerial" ? (
+                    Object.keys(FieldData.DiamondDetail)
+                      .map((key, Index) => resultData[key])
+                      .filter((value) => ![undefined, null, ""].includes(value))
+                      .length !== 0 ? (
+                      <Accordion.Item eventKey="4">
+                        <Accordion.Button id="Diamond">
+                          DIAMOND DETAIL
+                        </Accordion.Button>
+                        <Accordion.Body>
+                          {Object.keys(FieldData.DiamondDetail).map(
+                            (key, Index) => {
+                              if (resultData[key]) {
+                                return (
+                                  <div className="field_data" key={key}>
+                                    <label>
+                                      {FieldData.DiamondDetail[key].label}:
+                                    </label>
+                                    <label>{resultData[key]}</label>
+                                  </div>
+                                );
+                              } else return <></>;
+                            }
+                          )}
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    ) : (
+                      <></>
+                    )
+                  ) : Object.keys(
+                      Object.keys(DiamondFieldData.DiamondDetail)
+                        .map((key, Index) => resultData[key])
+                        .filter(
+                          (value) => ![undefined, null, ""].includes(value)
+                        ).length !== 0 ? (
+                        <Accordion.Item eventKey="4">
+                          <Accordion.Button id="Diamond">
+                            DIAMOND DETAIL
+                          </Accordion.Button>
+                          <Accordion.Body>
+                            {Object.keys(DiamondFieldData.DiamondDetail).map(
+                              (key, Index) => {
+                                if (resultData[key]) {
+                                  return (
+                                    <div className="field_data" key={key}>
+                                      <label>
+                                        {
+                                          DiamondFieldData.DiamondDetail[key]
+                                            .label
+                                        }
+                                        :
+                                      </label>
+                                      <label>{resultData[key]}</label>
+                                    </div>
+                                  );
+                                } else return <></>;
+                              }
+                            )}
+                          </Accordion.Body>
+                        </Accordion.Item>
+                      ) : (
+                        <></>
+                      )
+                    )
+                      .map((key, Index) => resultData[key])
+                      .filter((value) => ![undefined, null, ""].includes(value))
+                      .length !== 0 ? (
                     <Accordion.Item eventKey="4">
                       <Accordion.Button id="Diamond">
                         DIAMOND DETAIL
