@@ -454,3 +454,116 @@ export const DiamondFieldData = {
     },
   },
 };
+
+export const GemStoneFieldData = {
+  DiamondDetail: {
+    CaratWeight: {
+      label: "Carat Weight",
+      // checkbox: true,
+      // advanced: false,
+    },
+    DiamondColorRange: {
+      label: "Color",
+      // checkbox: true,
+      // advanced: false,
+    },
+    DiamondClarityRange: {
+      label: "Clarity",
+      // checkbox: true,
+      // advanced: false,
+    },
+    Shape: {
+      label: "Shape",
+      // checkbox: true,
+      // advanced: false,
+    },
+    GemEnhancement: {
+      label: "Gem Enhancement",
+      // checkbox: true,
+      // advanced: false,
+    },
+    GemCuttingStyle: {
+      label: "Gem Cutting Style",
+      // checkbox: true,
+      // advanced: false,
+    },
+    Giashape: {
+      label: "Gia Shape",
+      // checkbox: true,
+      // advanced: false,
+    },
+    StoneRatio: {
+      label: "Stone Ratio",
+      // checkbox: true,
+      // advanced: false,
+    },
+    StoneFluoresence: {
+      label: "Stone Fluoresence",
+      // checkbox: true,
+      // advanced: false,
+    },
+    Polish: {
+      label: "Polish",
+      // checkbox: true,
+      // advanced: false,
+    },
+    Symmetry: {
+      label: "Symmetry",
+      // checkbox: true,
+      // advanced: false,
+    },
+    TableP: {
+      label: "TableP",
+      // checkbox: true,
+      // advanced: false,
+    },
+    DepthP: {
+      label: "DepthP",
+      // checkbox: true,
+      // advanced: false,
+    },
+    StoneCulet: {
+      label: "Stone Culet",
+      // checkbox: true,
+      // advanced: false,
+    },
+
+    StoneGirdle: {
+      label: "Stone Girdle",
+      // checkbox: true,
+      // advanced: false,
+    },
+    GemstoneType: {
+      label: "Gemstone Type",
+      // checkbox: true,
+      // advanced: false,
+    },
+    GIAReportDate: {
+      label: "GIA Report Date",
+      // checkbox: true,
+      // advanced: false,
+    },
+    DiamondCut: {
+      label: "Diamond Cut",
+      // checkbox: true,
+      // advanced: false,
+    },
+  },
+  Measurements: {
+    Length: {
+      label: "Length",
+      // checkbox: true,
+      // advanced: false,
+    },
+    Depth: {
+      label: "Depth",
+      // checkbox: true,
+      // advanced: false,
+    },
+    Width: {
+      label: "Width",
+      // checkbox: true,
+      // advanced: false,
+    },
+  },
+};

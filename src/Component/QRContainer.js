@@ -13,6 +13,7 @@ import Fred from "../Logo/fredleighton-logo-removebg-preview.png";
 import { toast } from "react-toastify";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import $ from "jquery";
+import moment from "moment";
 // import QrReader from "react-qr-reader";
 // import QRScan from "qrscan";
 
@@ -66,6 +67,7 @@ class QRContainer extends React.Component {
       // scan: true,
       searchValue: "",
       resultData: {},
+      // resultData: Item,
       resultStatus: ![undefined, null, ""].includes(
         props.location.pathname.replace("/", "")
       )
