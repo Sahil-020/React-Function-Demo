@@ -1005,11 +1005,11 @@ class QRContainer extends React.Component {
                                       </label>
                                       <label>
                                         {resultData.Length && resultData.Length}{" "}
-                                        {resultData.Length ||
-                                          (resultData.Width ? "x" : "")}{" "}
+                                        {resultData.Length ? "x" : ""}{" "}
                                         {resultData.Width}{" "}
-                                        {resultData.Width ||
-                                          (resultData.Depth ? "x" : "")}{" "}
+                                        {resultData.Width && resultData.Depth
+                                          ? "x"
+                                          : ""}{" "}
                                         {resultData.Depth}
                                       </label>
                                     </div>
@@ -1048,7 +1048,7 @@ class QRContainer extends React.Component {
                       .length !== 0 ? (
                       <Accordion.Item eventKey="4">
                         <Accordion.Button id="Diamond">
-                          DIAMOND DETAIL
+                          GEMSTONE DETAIL
                         </Accordion.Button>
                         <Accordion.Body>
                           {Object.keys(GemStoneFieldData.DiamondDetail).map(
@@ -1091,12 +1091,12 @@ class QRContainer extends React.Component {
                                 Measurements:
                               </label>
                               <label>
-                                {resultData.Length && resultData.Length}{" "}
-                                {resultData.Length ||
-                                  (resultData.Width ? "x" : "")}{" "}
+                                {resultData.Length}{" "}
+                                {resultData.Length ? "x" : ""}{" "}
                                 {resultData.Width}{" "}
-                                {resultData.Width ||
-                                  (resultData.Depth ? "x" : "")}{" "}
+                                {resultData.Width && resultData.Depth
+                                  ? "x"
+                                  : ""}{" "}
                                 {resultData.Depth}
                               </label>
                             </div>

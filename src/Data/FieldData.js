@@ -506,7 +506,7 @@ export const GemStoneFieldData = {
       // advanced: false,
     },
     GIAReportDate: {
-      label: "GIA Report Date",
+      label: "Report Date",
       // checkbox: true,
       // advanced: false,
     },
