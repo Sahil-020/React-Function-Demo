@@ -1006,10 +1006,10 @@ class QRContainer extends React.Component {
                                       <label>
                                         {resultData.Length && resultData.Length}{" "}
                                         {resultData.Length ||
-                                          (resultData.Width && "x")}{" "}
+                                          (resultData.Width ? "x" : "")}{" "}
                                         {resultData.Width}{" "}
                                         {resultData.Width ||
-                                          (resultData.Depth && "x")}{" "}
+                                          (resultData.Depth ? "x" : "")}{" "}
                                         {resultData.Depth}
                                       </label>
                                     </div>
@@ -1091,7 +1091,10 @@ class QRContainer extends React.Component {
                                 Measurements:
                               </label>
                               <label>
-                                {resultData.Length} x {resultData.Width} x{" "}
+                                {resultData.Length && resultData.Length}{" "}
+                                {resultData.Length || (resultData.Width && "x")}{" "}
+                                {resultData.Width}{" "}
+                                {resultData.Width || (resultData.Depth && "x")}{" "}
                                 {resultData.Depth}
                               </label>
                             </div>
