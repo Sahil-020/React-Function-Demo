@@ -3,7 +3,11 @@ import React, { Component } from "react";
 import QrReader from "modern-react-qr-reader";
 import axios from "axios";
 import { Item } from "../Data/SampleItem";
-import { FieldData, DiamondFieldData } from "../Data/FieldData";
+import {
+  FieldData,
+  DiamondFieldData,
+  GemStoneFieldData,
+} from "../Data/FieldData";
 import Accordion from "react-bootstrap/Accordion";
 import ImageGallery from "react-image-gallery";
 import currencyFormatter from "currency-formatter";
@@ -802,7 +806,8 @@ class QRContainer extends React.Component {
                   ) : (
                     <></>
                   )}
-                  {resultData.transformType !== "DiamondSerial" ? (
+                  {resultData.transformType !== "DiamondSerial" &&
+                  resultData.transformType !== "GemstoneSerial" ? (
                     Object.keys(FieldData.GeneralData)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))
@@ -838,7 +843,8 @@ class QRContainer extends React.Component {
                     <></>
                   )}
 
-                  {resultData.transformType !== "DiamondSerial" ? (
+                  {resultData.transformType !== "DiamondSerial" &&
+                  resultData.transformType !== "GemstoneSerial" ? (
                     Object.keys(FieldData.Description)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))
@@ -871,7 +877,8 @@ class QRContainer extends React.Component {
                     <></>
                   )}
 
-                  {resultData.transformType !== "DiamondSerial" ? (
+                  {resultData.transformType !== "DiamondSerial" &&
+                  resultData.transformType !== "GemstoneSerial" ? (
                     Object.keys(FieldData.RingDetail)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))
@@ -903,7 +910,8 @@ class QRContainer extends React.Component {
                   ) : (
                     <></>
                   )}
-                  {resultData.transformType !== "DiamondSerial" ? (
+                  {resultData.transformType !== "DiamondSerial" &&
+                  resultData.transformType !== "GemstoneSerial" ? (
                     Object.keys(FieldData.DiamondDetail)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))
@@ -932,64 +940,175 @@ class QRContainer extends React.Component {
                     ) : (
                       <></>
                     )
-                  ) : Object.keys(DiamondFieldData.DiamondDetail)
+                  ) : resultData.transformType === "DiamondSerial" ? (
+                    Object.keys(DiamondFieldData.DiamondDetail)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))
                       .length !== 0 ? (
-                    <Accordion.Item eventKey="4">
-                      <Accordion.Button id="Diamond">
-                        DIAMOND DETAIL
-                      </Accordion.Button>
-                      <Accordion.Body>
-                        {Object.keys(DiamondFieldData.DiamondDetail).map(
-                          (key, Index) => {
-                            if (resultData[key]) {
-                              return (
-                                <div className="field_data" key={key}>
-                                  <label>
-                                    {DiamondFieldData.DiamondDetail[key].label}:
-                                  </label>
-                                  <label>
-                                    {key === "DiamondCaratWeight"
-                                      ? `${Number(resultData[key]).toFixed(
-                                          2
-                                        )}cts`
-                                      : key === "GIAReportDate"
-                                      ? moment(
-                                          new Date(`${resultData[key]}`)
-                                        ).format("MM/DD/YYYY")
-                                      : resultData[key]}
-                                  </label>
-                                </div>
-                              );
-                            } else return <></>;
-                          }
-                        )}
-                        {Object.keys(DiamondFieldData.Measurements)
-                          .map((key, Index) => resultData[key])
-                          .filter(
-                            (value) => ![undefined, null, ""].includes(value)
-                          ).length !== 0 ? (
-                          <div className="field_data">
-                            <label>
-                              {/* {DiamondFieldData.DiamondDetail[key].label} */}
-                              Measurements:
-                            </label>
-                            <label>
-                              {resultData.Length} x {resultData.Width} x{" "}
-                              {resultData.Depth}
-                            </label>
-                          </div>
-                        ) : (
-                          <></>
-                        )}
-                      </Accordion.Body>
-                    </Accordion.Item>
+                      <Accordion.Item eventKey="4">
+                        <Accordion.Button id="Diamond">
+                          DIAMOND DETAIL
+                        </Accordion.Button>
+                        <Accordion.Body>
+                          {Object.keys(DiamondFieldData.DiamondDetail).map(
+                            (key, Index) => {
+                              if (resultData[key] && key !== "StoneCulet") {
+                                return (
+                                  <div className="field_data" key={key}>
+                                    <label>
+                                      {
+                                        DiamondFieldData.DiamondDetail[key]
+                                          .label
+                                      }
+                                      :
+                                    </label>
+                                    <label>
+                                      {key === "DiamondCaratWeight"
+                                        ? `${Number(resultData[key]).toFixed(
+                                            2
+                                          )}cts`
+                                        : key === "GIAReportDate"
+                                        ? moment(
+                                            new Date(`${resultData[key]}`)
+                                          ).format("MM/DD/YYYY")
+                                        : resultData[key]}
+                                    </label>
+                                  </div>
+                                );
+                              } else if (key === "StoneCulet") {
+                                return (
+                                  <>
+                                    <div className="field_data" key={key}>
+                                      <label>
+                                        {
+                                          DiamondFieldData.DiamondDetail[key]
+                                            .label
+                                        }
+                                        :
+                                      </label>
+                                      <label>
+                                        {key === "DiamondCaratWeight"
+                                          ? `${Number(resultData[key]).toFixed(
+                                              2
+                                            )}cts`
+                                          : key === "GIAReportDate"
+                                          ? moment(
+                                              new Date(`${resultData[key]}`)
+                                            ).format("MM/DD/YYYY")
+                                          : resultData[key]}
+                                      </label>
+                                    </div>
+                                    <div className="field_data">
+                                      <label>
+                                        {/* {DiamondFieldData.DiamondDetail[key].label} */}
+                                        Measurements:
+                                      </label>
+                                      <label>
+                                        {resultData.Length && resultData.Length}{" "}
+                                        {resultData.Length ||
+                                          (resultData.Width && "x")}{" "}
+                                        {resultData.Width}{" "}
+                                        {resultData.Width ||
+                                          (resultData.Depth && "x")}{" "}
+                                        {resultData.Depth}
+                                      </label>
+                                    </div>
+                                  </>
+                                );
+                              } else return <></>;
+                            }
+                          )}
+                          {/* {Object.keys(DiamondFieldData.Measurements)
+                            .map((key, Index) => resultData[key])
+                            .filter(
+                              (value) => ![undefined, null, ""].includes(value)
+                            ).length !== 0 ? (
+                            <div className="field_data">
+                              <label>
+                                {/* {DiamondFieldData.DiamondDetail[key].label} 
+                                Measurements:
+                              </label>
+                              <label>
+                                {resultData.Length} x {resultData.Width} x{" "}
+                                {resultData.Depth}
+                              </label>
+                            </div>
+                          ) : (
+                            <></>
+                          )} */}
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    ) : (
+                      <></>
+                    )
+                  ) : resultData.transformType === "GemstoneSerial" ? (
+                    Object.keys(GemStoneFieldData.DiamondDetail)
+                      .map((key, Index) => resultData[key])
+                      .filter((value) => ![undefined, null, ""].includes(value))
+                      .length !== 0 ? (
+                      <Accordion.Item eventKey="4">
+                        <Accordion.Button id="Diamond">
+                          DIAMOND DETAIL
+                        </Accordion.Button>
+                        <Accordion.Body>
+                          {Object.keys(GemStoneFieldData.DiamondDetail).map(
+                            (key, Index) => {
+                              if (resultData[key]) {
+                                return (
+                                  <div className="field_data" key={key}>
+                                    <label>
+                                      {
+                                        GemStoneFieldData.DiamondDetail[key]
+                                          .label
+                                      }
+                                      :
+                                    </label>
+                                    <label>
+                                      {key === "DiamondCaratWeight" ||
+                                      key === "CaratWeight"
+                                        ? `${Number(resultData[key]).toFixed(
+                                            2
+                                          )}cts`
+                                        : key === "GIAReportDate"
+                                        ? moment(
+                                            new Date(`${resultData[key]}`)
+                                          ).format("MM/DD/YYYY")
+                                        : resultData[key]}
+                                    </label>
+                                  </div>
+                                );
+                              } else return <></>;
+                            }
+                          )}
+                          {Object.keys(GemStoneFieldData.Measurements)
+                            .map((key, Index) => resultData[key])
+                            .filter(
+                              (value) => ![undefined, null, ""].includes(value)
+                            ).length !== 0 ? (
+                            <div className="field_data">
+                              <label>
+                                {/* {DiamondFieldData.DiamondDetail[key].label} */}
+                                Measurements:
+                              </label>
+                              <label>
+                                {resultData.Length} x {resultData.Width} x{" "}
+                                {resultData.Depth}
+                              </label>
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    ) : (
+                      <></>
+                    )
                   ) : (
                     <></>
                   )}
 
-                  {resultData.transformType !== "DiamondSerial" ? (
+                  {resultData.transformType !== "DiamondSerial" &&
+                  resultData.transformType !== "GemstoneSerial" ? (
                     Object.keys(FieldData.ColorDetail)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))
@@ -1022,7 +1141,8 @@ class QRContainer extends React.Component {
                     <></>
                   )}
 
-                  {resultData.transformType !== "DiamondSerial" ? (
+                  {resultData.transformType !== "DiamondSerial" &&
+                  resultData.transformType !== "GemstoneSerial" ? (
                     Object.keys(FieldData.CenterInfo)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))
@@ -1055,7 +1175,8 @@ class QRContainer extends React.Component {
                     <></>
                   )}
 
-                  {resultData.transformType !== "DiamondSerial" ? (
+                  {resultData.transformType !== "DiamondSerial" &&
+                  resultData.transformType !== "GemstoneSerial" ? (
                     Object.keys(FieldData.Dimensions)
                       .map((key, Index) => resultData[key])
                       .filter((value) => ![undefined, null, ""].includes(value))

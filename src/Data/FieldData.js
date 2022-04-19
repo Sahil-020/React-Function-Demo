@@ -462,18 +462,14 @@ export const GemStoneFieldData = {
       // checkbox: true,
       // advanced: false,
     },
-    DiamondColorRange: {
-      label: "Color",
-      // checkbox: true,
-      // advanced: false,
-    },
-    DiamondClarityRange: {
-      label: "Clarity",
-      // checkbox: true,
-      // advanced: false,
-    },
+
     Shape: {
       label: "Shape",
+      // checkbox: true,
+      // advanced: false,
+    },
+    StoneRatio: {
+      label: "Stone Ratio",
       // checkbox: true,
       // advanced: false,
     },
@@ -487,31 +483,12 @@ export const GemStoneFieldData = {
       // checkbox: true,
       // advanced: false,
     },
-    Giashape: {
-      label: "Gia Shape",
+    CountryofOrigin: {
+      label: "Country of Origin",
       // checkbox: true,
       // advanced: false,
     },
-    StoneRatio: {
-      label: "Stone Ratio",
-      // checkbox: true,
-      // advanced: false,
-    },
-    StoneFluoresence: {
-      label: "Stone Fluoresence",
-      // checkbox: true,
-      // advanced: false,
-    },
-    Polish: {
-      label: "Polish",
-      // checkbox: true,
-      // advanced: false,
-    },
-    Symmetry: {
-      label: "Symmetry",
-      // checkbox: true,
-      // advanced: false,
-    },
+
     TableP: {
       label: "TableP",
       // checkbox: true,
@@ -522,17 +499,7 @@ export const GemStoneFieldData = {
       // checkbox: true,
       // advanced: false,
     },
-    StoneCulet: {
-      label: "Stone Culet",
-      // checkbox: true,
-      // advanced: false,
-    },
 
-    StoneGirdle: {
-      label: "Stone Girdle",
-      // checkbox: true,
-      // advanced: false,
-    },
     GemstoneType: {
       label: "Gemstone Type",
       // checkbox: true,
@@ -540,11 +507,6 @@ export const GemStoneFieldData = {
     },
     GIAReportDate: {
       label: "GIA Report Date",
-      // checkbox: true,
-      // advanced: false,
-    },
-    DiamondCut: {
-      label: "Diamond Cut",
       // checkbox: true,
       // advanced: false,
     },
