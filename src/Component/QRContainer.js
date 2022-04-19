@@ -947,7 +947,17 @@ class QRContainer extends React.Component {
                                   <label>
                                     {DiamondFieldData.DiamondDetail[key].label}:
                                   </label>
-                                  <label>{resultData[key]}</label>
+                                  <label>
+                                    {key === "DiamondCaratWeight"
+                                      ? `${Number(resultData[key]).toFixed(
+                                          2
+                                        )}cts`
+                                      : key === "GIAReportDate"
+                                      ? moment(
+                                          new Date(`${resultData[key]}`)
+                                        ).format("MM/DD/YYYY")
+                                      : resultData[key]}
+                                  </label>
                                 </div>
                               );
                             } else return <></>;
