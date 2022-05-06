@@ -90,23 +90,23 @@ export const onRequestGet = async (context) => {
     if (response.status === 400 || response.status === 404) {
         return new Response(
             `${JSON.stringify(response.status)} - ${JSON.stringify(
-        response.statusText
-      )}`
+                response.statusText
+            )}`
         );
     }
 
     let results = await gatherResponse(response);
     let updatedResults = JSON.parse(results);
-    if (productType[1] === "D" && updatedResults.LabReportNbr) {
-        const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
-        const statusCode = 301;
-        //         return Response.redirect(destinationURL, 301);
-        return new Response(JSON.stringify({destinationURL,status:200}), {
-            headers: {
-                "content-type": "application/json;charset=UTF-8"
-            }
-        })
-    }
+    // if (productType[1] === "D" && updatedResults.LabReportNbr) {
+    //     const destinationURL = `https://cdn.kwiat.com/kwiat/certs-pdfs/${updatedResults.LabReportNbr}.pdf`;
+    //     const statusCode = 301;
+    //     //         return Response.redirect(destinationURL, 301);
+    //     return new Response(JSON.stringify({destinationURL,status:200}), {
+    //         headers: {
+    //             "content-type": "application/json;charset=UTF-8"
+    //         }
+    //     })
+    // }
     var formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
@@ -125,9 +125,8 @@ export const onRequestGet = async (context) => {
                            src=${handleImage(updatedResults)}
                          />
                       </div>
-                      <div> Serial Number : ${
-                        updatedResults.SerialNumber
-                      } </div>
+                      <div> Serial Number : ${updatedResults.SerialNumber
+        } </div>
                       <div>Inventory ID : ${updatedResults.InventoryID}</div>
                       <div>Retail Price : ${formatter.format(updatedResults.RetailPrice)}</div> 
                     </div>
@@ -138,7 +137,7 @@ export const onRequestGet = async (context) => {
     //                 "content-type": "application/json;charset=UTF-8"
     //             }
     //         })
-    return new Response(JSON.stringify({results,status:200}), {
+    return new Response(JSON.stringify({ results, status: 200 }), {
         headers: {
             "content-type": "application/json;charset=UTF-8"
         }
